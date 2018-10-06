@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <android.support.design.card.MaterialCardView
+            android:id="@+id/materialCardView"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            app:cardCornerRadius="2dp">
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <Button
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="@android:color/transparent"
+                    android:fontFamily="@font/roboto"
+                    android:text="@string/txt_question_example"
+                    android:textColor="@color/colorAccent"
+                    android:typeface="normal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="EXAMPLE" />
+            </android.support.constraint.ConstraintLayout>
+
+        </android.support.design.card.MaterialCardView>
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RadioButton
+                    android:id="@+id/radioButton"
+                    style="@android:style/Widget.Material.CompoundButton.RadioButton"
+                    android:layout_width="188dp"
+                    android:layout_height="36dp"
+                    android:layout_marginStart="80dp"
+                    android:layout_marginTop="8dp"
+                    android:buttonTint="?android:attr/colorControlNormal"
+                    android:checked="false"
+                    android:fontFamily="@font/roboto"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+                    android:textColor="@color/colorAccent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Answer 1" />
+
+                <RadioButton
+                    android:id="@+id/radioButton2"
+                    style="@android:style/Widget.Material.CompoundButton.RadioButton"
+                    android:layout_width="188dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="8dp"
+                    android:buttonTint="?android:attr/colorControlNormal"
+                    android:fontFamily="@font/roboto"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+                    android:textColor="@color/colorAccent"
+                    app:layout_constraintLeft_toRightOf="@id/radioButton"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Answer 2" />
+
+                <RadioButton
+                    android:id="@+id/radioButton3"
+                    style="@android:style/Widget.Material.CompoundButton.RadioButton"
+                    android:layout_width="188dp"
+                    android:layout_height="36dp"
+                    android:layout_marginStart="80dp"
+                    android:layout_marginTop="8dp"
+                    android:buttonTint="?android:attr/colorControlNormal"
+                    android:fontFamily="@font/roboto"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+                    android:textColor="@color/colorAccent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/radioButton"
+                    tools:text="Answer 3" />
+
+                <RadioButton
+                    android:id="@+id/radioButton4"
+                    style="@android:style/Widget.Material.CompoundButton.RadioButton"
+                    android:layout_width="188dp"
+                    android:layout_height="36dp"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="4dp"
+                    android:buttonTint="?android:attr/colorControlNormal"
+                    android:fontFamily="@font/roboto"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+                    android:textColor="@color/colorAccent"
+                    app:layout_constraintStart_toEndOf="@+id/radioButton3"
+                    app:layout_constraintTop_toBottomOf="@+id/radioButton2"
+                    tools:text="Answer 4" />
+            </android.support.constraint.ConstraintLayout>
+        </RadioGroup>
+    </LinearLayout>
+</layout>
+
