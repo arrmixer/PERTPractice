@@ -25,7 +25,7 @@
                     android:id="@+id/question_text"
                     android:layout_width="wrap_content"
                     android:layout_height="44dp"
-                    android:layout_marginStart="8dp"
+                    android:layout_marginStart="16dp"
                     android:layout_marginTop="84dp"
                     android:layout_marginEnd="8dp"
                     android:lineSpacingExtra="8sp"
@@ -36,6 +36,7 @@
                     tools:text="Lorem ipsum dolor sit amet, ut sed tractatos torquatos intellegebat./t Ne vel meis partemdelicata." />
 
                 <Button
+                    android:id="@+id/button_Example"
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -54,6 +55,7 @@
         </android.support.design.card.MaterialCardView>
 
         <RadioGroup
+            android:id="@+id/radio_group_05"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -118,4 +120,3 @@
         </RadioGroup>
     </LinearLayout>
 </layout>
-

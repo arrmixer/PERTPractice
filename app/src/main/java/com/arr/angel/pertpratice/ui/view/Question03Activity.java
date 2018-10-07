@@ -1,49 +1,25 @@
 package com.arr.angel.pertpratice.ui.view;
 
 import android.databinding.DataBindingUtil;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.annotation.VisibleForTesting;
+import android.os.Bundle;
 import android.support.design.widget.NavigationView;
-import android.support.test.espresso.IdlingResource;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-
 
 import com.arr.angel.pertpratice.R;
 import com.arr.angel.pertpratice.databinding.ActivityMainBinding;
 import com.arr.angel.pertpratice.databinding.NavheaderBinding;
-import com.arr.angel.pertpratice.idlingresource.SimpleIdlingResource;
 
-public class MainActivity extends SingleFragmentActivity {
-
-    // The Idling Resource which will be null in production.
-    @Nullable
-    private SimpleIdlingResource mIdlingResource;
-
-    /**
-     * Only called from test, creates and returns a new {@link SimpleIdlingResource}.
-     */
-    @VisibleForTesting
-    @NonNull
-    public IdlingResource getIdlingResource() {
-        if (mIdlingResource == null) {
-            mIdlingResource = new SimpleIdlingResource();
-        }
-        return mIdlingResource;
-    }
-
+public class Question03Activity extends SingleFragmentActivity {
     private DrawerLayout mDrawerLayout;
-
 
     @Override
     protected Fragment createFragment() {
-        return new MainFragment();
+        return Question01Fragment.newInstance();
     }
 
     @Override
@@ -66,7 +42,7 @@ public class MainActivity extends SingleFragmentActivity {
         //use this to change the text
 
         NavheaderBinding navheaderBinding = NavheaderBinding.bind(activityMainBinding.navView.inflateHeaderView(R.layout.navheader));
-        navheaderBinding.textView.setText("Topics");
+        navheaderBinding.textView.setText("Questions");
 //        activityMainBinding.navView.getMenu().getItem(0).setTitle("Test Test");
 //        activityMainBinding.navView.getMenu().getItem(2).setVisible(false);
 //        activityMainBinding.navView.getMenu().removeGroup(0);
@@ -104,8 +80,5 @@ public class MainActivity extends SingleFragmentActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
-
-
 
 }

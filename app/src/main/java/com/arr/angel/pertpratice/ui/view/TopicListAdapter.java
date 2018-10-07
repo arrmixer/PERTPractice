@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.arr.angel.pertpratice.R;
 import com.arr.angel.pertpratice.databinding.TopicListItemBinding;
@@ -22,6 +23,7 @@ public class TopicListAdapter extends RecyclerView.Adapter<TopicListAdapter.Topi
     //    Class variables for the List that holds RecipeViewModel and the Context
     private final Context mContext;
     private final TopicViewModel mTopicViewModel;
+
 
     public TopicListAdapter(ItemClickListener mItemClickListener, Context mContext, TopicViewModel mTopicViewModel) {
         this.mItemClickListener = mItemClickListener;
@@ -39,6 +41,8 @@ public class TopicListAdapter extends RecyclerView.Adapter<TopicListAdapter.Topi
         TopicListItemBinding binding = DataBindingUtil.inflate(
                 inflater, R.layout.topic_list_item, parent, false);
 
+
+
         return new TopicHolder(binding);
     }
 
@@ -52,6 +56,7 @@ public class TopicListAdapter extends RecyclerView.Adapter<TopicListAdapter.Topi
 
     @Override
     public int getItemCount() {
+
         if(mTopicViewModel != null){
             return mTopicViewModel.getLiveTopicListData().getValue().size();
         }else {
@@ -61,7 +66,7 @@ public class TopicListAdapter extends RecyclerView.Adapter<TopicListAdapter.Topi
     }
 
     public interface ItemClickListener {
-        void onItemClickListener(int itemId);
+        void onItemClickListener(int itemId, String tag);
     }
 
     class TopicHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -69,6 +74,8 @@ public class TopicListAdapter extends RecyclerView.Adapter<TopicListAdapter.Topi
         private final TopicListItemBinding mTopicListItemBinding;
 
         private Topic mTopic;
+        private Button practice;
+        private Button results;
 
         private TopicHolder(TopicListItemBinding binding) {
             super(binding.getRoot());
@@ -76,8 +83,16 @@ public class TopicListAdapter extends RecyclerView.Adapter<TopicListAdapter.Topi
             //assign instance of RecipeListItemBinding to parameter
             mTopicListItemBinding = binding;
 
+            practice = binding.buttonPractice;
+            results = binding.buttonResults;
+
+
             //set click event to each itemView
-            itemView.setOnClickListener(this);
+//            itemView.setOnClickListener(this);
+            results.setOnClickListener(this);
+            results.setTag(mContext.getResources().getString(R.string.topic_results));
+            practice.setOnClickListener(this);
+            practice.setTag(mContext.getResources().getString(R.string.topic_practice));
 
         }
 
@@ -96,7 +111,9 @@ public class TopicListAdapter extends RecyclerView.Adapter<TopicListAdapter.Topi
         @Override
         public void onClick(View view) {
             int elementId = getAdapterPosition();
-            mItemClickListener.onItemClickListener(elementId);
+            mItemClickListener.onItemClickListener(elementId, view.getTag().toString());
+
         }
+
     }
 }

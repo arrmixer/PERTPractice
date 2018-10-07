@@ -2,7 +2,7 @@ package com.arr.angel.pertpratice.ui.view;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
-import android.content.Context;
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -18,7 +18,6 @@ import android.widget.Toast;
 import com.arr.angel.pertpratice.R;
 import com.arr.angel.pertpratice.databinding.MainFragmentBinding;
 import com.arr.angel.pertpratice.model.Topic;
-import com.arr.angel.pertpratice.util.TopicData;
 import com.arr.angel.pertpratice.viewmodel.TopicViewModel;
 
 import java.util.List;
@@ -81,9 +80,9 @@ public class MainFragment extends Fragment implements TopicListAdapter.ItemClick
         super.onActivityCreated(savedInstanceState);
 
         topicViewModel = ViewModelProviders.of(this).get(TopicViewModel.class);
-        fetchTopics();
-
-        topicViewModel.getLiveTopicListData().observe(this, new Observer<List<Topic>>() {
+//        fetchTopics();
+        topicViewModel.setLiveTopicListData();
+        topicViewModel.getLiveTopicListDataFromDB().observe(this, new Observer<List<Topic>>() {
             @Override
             public void onChanged(@Nullable List<Topic> topics) {
                 Log.i(TAG, "OnChanged called!");
@@ -103,15 +102,20 @@ public class MainFragment extends Fragment implements TopicListAdapter.ItemClick
 //    }
 
     @Override
-    public void onItemClickListener(int itemId) {
-        Toast.makeText(getContext(), "working: " + itemId, Toast.LENGTH_SHORT).show();
+    public void onItemClickListener(int itemId, String tag) {
+        Toast.makeText(getContext(), "working: " + tag + " "+ itemId, Toast.LENGTH_SHORT).show();
+        if(tag.equals(getString(R.string.topic_practice))){
+            Intent intent = new Intent(getContext(), Question01Activity.class);
+            startActivity(intent);
+        }
+
     }
 
     //get Topic and Question data and set data into viewModel
-    public void fetchTopics(){
-        mTopicList = new TopicData().getTopicList();
-        topicViewModel.setLiveTopicListData(mTopicList);
-    }
+//    public void fetchTopics(){
+//        mTopicList = new TopicData().getTopicList();
+//        topicViewModel.setLiveTopicListData(mTopicList);
+//    }
 
     //make sure data is in before assigning to adapter
     private void setupAdapter(){

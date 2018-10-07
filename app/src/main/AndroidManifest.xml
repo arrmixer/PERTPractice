@@ -16,6 +16,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui.view.Question01Activity"/>
+        <activity android:name=".ui.view.Question02Activity"/>
+        <activity android:name=".ui.view.Question03Activity"/>
+        <activity android:name=".ui.view.Question04Activity"/>
+        <activity android:name=".ui.view.Question05Activity"/>
+        <activity android:name=".ui.view.Example01"/>
+        <activity android:name=".ui.view.Example02"/>
+        <activity android:name=".ui.view.Example03"/>
+        <activity android:name=".ui.view.Example04"/>
+        <activity android:name=".ui.view.Example05"/>
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

@@ -10,10 +10,10 @@ public class Question {
 
     private List<String> possibleAnswers;
 
-    //get answer to question
+    //get answer to question01
     private String answer;
 
-    //check to see if question is answered or not
+    //check to see if question01 is answered or not
     private boolean answered;
 
     private boolean isCorrect;

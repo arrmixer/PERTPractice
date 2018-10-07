@@ -2,47 +2,58 @@ package com.arr.angel.pertpratice.viewmodel;
 
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
+import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
-import android.arch.lifecycle.ViewModel;
 import android.support.annotation.NonNull;
 
+import com.arr.angel.pertpratice.db.AppExecutors;
+import com.arr.angel.pertpratice.db.TopicRepository;
 import com.arr.angel.pertpratice.model.Question;
 import com.arr.angel.pertpratice.model.Topic;
 
 import java.util.List;
+import java.util.concurrent.AbstractExecutorService;
+import java.util.concurrent.Executor;
 
 public class TopicViewModel extends AndroidViewModel {
 
     private Topic mTopic;
 
-    private final MutableLiveData<List<Topic>> mLiveTopicListData;
-    private final MutableLiveData<Topic> mLiveTopicData;
+
+    private final TopicRepository topicRepository;
+    private MutableLiveData<List<Topic>> mLiveTopicListData;
 
 
     public TopicViewModel(@NonNull Application application) {
         super(application);
-        mLiveTopicListData = new MutableLiveData<>();
-        mLiveTopicData = new MutableLiveData<>();
-
+        topicRepository = new TopicRepository(application, AppExecutors.getInstance().diskIO());
     }
 
-    public void setLiveTopicData(Topic topicData){
+    public void setLiveTopicData(Topic topicData) {
+        MutableLiveData mLiveTopicData = new MutableLiveData<>();
         mLiveTopicData.setValue(topicData);
     }
 
-    public MutableLiveData<Topic> getLiveTopicData() {
-        return mLiveTopicData;
+    public LiveData<Topic> getLiveTopicDataFromDB(int id) {
+
+        return topicRepository.getTopicFromDB(id);
     }
 
-    public void setLiveTopicListData(List<Topic> topics){
-        mLiveTopicListData.setValue(topics);
+    public void setLiveTopicListData() {
+        mLiveTopicListData = new MutableLiveData<>();
+        mLiveTopicListData.setValue(topicRepository.getTopics());
     }
 
     public MutableLiveData<List<Topic>> getLiveTopicListData() {
         return mLiveTopicListData;
     }
 
-    public void setTopic(Topic topic){
+    public LiveData<List<Topic>> getLiveTopicListDataFromDB() {
+
+        return topicRepository.getTopicsList();
+    }
+
+    public void setTopic(Topic topic) {
         mTopic = topic;
     }
 
@@ -50,11 +61,13 @@ public class TopicViewModel extends AndroidViewModel {
         return mTopic.getName();
     }
 
-    public List<Question> getQuestions(){
-        return mTopic.getQuestions();
+    public int getId() {
+        return mTopic.getId();
     }
 
-
+    public List<Question> getQuestions() {
+        return mTopic.getQuestions();
+    }
 
 
 }
