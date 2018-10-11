@@ -19,7 +19,7 @@ public class Question03Activity extends SingleFragmentActivity {
 
     @Override
     protected Fragment createFragment() {
-        return Question01Fragment.newInstance();
+        return Question03Fragment.newInstance();
     }
 
     @Override

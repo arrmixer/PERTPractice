@@ -48,6 +48,15 @@ public class TopicRepository {
         });
     }
 
+    public void updateTopic(final Topic topic){
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                mTopicDao.updateTopic(topic);
+            }
+        });
+    }
+
     public LiveData<Topic> getTopicFromDB(int topicId) {
         mTopicLiveData = mTopicDao.loadTopicById(topicId);
         return mTopicLiveData;

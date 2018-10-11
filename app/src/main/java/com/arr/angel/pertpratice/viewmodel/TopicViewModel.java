@@ -69,5 +69,9 @@ public class TopicViewModel extends AndroidViewModel {
         return mTopic.getQuestions();
     }
 
+    public void updateTopic(Topic topic){
+        topicRepository.updateTopic(topic);
+    }
+
 
 }

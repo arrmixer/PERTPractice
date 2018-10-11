@@ -19,8 +19,10 @@ public class Question02Activity extends SingleFragmentActivity {
 
     @Override
     protected Fragment createFragment() {
-        return Question01Fragment.newInstance();
+        return Question02Fragment.newInstance();
     }
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

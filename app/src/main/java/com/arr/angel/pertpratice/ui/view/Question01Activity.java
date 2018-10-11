@@ -1,5 +1,6 @@
 package com.arr.angel.pertpratice.ui.view;
 
+import android.app.Activity;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -15,7 +16,7 @@ import com.arr.angel.pertpratice.databinding.ActivityMainBinding;
 import com.arr.angel.pertpratice.databinding.NavheaderBinding;
 
 
-public class Question01Activity extends SingleFragmentActivity{
+public class Question01Activity extends SingleFragmentActivity  {
 
     private DrawerLayout mDrawerLayout;
 
@@ -35,7 +36,7 @@ public class Question01Activity extends SingleFragmentActivity{
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle(getTitle());
 
-        if(getSupportActionBar() != null){
+        if (getSupportActionBar() != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setHomeAsUpIndicator(R.drawable.ic_menu_white_24dp);
             actionBar.setDisplayShowTitleEnabled(true);
@@ -44,12 +45,10 @@ public class Question01Activity extends SingleFragmentActivity{
         //use this to change the text
 
         NavheaderBinding navheaderBinding = NavheaderBinding.bind(activityMainBinding.navView.inflateHeaderView(R.layout.navheader));
-        navheaderBinding.textView.setText("Questions");
+        navheaderBinding.textView.setText(R.string.nav_title_questions);
 //        activityMainBinding.navView.getMenu().getItem(0).setTitle("Test Test");
 //        activityMainBinding.navView.getMenu().getItem(2).setVisible(false);
 //        activityMainBinding.navView.getMenu().removeGroup(0);
-
-
 
 
         mDrawerLayout = activityMainBinding.drawerLayout;
@@ -82,6 +81,5 @@ public class Question01Activity extends SingleFragmentActivity{
         }
         return super.onOptionsItemSelected(item);
     }
-
 
 }

@@ -22,6 +22,8 @@ import com.arr.angel.pertpratice.R;
 import com.arr.angel.pertpratice.databinding.Question01Binding;
 import com.arr.angel.pertpratice.model.Question;
 import com.arr.angel.pertpratice.model.Topic;
+import com.arr.angel.pertpratice.util.DialogCreations;
+import com.arr.angel.pertpratice.util.RadioGroupHelper;
 import com.arr.angel.pertpratice.viewmodel.TopicViewModel;
 
 import java.util.ArrayList;
@@ -57,6 +59,11 @@ public class Question01Fragment extends Fragment {
     boolean isAnswered;
     boolean isCorrect;
 
+    //placeholder for next question int
+    private int nextQuestion = 2;
+
+
+
     public static Question01Fragment newInstance() {
         Question01Fragment question01Fragment = new Question01Fragment();
 
@@ -66,9 +73,12 @@ public class Question01Fragment extends Fragment {
     //DataBinding instance
     Question01Binding questionBinding;
 
+
+
     //Interface for hosting activities
     public interface Callbacks {
-        void onTopicSelected(Topic topic, List<Topic> topics);
+//        void onTopicSelected(Topic topic, List<Topic> topics);
+//        void correctDialogFragment();
     }
 
     @Override
@@ -135,32 +145,38 @@ public class Question01Fragment extends Fragment {
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int checkId) {
+
+                //use helper method to generate radio group logic
+                RadioGroupHelper.radioButtonLogic(getContext(), getFragmentManager(), radioGroup, checkId, answer, possibleAnswers, nextQuestion );
+
 //                Log.d(TAG, "Radio clicked is " + getResources().getResourceName(radioGroup.getCheckedRadioButtonId()) +
 //                " and the id is " + getResources().getResourceName(checkId));
 
-                switch (checkId) {
-                    case R.id.radioButton:
-                        if (answer.contentEquals(possibleAnswers.get(0))) {
-                            Toast.makeText(getContext(), "correct!", Toast.LENGTH_SHORT).show();
-                        }
-                        break;
-                    case R.id.radioButton2:
-                        if (answer.contentEquals(possibleAnswers.get(1))) {
-                            Toast.makeText(getContext(), "correct!", Toast.LENGTH_SHORT).show();
-                        }
-                        break;
-                    case R.id.radioButton3:
-                        if (answer.contentEquals(possibleAnswers.get(2))) {
-                            Toast.makeText(getContext(), "correct!", Toast.LENGTH_SHORT).show();
-                        }
-                        break;
-                    case R.id.radioButton4:
-                        if (answer.contentEquals(possibleAnswers.get(3))) {
-                            Toast.makeText(getContext(), "correct!", Toast.LENGTH_SHORT).show();
-                        }
-                        break;
-
-                }
+//                switch (checkId) {
+//                    case R.id.radioButton:
+//                        if (answer.contentEquals(possibleAnswers.get(0))) {
+//                            Toast.makeText(getContext(), "correct!", Toast.LENGTH_SHORT).show();
+//                            DialogCreations.showCorrectDialog(radioGroup, getFragmentManager(), 2);
+////                            radioGroup.setVisibility(View.INVISIBLE);
+//                        }
+//                        break;
+//                    case R.id.radioButton2:
+//                        if (answer.contentEquals(possibleAnswers.get(1))) {
+//                            Toast.makeText(getContext(), "correct!", Toast.LENGTH_SHORT).show();
+//                        }
+//                        break;
+//                    case R.id.radioButton3:
+//                        if (answer.contentEquals(possibleAnswers.get(2))) {
+//                            Toast.makeText(getContext(), "correct!", Toast.LENGTH_SHORT).show();
+//                        }
+//                        break;
+//                    case R.id.radioButton4:
+//                        if (answer.contentEquals(possibleAnswers.get(3))) {
+//                            Toast.makeText(getContext(), "correct!", Toast.LENGTH_SHORT).show();
+//                        }
+//                        break;
+//
+//                }
 
             }
         });
@@ -182,6 +198,12 @@ public class Question01Fragment extends Fragment {
         radio4.setText(possibleAnswers.get(3));
 
     }
+
+
+
+
+
+
 
 
 }
