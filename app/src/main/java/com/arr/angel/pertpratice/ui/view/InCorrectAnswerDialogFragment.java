@@ -14,18 +14,24 @@ import android.widget.Toast;
 import com.arr.angel.pertpratice.R;
 import com.arr.angel.pertpratice.util.DialogCreations;
 
+import static com.arr.angel.pertpratice.ui.view.CorrectAnswerDialogFragment.EXTRA_IS_ANSWERED;
+import static com.arr.angel.pertpratice.ui.view.CorrectAnswerDialogFragment.EXTRA_IS_CORRECT;
+
 public class InCorrectAnswerDialogFragment extends DialogFragment {
 
     private static String TAG = InCorrectAnswerDialogFragment.class.getSimpleName();
 
     //placeholder for int to the next question
+    //and topic id
     private int nextQuestion;
+    private int topicId;
 
-    public static InCorrectAnswerDialogFragment newInstance(int nextQuestion) {
+    public static InCorrectAnswerDialogFragment newInstance(int nextQuestion, int topicId) {
 
         InCorrectAnswerDialogFragment inCorrectAnswerDialogFragment = new InCorrectAnswerDialogFragment();
         Bundle bundle = new Bundle();
         bundle.putInt(DialogCreations.questionNumberArg, nextQuestion);
+        bundle.putInt(Question01Fragment.ARGS_TOPIC_ID, topicId);
         inCorrectAnswerDialogFragment.setArguments(bundle);
 
         return inCorrectAnswerDialogFragment;
@@ -41,6 +47,7 @@ public class InCorrectAnswerDialogFragment extends DialogFragment {
         //make sure bundle has int value
         if (getArguments() != null) {
             nextQuestion = getArguments().getInt(DialogCreations.questionNumberArg);
+            topicId = getArguments().getInt(Question01Fragment.ARGS_TOPIC_ID);
         }else{
             Log.d(TAG, "No int argument for next question");
             nextQuestion = 0;
@@ -52,6 +59,9 @@ public class InCorrectAnswerDialogFragment extends DialogFragment {
                     public void onClick(DialogInterface dialogInterface, int i) {
                         Toast.makeText(getContext(), "Next!", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(getActivity(), DialogCreations.check(nextQuestion));
+                        intent.putExtra(EXTRA_IS_CORRECT, false);
+                        intent.putExtra(EXTRA_IS_ANSWERED, true);
+                        intent.putExtra(MainFragment.EXTRA_TOPIC_ID, topicId);
                         startActivity(intent);
                     }
                 })

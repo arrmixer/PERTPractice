@@ -28,6 +28,10 @@ import com.arr.angel.pertpratice.viewmodel.TopicViewModel;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.arr.angel.pertpratice.ui.view.Question01Fragment.ARGS_TOPIC_ID;
+import static com.arr.angel.pertpratice.ui.view.Question02Fragment.ARG_IS_ANSWERED;
+import static com.arr.angel.pertpratice.ui.view.Question02Fragment.ARG_IS_CORRECT;
+
 public class Question03Fragment extends Fragment {
     private static final String TAG = Question03Fragment.class.getSimpleName();
 
@@ -50,19 +54,25 @@ public class Question03Fragment extends Fragment {
     private RadioGroup radioGroup;
 
     //place holder for question fields
+    private Topic mTopic;
     private String answer;
     private List<Question> questions;
     private Question question;
-    List<String> possibleAnswers;
+    private List<String> possibleAnswers;
     boolean isAnswered;
     boolean isCorrect;
+    private int topicId;
 
     //placeholder for next question int
     private int nextQuestion = 4;
 
-    public static Question03Fragment newInstance() {
+    public static Question03Fragment newInstance(boolean correct, boolean answered, int topicId) {
         Question03Fragment question03Fragment = new Question03Fragment();
-
+        Bundle bundle = new Bundle();
+        bundle.putBoolean(ARG_IS_CORRECT, correct);
+        bundle.putBoolean(ARG_IS_ANSWERED, answered);
+        bundle.putInt(ARGS_TOPIC_ID, topicId);
+        question03Fragment.setArguments(bundle);
         return question03Fragment;
     }
 
@@ -107,25 +117,39 @@ public class Question03Fragment extends Fragment {
             possibleAnswers = savedInstanceState.getStringArrayList(EXTRA_POSSIBLE_ANSWERS);
         }
 
+        if (getArguments() != null){
+            isAnswered = getArguments().getBoolean(ARG_IS_ANSWERED);
+            isCorrect = getArguments().getBoolean(ARG_IS_CORRECT);
+            topicId = getArguments().getInt(ARGS_TOPIC_ID);
+
+        }
+
         content = questionBinding.questionText;
         radio1 = questionBinding.radioButton;
         radio2 = questionBinding.radioButton2;
         radio3 = questionBinding.radioButton3;
         radio4 = questionBinding.radioButton4;
         exampleButton = questionBinding.buttonExample;
-        radioGroup = questionBinding.radioGroup03;
+        radioGroup = questionBinding.radioGroup;
 
         topicViewModel = ViewModelProviders.of(this).get(TopicViewModel.class);
-        topicViewModel.setLiveTopicListData();
-        topicViewModel.getLiveTopicListDataFromDB().observe(this, new Observer<List<Topic>>() {
+        topicViewModel.getLiveTopicDataFromDB(topicId).observe(this, new Observer<Topic>() {
             @Override
-            public void onChanged(@Nullable List<Topic> topics) {
-                Log.i(TAG, "OnChanged called!");
-                mTopicList = topics;
+            public void onChanged(@Nullable Topic topic) {
+                mTopic = topic;
                 populateView();
-
+                if (isAnswered){
+                    Question previousQuestion = questions.get(1);
+                    previousQuestion.setCorrect(isCorrect);
+                    previousQuestion.setAnswered(isAnswered);
+                    topicViewModel.insertTopic(mTopic);
+                }
             }
         });
+
+
+        Log.d(TAG, "isAnswered is " + isAnswered);
+
 
         exampleButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -142,7 +166,7 @@ public class Question03Fragment extends Fragment {
 //                " and the id is " + getResources().getResourceName(checkId));
 
                 RadioGroupHelper.radioButtonLogic(getContext(), getFragmentManager(), radioGroup,
-                        checkId, answer, possibleAnswers, nextQuestion);
+                        checkId, answer, possibleAnswers, nextQuestion, topicId);
 
             }
         });
@@ -151,8 +175,7 @@ public class Question03Fragment extends Fragment {
     }
 
     public void populateView() {
-//        mTopicList = topicViewModel.getLiveTopicListData().getValue();
-        questions = mTopicList.get(0).getQuestions();
+        questions = mTopic.getQuestions();
         question = questions.get(2);
         answer = question.getAnswer();
         possibleAnswers = question.getPossibleAnswers();

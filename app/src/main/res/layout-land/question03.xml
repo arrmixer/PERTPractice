@@ -57,7 +57,7 @@
         </android.support.design.card.MaterialCardView>
 
         <RadioGroup
-            android:id="@+id/radio_group_03"
+            android:id="@+id/radio_group"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"

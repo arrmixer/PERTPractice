@@ -1,5 +1,7 @@
 package com.arr.angel.pertpratice.ui.view;
 
+import android.arch.lifecycle.ViewModelProvider;
+import android.arch.lifecycle.ViewModelProviders;
 import android.databinding.DataBindingUtil;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -19,6 +21,7 @@ import com.arr.angel.pertpratice.R;
 import com.arr.angel.pertpratice.databinding.ActivityMainBinding;
 import com.arr.angel.pertpratice.databinding.NavheaderBinding;
 import com.arr.angel.pertpratice.idlingresource.SimpleIdlingResource;
+import com.arr.angel.pertpratice.viewmodel.TopicViewModel;
 
 public class MainActivity extends SingleFragmentActivity {
 

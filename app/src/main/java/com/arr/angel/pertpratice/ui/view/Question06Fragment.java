@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +17,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.arr.angel.pertpratice.R;
-import com.arr.angel.pertpratice.databinding.Question02Binding;
+import com.arr.angel.pertpratice.databinding.Question06Binding;
 import com.arr.angel.pertpratice.model.Question;
 import com.arr.angel.pertpratice.model.Topic;
 import com.arr.angel.pertpratice.util.RadioGroupHelper;
@@ -28,14 +27,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.arr.angel.pertpratice.ui.view.Question01Fragment.ARGS_TOPIC_ID;
+import static com.arr.angel.pertpratice.ui.view.Question02Fragment.ARG_IS_ANSWERED;
+import static com.arr.angel.pertpratice.ui.view.Question02Fragment.ARG_IS_CORRECT;
 
-public class Question02Fragment extends Fragment {
-    private static final String TAG = Question02Fragment.class.getSimpleName();
+public class Question06Fragment extends Fragment {
+    private static final String TAG = Question05Fragment.class.getSimpleName();
 
     protected static final String EXTRA_ANSWER = "com.arr.angel.pertpratice.ui.view.answer";
     protected static final String EXTRA_POSSIBLE_ANSWERS = "com.arr.angel.pertpratice.ui.view.possibleAnswers";
-    public static final String ARG_IS_CORRECT = "com.arr.angel.pertpratice.ui.view.is.correct.arg" ;
-    public static final String ARG_IS_ANSWERED = "com.arr.angel.pertpratice.ui.view.is.answered.arg";
 
     /*Placeholders for Topics*/
     private List<Topic> mTopicList;
@@ -63,22 +62,22 @@ public class Question02Fragment extends Fragment {
     private int topicId;
 
     //placeholder for next question int
-    private int nextQuestion = 3;
+    private int nextQuestion = 0;
 
-    public static Question02Fragment newInstance(boolean correct, boolean answered, int topicId) {
-        Question02Fragment question02Fragment = new Question02Fragment();
+    public static Question06Fragment newInstance(boolean correct, boolean answered, int topicId) {
+        Question06Fragment question06Fragment = new Question06Fragment();
         Bundle bundle = new Bundle();
         bundle.putBoolean(ARG_IS_CORRECT, correct);
         bundle.putBoolean(ARG_IS_ANSWERED, answered);
         bundle.putInt(ARGS_TOPIC_ID, topicId);
-        question02Fragment.setArguments(bundle);
 
-        return question02Fragment;
+        question06Fragment.setArguments(bundle);
+
+        return question06Fragment;
     }
 
-
     //DataBinding instance
-    Question02Binding questionBinding;
+    Question06Binding questionBinding;
 
     //Interface for hosting activities
     public interface Callbacks {
@@ -102,7 +101,7 @@ public class Question02Fragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        questionBinding = DataBindingUtil.inflate(inflater, R.layout.question02, container, false);
+        questionBinding = DataBindingUtil.inflate(inflater, R.layout.question06, container, false);
         questionBinding.setLifecycleOwner(this);
 
 
@@ -118,7 +117,7 @@ public class Question02Fragment extends Fragment {
             possibleAnswers = savedInstanceState.getStringArrayList(EXTRA_POSSIBLE_ANSWERS);
         }
 
-        if (getArguments() != null){
+        if (getArguments() != null) {
             isAnswered = getArguments().getBoolean(ARG_IS_ANSWERED);
             isCorrect = getArguments().getBoolean(ARG_IS_CORRECT);
             topicId = getArguments().getInt(ARGS_TOPIC_ID);
@@ -133,25 +132,20 @@ public class Question02Fragment extends Fragment {
         radioGroup = questionBinding.radioGroup;
 
         topicViewModel = ViewModelProviders.of(this).get(TopicViewModel.class);
-
         topicViewModel.getLiveTopicDataFromDB(topicId).observe(this, new Observer<Topic>() {
             @Override
             public void onChanged(@Nullable Topic topic) {
                 mTopic = topic;
                 populateView();
-                if (isAnswered){
-                    Question previousQuestion = questions.get(0);
+                if (isAnswered) {
+                    Question previousQuestion = questions.get(4);
                     previousQuestion.setCorrect(isCorrect);
                     previousQuestion.setAnswered(isAnswered);
                     topicViewModel.insertTopic(mTopic);
                 }
+
             }
         });
-
-        Log.d(TAG, "isAnswered is " + isAnswered);
-
-
-
 
         exampleButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -167,7 +161,8 @@ public class Question02Fragment extends Fragment {
 //                Log.d(TAG, "Radio clicked is " + getResources().getResourceName(radioGroup.getCheckedRadioButtonId()) +
 //                " and the id is " + getResources().getResourceName(checkId));
 
-                RadioGroupHelper.radioButtonLogic(getContext(), getFragmentManager(), radioGroup, checkId, answer, possibleAnswers, nextQuestion, topicId);
+                RadioGroupHelper.radioButtonLogic(getContext(), getFragmentManager(), radioGroup,
+                        checkId, answer, possibleAnswers, nextQuestion, topicId);
 
             }
         });
@@ -176,12 +171,11 @@ public class Question02Fragment extends Fragment {
     }
 
     public void populateView() {
-
         questions = mTopic.getQuestions();
-        question = questions.get(1);
+        question = questions.get(5);
         answer = question.getAnswer();
         possibleAnswers = question.getPossibleAnswers();
-        content.setText(questions.get(1).getContent());
+        content.setText(question.getContent());
 
         radio1.setText(possibleAnswers.get(0));
         radio2.setText(possibleAnswers.get(1));

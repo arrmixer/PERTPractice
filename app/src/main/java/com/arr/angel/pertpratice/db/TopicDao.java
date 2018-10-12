@@ -14,7 +14,7 @@ import java.util.List;
 
 @Dao
 interface TopicDao {
-    @Query("SELECT * FROM topics ORDER BY name ASC")
+    @Query("SELECT * FROM topics ORDER BY topic_id ASC")
     LiveData<List<Topic>> loadAllTopics();
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
@@ -28,4 +28,5 @@ interface TopicDao {
 
     @Query("SELECT * FROM topics WHERE topic_id = :id")
     LiveData<Topic> loadTopicById(int id);
+
 }

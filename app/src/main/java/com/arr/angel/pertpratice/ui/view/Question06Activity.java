@@ -17,28 +17,33 @@ import com.arr.angel.pertpratice.util.UtilMethods;
 
 import static com.arr.angel.pertpratice.ui.view.MainFragment.EXTRA_TOPIC_ID;
 
+public class Question06Activity extends SingleFragmentActivity {
 
-public class Question01Activity extends SingleFragmentActivity  {
-
-    //view of drawer layout
     private DrawerLayout mDrawerLayout;
 
-    //placeholder for topicId
+    //placeholders for boolean values of previous question
+    // and topicId
+    private boolean isAnswered;
+    private boolean isCorrect;
     private int topicId;
-
 
     @Override
     protected Fragment createFragment() {
+
         if(getIntent() != null){
-            topicId = getIntent().getIntExtra(EXTRA_TOPIC_ID, 0);
+            isAnswered = getIntent().getBooleanExtra(CorrectAnswerDialogFragment.EXTRA_IS_ANSWERED, false);
+            isCorrect = getIntent().getBooleanExtra(CorrectAnswerDialogFragment.EXTRA_IS_CORRECT, false);
+            topicId = getIntent().getIntExtra(MainFragment.EXTRA_TOPIC_ID, 0);
         }
-        return Question01Fragment.newInstance(topicId);
+
+        return Question06Fragment.newInstance(isCorrect, isAnswered, topicId);
     }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putInt(EXTRA_TOPIC_ID, topicId);
+
     }
 
     @Override
@@ -56,7 +61,7 @@ public class Question01Activity extends SingleFragmentActivity  {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle(UtilMethods.showTopicTitle(topicId));
 
-        if (getSupportActionBar() != null) {
+        if(getSupportActionBar() != null){
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setHomeAsUpIndicator(R.drawable.ic_menu_white_24dp);
             actionBar.setDisplayShowTitleEnabled(true);
@@ -65,10 +70,12 @@ public class Question01Activity extends SingleFragmentActivity  {
         //use this to change the text
 
         NavheaderBinding navheaderBinding = NavheaderBinding.bind(activityMainBinding.navView.inflateHeaderView(R.layout.navheader));
-        navheaderBinding.textView.setText(R.string.nav_title_questions);
+        navheaderBinding.textView.setText("Questions");
 //        activityMainBinding.navView.getMenu().getItem(0).setTitle("Test Test");
 //        activityMainBinding.navView.getMenu().getItem(2).setVisible(false);
 //        activityMainBinding.navView.getMenu().removeGroup(0);
+
+
 
 
         mDrawerLayout = activityMainBinding.drawerLayout;
@@ -101,5 +108,4 @@ public class Question01Activity extends SingleFragmentActivity  {
         }
         return super.onOptionsItemSelected(item);
     }
-
 }

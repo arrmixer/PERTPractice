@@ -24,6 +24,7 @@ import com.arr.angel.pertpratice.model.Question;
 import com.arr.angel.pertpratice.model.Topic;
 import com.arr.angel.pertpratice.util.DialogCreations;
 import com.arr.angel.pertpratice.util.RadioGroupHelper;
+import com.arr.angel.pertpratice.util.TopicData;
 import com.arr.angel.pertpratice.viewmodel.TopicViewModel;
 
 import java.util.ArrayList;
@@ -35,12 +36,15 @@ public class Question01Fragment extends Fragment {
 
     protected static final String EXTRA_ANSWER = "com.arr.angel.pertpratice.ui.view.answer";
     protected static final String EXTRA_POSSIBLE_ANSWERS = "com.arr.angel.pertpratice.ui.view.possibleAnswers";
+    protected static final String EXTRA_ISANSWERED = "com.arr.angel.pertpratice.ui.view.is.answered";
 
-    /*Placeholders for Topics*/
-    private List<Topic> mTopicList;
+    protected static final String ARGS_TOPIC_ID = "com.arr.angel.pertpratice.ui.view.topic.id";
 
     //instance of ViewModel
     private TopicViewModel topicViewModel;
+
+    //DataBinding instance
+    Question01Binding questionBinding;
 
     //views
     private TextView content;
@@ -52,28 +56,28 @@ public class Question01Fragment extends Fragment {
     private RadioGroup radioGroup;
 
     //place holder for question fields
+    private Topic mTopic;
     private String answer;
     private List<Question> questions;
     private Question question;
-    List<String> possibleAnswers;
-    boolean isAnswered;
-    boolean isCorrect;
+    private List<String> possibleAnswers;
+    private boolean isAnswered;
+    private boolean isCorrect;
+    private int topicId;
 
     //placeholder for next question int
     private int nextQuestion = 2;
 
 
+    public static Question01Fragment newInstance(int topicId) {
 
-    public static Question01Fragment newInstance() {
         Question01Fragment question01Fragment = new Question01Fragment();
+        Bundle bundle = new Bundle();
+        bundle.putInt(ARGS_TOPIC_ID, topicId);
+        question01Fragment.setArguments(bundle);
 
         return question01Fragment;
     }
-
-    //DataBinding instance
-    Question01Binding questionBinding;
-
-
 
     //Interface for hosting activities
     public interface Callbacks {
@@ -86,6 +90,7 @@ public class Question01Fragment extends Fragment {
         super.onSaveInstanceState(outState);
         outState.putString(EXTRA_ANSWER, answer);
         outState.putStringArrayList(EXTRA_POSSIBLE_ANSWERS, (ArrayList<String>) possibleAnswers);
+        outState.putBoolean(EXTRA_ISANSWERED, isAnswered);
 
     }
 
@@ -112,6 +117,11 @@ public class Question01Fragment extends Fragment {
         if (savedInstanceState != null) {
             answer = savedInstanceState.getString(EXTRA_ANSWER);
             possibleAnswers = savedInstanceState.getStringArrayList(EXTRA_POSSIBLE_ANSWERS);
+            isAnswered = savedInstanceState.getBoolean(EXTRA_ISANSWERED);
+        }
+
+        if(getArguments() != null){
+            topicId = getArguments().getInt(ARGS_TOPIC_ID);
         }
 
         content = questionBinding.questionText;
@@ -120,16 +130,16 @@ public class Question01Fragment extends Fragment {
         radio3 = questionBinding.radioButton3;
         radio4 = questionBinding.radioButton4;
         exampleButton = questionBinding.buttonExample;
-        radioGroup = questionBinding.radioGroup01;
+        radioGroup = questionBinding.radioGroup;
 
         topicViewModel = ViewModelProviders.of(this).get(TopicViewModel.class);
-        topicViewModel.setLiveTopicListData();
-        topicViewModel.getLiveTopicListDataFromDB().observe(this, new Observer<List<Topic>>() {
+        topicViewModel.getLiveTopicDataFromDB(topicId).observe(this, new Observer<Topic>() {
             @Override
-            public void onChanged(@Nullable List<Topic> topics) {
-                Log.i(TAG, "OnChanged called!");
-                mTopicList = topics;
+            public void onChanged(@Nullable Topic topic) {
+                mTopic = topic;
                 populateView();
+                Log.d(TAG, "isAnswered is " + isAnswered);
+
 
             }
         });
@@ -142,41 +152,13 @@ public class Question01Fragment extends Fragment {
             }
         });
 
+
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int checkId) {
 
                 //use helper method to generate radio group logic
-                RadioGroupHelper.radioButtonLogic(getContext(), getFragmentManager(), radioGroup, checkId, answer, possibleAnswers, nextQuestion );
-
-//                Log.d(TAG, "Radio clicked is " + getResources().getResourceName(radioGroup.getCheckedRadioButtonId()) +
-//                " and the id is " + getResources().getResourceName(checkId));
-
-//                switch (checkId) {
-//                    case R.id.radioButton:
-//                        if (answer.contentEquals(possibleAnswers.get(0))) {
-//                            Toast.makeText(getContext(), "correct!", Toast.LENGTH_SHORT).show();
-//                            DialogCreations.showCorrectDialog(radioGroup, getFragmentManager(), 2);
-////                            radioGroup.setVisibility(View.INVISIBLE);
-//                        }
-//                        break;
-//                    case R.id.radioButton2:
-//                        if (answer.contentEquals(possibleAnswers.get(1))) {
-//                            Toast.makeText(getContext(), "correct!", Toast.LENGTH_SHORT).show();
-//                        }
-//                        break;
-//                    case R.id.radioButton3:
-//                        if (answer.contentEquals(possibleAnswers.get(2))) {
-//                            Toast.makeText(getContext(), "correct!", Toast.LENGTH_SHORT).show();
-//                        }
-//                        break;
-//                    case R.id.radioButton4:
-//                        if (answer.contentEquals(possibleAnswers.get(3))) {
-//                            Toast.makeText(getContext(), "correct!", Toast.LENGTH_SHORT).show();
-//                        }
-//                        break;
-//
-//                }
+                RadioGroupHelper.radioButtonLogic(getContext(), getFragmentManager(), radioGroup, checkId, answer, possibleAnswers, nextQuestion, topicId);
 
             }
         });
@@ -184,13 +166,26 @@ public class Question01Fragment extends Fragment {
 
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.d(TAG, "isAnswered is " + isAnswered);
+        if (isAnswered) {
+            radioGroup.setVisibility(View.INVISIBLE);
+            DialogCreations.showCorrectDialog(radioGroup, getFragmentManager(), nextQuestion, topicId);
+        }
+
+    }
+
     public void populateView() {
-//        mTopicList = topicViewModel.getLiveTopicListData().getValue();
-        questions = mTopicList.get(0).getQuestions();
-        question = questions.get(0);
+
+        questions = mTopic.getQuestions();
+        question = questions.get(topicId);
         answer = question.getAnswer();
         possibleAnswers = question.getPossibleAnswers();
-        content.setText(questions.get(0).getContent());
+        content.setText(question.getContent());
+        isAnswered = question.isAnswered();
+        isCorrect = question.isCorrect();
 
         radio1.setText(possibleAnswers.get(0));
         radio2.setText(possibleAnswers.get(1));
@@ -198,10 +193,6 @@ public class Question01Fragment extends Fragment {
         radio4.setText(possibleAnswers.get(3));
 
     }
-
-
-
-
 
 
 

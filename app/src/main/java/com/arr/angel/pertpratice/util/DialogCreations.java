@@ -10,6 +10,8 @@ import com.arr.angel.pertpratice.ui.view.Question02Activity;
 import com.arr.angel.pertpratice.ui.view.Question03Activity;
 import com.arr.angel.pertpratice.ui.view.Question04Activity;
 import com.arr.angel.pertpratice.ui.view.Question05Activity;
+import com.arr.angel.pertpratice.ui.view.Question06Activity;
+import com.arr.angel.pertpratice.ui.view.TopicResultsActivity;
 
 //utility class used to create the Dialogs within the RadioGroupHelper class
 public class DialogCreations {
@@ -21,15 +23,15 @@ public class DialogCreations {
     public static final String questionTotalArg =  "com.arr.angel.pertpratice.ui.view.total_questions";
 
     //helper method to create Correct Dialog Fragment with necessary parameters/arguments and show correct dialog
-    public static void showCorrectDialog(RadioGroup radioGroup, FragmentManager fragmentManager, int nextQuestion){
-        CorrectAnswerDialogFragment correctAnswerDialogFragment = CorrectAnswerDialogFragment.newInstance(nextQuestion);
+    public static void showCorrectDialog(RadioGroup radioGroup, FragmentManager fragmentManager, int nextQuestion, int topicId){
+        CorrectAnswerDialogFragment correctAnswerDialogFragment = CorrectAnswerDialogFragment.newInstance(nextQuestion, topicId);
         radioGroup.clearCheck();
         correctAnswerDialogFragment.setCancelable(false);
         correctAnswerDialogFragment.show(fragmentManager, "Correct");
     }
 
-    public static void showIncorrectDialog(RadioGroup radioGroup, FragmentManager fragmentManager, int nextQuestion){
-        InCorrectAnswerDialogFragment inCorrectAnswerDialogFragment = InCorrectAnswerDialogFragment.newInstance(nextQuestion);
+    public static void showIncorrectDialog(RadioGroup radioGroup, FragmentManager fragmentManager, int nextQuestion, int topicId){
+        InCorrectAnswerDialogFragment inCorrectAnswerDialogFragment = InCorrectAnswerDialogFragment.newInstance(nextQuestion, topicId);
         radioGroup.clearCheck();
         inCorrectAnswerDialogFragment.setCancelable(false);
         inCorrectAnswerDialogFragment.show(fragmentManager, "incorrect");
@@ -49,8 +51,10 @@ public class DialogCreations {
                 return Question04Activity.class;
             case 5:
                 return Question05Activity.class;
+            case 6:
+                return Question06Activity.class;
         }
-        return MainActivity.class;
+        return TopicResultsActivity.class;
 
     }
 }

@@ -25,6 +25,7 @@ import java.util.List;
 public class MainFragment extends Fragment implements TopicListAdapter.ItemClickListener {
 
     private static final String TAG = MainFragment.class.getSimpleName();
+    public static final String EXTRA_TOPIC_ID = "com.arr.angel.pertpratice.ui.view.topic.id";
 
     /*Placeholders for Topics*/
     private List<Topic> mTopicList;
@@ -80,12 +81,13 @@ public class MainFragment extends Fragment implements TopicListAdapter.ItemClick
         super.onActivityCreated(savedInstanceState);
 
         topicViewModel = ViewModelProviders.of(this).get(TopicViewModel.class);
-//        fetchTopics();
-        topicViewModel.setLiveTopicListData();
         topicViewModel.getLiveTopicListDataFromDB().observe(this, new Observer<List<Topic>>() {
             @Override
             public void onChanged(@Nullable List<Topic> topics) {
                 Log.i(TAG, "OnChanged called!");
+                if(topics.isEmpty()){
+                    topicViewModel.loadDataIntoDb();
+                }
                 mTopicList = topics;
                 setupAdapter();
             }
@@ -106,21 +108,17 @@ public class MainFragment extends Fragment implements TopicListAdapter.ItemClick
         Toast.makeText(getContext(), "working: " + tag + " "+ itemId, Toast.LENGTH_SHORT).show();
         if(tag.equals(getString(R.string.topic_practice))){
             Intent intent = new Intent(getContext(), Question01Activity.class);
+            intent.putExtra(EXTRA_TOPIC_ID, itemId);
             startActivity(intent);
         }
 
     }
 
-    //get Topic and Question data and set data into viewModel
-//    public void fetchTopics(){
-//        mTopicList = new TopicData().getTopicList();
-//        topicViewModel.setLiveTopicListData(mTopicList);
-//    }
 
     //make sure data is in before assigning to adapter
     private void setupAdapter(){
         if(isAdded() && mTopicList != null){
-            TopicListAdapter topicListAdapter = new TopicListAdapter(this, getContext(), topicViewModel);
+            TopicListAdapter topicListAdapter = new TopicListAdapter(this, getContext(), mTopicList);
             mainFragmentBinding.recyclerViewTopics.setAdapter(topicListAdapter);
             topicListAdapter.notifyDataSetChanged();
         }

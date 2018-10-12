@@ -29,6 +29,11 @@ public class TopicViewModel extends AndroidViewModel {
         topicRepository = new TopicRepository(application, AppExecutors.getInstance().diskIO());
     }
 
+    public void loadDataIntoDb(){
+        if(!topicRepository.getTopicsList().hasActiveObservers())
+        topicRepository.loadData();
+    }
+
     public void setLiveTopicData(Topic topicData) {
         MutableLiveData mLiveTopicData = new MutableLiveData<>();
         mLiveTopicData.setValue(topicData);
@@ -71,6 +76,10 @@ public class TopicViewModel extends AndroidViewModel {
 
     public void updateTopic(Topic topic){
         topicRepository.updateTopic(topic);
+    }
+
+    public void insertTopic(Topic topic){
+        topicRepository.insertTopic(topic);
     }
 
 

@@ -16,17 +16,22 @@ import com.arr.angel.pertpratice.util.DialogCreations;
 
 public class CorrectAnswerDialogFragment extends DialogFragment {
 
+    public static final String EXTRA_IS_CORRECT = "com.arr.angel.pertpratice.ui.view.is.correct.extra";
+    public static final String EXTRA_IS_ANSWERED = "com.arr.angel.pertpratice.ui.view.is.answered.extra";
     private static String TAG = CorrectAnswerDialogFragment.class.getSimpleName();
 
     //placeholder for int to the next question
+    //and topic id
     private int nextQuestion;
+    private int topicId;
 
     //adding the int of the next question to figure out the next activity to launch
-    public static CorrectAnswerDialogFragment newInstance(int nextQuestion){
+    public static CorrectAnswerDialogFragment newInstance(int nextQuestion, int topicId) {
 
         CorrectAnswerDialogFragment correctAnswerDialogFragment = new CorrectAnswerDialogFragment();
         Bundle bundle = new Bundle();
         bundle.putInt(DialogCreations.questionNumberArg, nextQuestion);
+        bundle.putInt(Question01Fragment.ARGS_TOPIC_ID, topicId);
         correctAnswerDialogFragment.setArguments(bundle);
 
         return correctAnswerDialogFragment;
@@ -36,12 +41,15 @@ public class CorrectAnswerDialogFragment extends DialogFragment {
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
 
+
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+
 
         //make sure bundle has int value
         if (getArguments() != null) {
             nextQuestion = getArguments().getInt(DialogCreations.questionNumberArg);
-        }else{
+            topicId = getArguments().getInt(Question01Fragment.ARGS_TOPIC_ID);
+        } else {
             Log.d(TAG, "No int argument for next question");
             nextQuestion = 0;
         }
@@ -53,11 +61,14 @@ public class CorrectAnswerDialogFragment extends DialogFragment {
                     public void onClick(DialogInterface dialogInterface, int i) {
                         Toast.makeText(getContext(), "Next!", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(getActivity(), DialogCreations.check(nextQuestion));
+                        intent.putExtra(EXTRA_IS_CORRECT, true);
+                        intent.putExtra(EXTRA_IS_ANSWERED, true);
+                        intent.putExtra(MainFragment.EXTRA_TOPIC_ID, topicId);
                         startActivity(intent);
                     }
                 });
 
-        return  builder.create();
+        return builder.create();
     }
 
 //    private Class check(){

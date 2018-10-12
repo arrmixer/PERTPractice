@@ -15,6 +15,8 @@ import com.arr.angel.pertpratice.databinding.TopicListItemBinding;
 import com.arr.angel.pertpratice.model.Topic;
 import com.arr.angel.pertpratice.viewmodel.TopicViewModel;
 
+import java.util.List;
+
 public class TopicListAdapter extends RecyclerView.Adapter<TopicListAdapter.TopicHolder> {
 
     //     Member variable to handle item clicks
@@ -22,13 +24,13 @@ public class TopicListAdapter extends RecyclerView.Adapter<TopicListAdapter.Topi
 
     //    Class variables for the List that holds RecipeViewModel and the Context
     private final Context mContext;
-    private final TopicViewModel mTopicViewModel;
+    private final List<Topic> topics;
 
 
-    public TopicListAdapter(ItemClickListener mItemClickListener, Context mContext, TopicViewModel mTopicViewModel) {
+    public TopicListAdapter(ItemClickListener mItemClickListener, Context mContext, List<Topic> topics) {
         this.mItemClickListener = mItemClickListener;
         this.mContext = mContext;
-        this.mTopicViewModel = mTopicViewModel;
+        this.topics = topics;
     }
 
     @NonNull
@@ -42,14 +44,14 @@ public class TopicListAdapter extends RecyclerView.Adapter<TopicListAdapter.Topi
                 inflater, R.layout.topic_list_item, parent, false);
 
 
-
         return new TopicHolder(binding);
     }
 
     @Override
     public void onBindViewHolder(@NonNull TopicHolder topicHolder, int position) {
 
-        Topic topic = mTopicViewModel.getLiveTopicListData().getValue().get(position);
+//        Topic topic = mTopicViewModel.getLiveTopicListData().getValue().get(position);
+        Topic topic = topics.get(position);
         topicHolder.bindTopic(topic);
 
     }
@@ -57,9 +59,9 @@ public class TopicListAdapter extends RecyclerView.Adapter<TopicListAdapter.Topi
     @Override
     public int getItemCount() {
 
-        if(mTopicViewModel != null){
-            return mTopicViewModel.getLiveTopicListData().getValue().size();
-        }else {
+        if (!topics.isEmpty()) {
+            return topics.size();
+        } else {
             return 0;
         }
 
@@ -73,7 +75,6 @@ public class TopicListAdapter extends RecyclerView.Adapter<TopicListAdapter.Topi
 
         private final TopicListItemBinding mTopicListItemBinding;
 
-        private Topic mTopic;
         private Button practice;
         private Button results;
 
@@ -97,9 +98,7 @@ public class TopicListAdapter extends RecyclerView.Adapter<TopicListAdapter.Topi
         }
 
         private void bindTopic(Topic topic) {
-            mTopic = topic;
-            mTopicViewModel.setTopic(mTopic);
-            String title = mTopicViewModel.getName();
+            String title = topic.getName();
             mTopicListItemBinding.textViewTopic.setText(title);
 
             Drawable img = mContext.getDrawable(R.drawable.ic_udacity);

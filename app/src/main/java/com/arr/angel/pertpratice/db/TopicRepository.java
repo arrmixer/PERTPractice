@@ -22,7 +22,6 @@ public class TopicRepository {
         AppDatabase db = AppDatabase.getInstance(application);
         mTopicDao = db.mTopicDao();
         this.executor = executor;
-        addTopicsToDB();
     }
 
     public LiveData<List<Topic>> getTopicsList() {
@@ -48,7 +47,7 @@ public class TopicRepository {
         });
     }
 
-    public void updateTopic(final Topic topic){
+    public void updateTopic(final Topic topic) {
         executor.execute(new Runnable() {
             @Override
             public void run() {
@@ -63,7 +62,7 @@ public class TopicRepository {
     }
 
     private void addTopicsToDB() {
-       topics = new TopicData().getTopicList();
+        topics = new TopicData().getTopicList();
         executor.execute(new Runnable() {
             @Override
             public void run() {
@@ -76,5 +75,9 @@ public class TopicRepository {
 
     public List<Topic> getTopics() {
         return topics;
+    }
+
+    public void loadData(){
+        addTopicsToDB();
     }
 }
