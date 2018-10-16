@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
 
@@ -42,7 +43,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -50,31 +51,18 @@
 
             <TextView
                 android:id="@+id/textView_topic_total_results_description"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="24dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginEnd="48dp"
                 android:text="@string/latin_text"
-                android:textAlignment="viewStart"
+                android:textAlignment="textStart"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/recycler_view_topic_results" />
 
-            <android.support.design.widget.FloatingActionButton
-                android:id="@+id/floatingActionButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:clickable="true"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.893"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView_topic_total_results_description"
-                app:srcCompat="@drawable/ic_share_white_24dp" />
         </android.support.constraint.ConstraintLayout>
     </ScrollView>
 </layout>

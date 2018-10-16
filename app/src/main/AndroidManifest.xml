@@ -2,28 +2,32 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.arr.angel.pertpratice">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_pert_practice_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".ui.view.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                <action android:name="android.intent.action.VIEW"/>
+                <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.view.Question01Activity"/>
-        <activity android:name=".ui.view.Question02Activity"/>
-        <activity android:name=".ui.view.Question03Activity"/>
-        <activity android:name=".ui.view.Question04Activity"/>
-        <activity android:name=".ui.view.Question05Activity"/>
-        <activity android:name=".ui.view.Question06Activity"/>
-        <activity android:name=".ui.view.TopicResultsActivity"/>
-        <activity android:name=".ui.view.Example01"/>
+        <activity android:name=".ui.view.Question01Activity" />
+        <activity android:name=".ui.view.Question02Activity" />
+        <activity android:name=".ui.view.Question03Activity" />
+        <activity android:name=".ui.view.Question04Activity" />
+        <activity android:name=".ui.view.Question05Activity" />
+        <activity android:name=".ui.view.Question06Activity" />
+        <activity android:name=".ui.view.TopicResultsActivity" />
+        <activity android:name=".ui.view.OverallTopicResultsActivity"/>
+        <activity android:name=".ui.view.Example01" />
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

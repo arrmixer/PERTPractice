@@ -12,4 +12,33 @@
     <string name="dialog_retry">Retry</string>
     <string name="latin_text">Lorem ipsum dolor sit amet, ut sed tractatos torquatos intellegebat. Ne vel meis partem delicata.</string>
     <string name="topic_results">Results</string>
+    <string name="main_page">Main Page</string>
+    <string name="retake">Retake</string>
+    <string name="not_taken">N/A</string>
+    <string name="share_success">Share Your Success!</string>
+    <string name="twitter">Twitter</string>
+    <string name="facebook">Facebook</string>
+    <string name="instagram">Instagam</string>
+    <string name="snapchat">Snapchat</string>
+    <string name="overall_results">Overall Results</string>
+    <string name="message">Message</string>
+    <string name="practice_test">Practice Test</string>
+    <string name="basic">Basic</string>
+    <string name="intermediate">Intermediate</string>
+    <string name="application">Application</string>
+    <string name="advance">Advance</string>
+    <string name="question1">Question 1</string>
+    <string name="question2">Question 2</string>
+    <string name="question3">Question 3</string>
+    <string name="question4">Question 4</string>
+    <string name="question5">Question 5</string>
+    <string name="question6">Question 6</string>
+
+    //formatting strings
+    <string name="percentage">%1$d%%</string>
+    <string name="question">Question %1$d</string>
+    <string name="share">Hey I\'m building my confidence with PERTPratice! I got a %1$d</string>
+
+
+
 </resources>

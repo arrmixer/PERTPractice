@@ -36,9 +36,6 @@ public class Question06Fragment extends Fragment {
     protected static final String EXTRA_ANSWER = "com.arr.angel.pertpratice.ui.view.answer";
     protected static final String EXTRA_POSSIBLE_ANSWERS = "com.arr.angel.pertpratice.ui.view.possibleAnswers";
 
-    /*Placeholders for Topics*/
-    private List<Topic> mTopicList;
-
     //instance of ViewModel
     private TopicViewModel topicViewModel;
 

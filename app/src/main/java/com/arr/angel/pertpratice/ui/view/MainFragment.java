@@ -85,9 +85,12 @@ public class MainFragment extends Fragment implements TopicListAdapter.ItemClick
             @Override
             public void onChanged(@Nullable List<Topic> topics) {
                 Log.i(TAG, "OnChanged called!");
-                if(topics.isEmpty()){
-                    topicViewModel.loadDataIntoDb();
+                if(topics != null){
+                    if(topics.isEmpty()){
+                        topicViewModel.loadDataIntoDb();
+                    }
                 }
+
                 mTopicList = topics;
                 setupAdapter();
             }
@@ -110,8 +113,11 @@ public class MainFragment extends Fragment implements TopicListAdapter.ItemClick
             Intent intent = new Intent(getContext(), Question01Activity.class);
             intent.putExtra(EXTRA_TOPIC_ID, itemId);
             startActivity(intent);
+        }else if(tag.equals(getString(R.string.topic_results))){
+            Intent intent = new Intent(getContext(), TopicResultsActivity.class);
+            intent.putExtra(EXTRA_TOPIC_ID, itemId);
+            startActivity(intent);
         }
-
     }
 
 

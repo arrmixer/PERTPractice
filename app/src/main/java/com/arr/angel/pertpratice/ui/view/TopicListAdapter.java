@@ -50,7 +50,6 @@ public class TopicListAdapter extends RecyclerView.Adapter<TopicListAdapter.Topi
     @Override
     public void onBindViewHolder(@NonNull TopicHolder topicHolder, int position) {
 
-//        Topic topic = mTopicViewModel.getLiveTopicListData().getValue().get(position);
         Topic topic = topics.get(position);
         topicHolder.bindTopic(topic);
 

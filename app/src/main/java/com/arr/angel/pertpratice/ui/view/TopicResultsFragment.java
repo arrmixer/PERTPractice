@@ -9,12 +9,10 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.arr.angel.pertpratice.R;
 import com.arr.angel.pertpratice.databinding.TopicResultsBinding;
@@ -39,10 +37,10 @@ public class TopicResultsFragment extends Fragment {
     //DataBinding instance
     TopicResultsBinding topicResultsBinding;
 
+
     //views
     private TextView resultsPercentage;
     private TextView resultsDescription;
-
 
 
     /*Placeholders for Topics, question fields,
@@ -55,14 +53,6 @@ public class TopicResultsFragment extends Fragment {
     private int topicId;
 
 
-    //instance of Callback
-    private Callbacks mCallbacks;
-
-    //Interface for hosting activities
-    public interface Callbacks {
-        void onTopicSelected(Topic topic, List<Topic> topics);
-    }
-
 //    @Override
 //    public void onAttach(Context context) {
 //        super.onAttach(context);
@@ -71,7 +61,7 @@ public class TopicResultsFragment extends Fragment {
 //        mCallbacks = (Callbacks) context;
 //    }
 
-    public static TopicResultsFragment newInstance(boolean correct, boolean answered,int topicId) {
+    public static TopicResultsFragment newInstance(boolean correct, boolean answered, int topicId) {
 
         TopicResultsFragment topicResultsFragment = new TopicResultsFragment();
         Bundle bundle = new Bundle();
@@ -100,7 +90,7 @@ public class TopicResultsFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
 
-        topicResultsBinding = DataBindingUtil.inflate(inflater, R.layout.topic_results,container, false);
+        topicResultsBinding = DataBindingUtil.inflate(inflater, R.layout.topic_results, container, false);
         topicResultsBinding.setLifecycleOwner(this);
 
         topicResultsBinding.recyclerViewTopicResults.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -114,11 +104,14 @@ public class TopicResultsFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        if (getArguments() != null){
+        if (getArguments() != null) {
             isAnswered = getArguments().getBoolean(ARG_IS_ANSWERED);
             isCorrect = getArguments().getBoolean(ARG_IS_CORRECT);
             topicId = getArguments().getInt(ARGS_TOPIC_ID);
         }
+
+        resultsPercentage = topicResultsBinding.textViewTopicTotalResultsPercentage;
+        resultsDescription = topicResultsBinding.textViewTopicTotalResultsDescription;
 
         topicViewModel = ViewModelProviders.of(this).get(TopicViewModel.class);
 
@@ -127,8 +120,9 @@ public class TopicResultsFragment extends Fragment {
             public void onChanged(@Nullable Topic topic) {
                 mTopic = topic;
                 populateView();
-                if (isAnswered){
-                    Question previousQuestion = questions.get(0);
+                setupAdapter();
+                if (isAnswered) {
+                    Question previousQuestion = questions.get(5);
                     previousQuestion.setCorrect(isCorrect);
                     previousQuestion.setAnswered(isAnswered);
                     topicViewModel.insertTopic(mTopic);
@@ -146,19 +140,26 @@ public class TopicResultsFragment extends Fragment {
 //        mCallbacks = null;
 //    }
 
-    //make sure data is in before assigning to adapter
-//    private void setupAdapter(){
-//        if(isAdded() && mTopicList != null){
-//            TopicListAdapter topicListAdapter = new TopicListAdapter(this, getContext(), mTopicList);
-//            mainFragmentBinding.recyclerViewTopics.setAdapter(topicListAdapter);
-//            topicListAdapter.notifyDataSetChanged();
-//        }
-//    }
+    //    make sure data is in before assigning to adapter
+    private void setupAdapter() {
+        if (isAdded() && mTopic != null) {
+            TopicResultsAdapter topicResultsAdapter = new TopicResultsAdapter(getContext(), mTopic);
+            topicResultsBinding.recyclerViewTopicResults.setAdapter(topicResultsAdapter);
+            topicResultsAdapter.notifyDataSetChanged();
+        }
+    }
 
     public void populateView() {
 
-//        questions = mTopic.getQuestions();
-//        question = questions.get(1);
+
+        questions = mTopic.getQuestions();
+        int resultPercentage = mTopic.getResultPercentage();
+
+        //format String percentage
+        String resultPercentageString = getString(R.string.percentage, resultPercentage);
+        resultsPercentage.setText(resultPercentageString);
+        resultsDescription.setText(R.string.latin_text);
 
     }
+
 }

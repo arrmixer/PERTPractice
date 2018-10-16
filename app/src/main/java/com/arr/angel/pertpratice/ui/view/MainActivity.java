@@ -1,11 +1,10 @@
 package com.arr.angel.pertpratice.ui.view;
 
-import android.arch.lifecycle.ViewModelProvider;
-import android.arch.lifecycle.ViewModelProviders;
 import android.databinding.DataBindingUtil;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.VisibleForTesting;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.test.espresso.IdlingResource;
 import android.support.v4.app.Fragment;
@@ -21,7 +20,7 @@ import com.arr.angel.pertpratice.R;
 import com.arr.angel.pertpratice.databinding.ActivityMainBinding;
 import com.arr.angel.pertpratice.databinding.NavheaderBinding;
 import com.arr.angel.pertpratice.idlingresource.SimpleIdlingResource;
-import com.arr.angel.pertpratice.viewmodel.TopicViewModel;
+import com.arr.angel.pertpratice.util.NavigationDrawerMenuMethods;
 
 public class MainActivity extends SingleFragmentActivity {
 
@@ -55,12 +54,16 @@ public class MainActivity extends SingleFragmentActivity {
         ActivityMainBinding activityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
 //        setContentView(R.layout.activity_main);
 
+        //make favButton appear only for results pages
+        FloatingActionButton floatingActionButton = activityMainBinding.floatingActionButton;
+        floatingActionButton.hide();
+
         Toolbar toolbar = activityMainBinding.toolbar;
         setSupportActionBar(toolbar);
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle(getTitle());
 
-        if(getSupportActionBar() != null){
+        if (getSupportActionBar() != null) {
+            ActionBar actionBar = getSupportActionBar();
+            actionBar.setTitle(getTitle());
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setHomeAsUpIndicator(R.drawable.ic_menu_white_24dp);
             actionBar.setDisplayShowTitleEnabled(true);
@@ -69,12 +72,10 @@ public class MainActivity extends SingleFragmentActivity {
         //use this to change the text
 
         NavheaderBinding navheaderBinding = NavheaderBinding.bind(activityMainBinding.navView.inflateHeaderView(R.layout.navheader));
-        navheaderBinding.textView.setText("Topics");
-//        activityMainBinding.navView.getMenu().getItem(0).setTitle("Test Test");
+        navheaderBinding.textView.setText(getString(R.string.nav_topics));
+//        activityMainBinding.navView.getMenu().getItem(5).setVisible.setTitle("Overall Results");
 //        activityMainBinding.navView.getMenu().getItem(2).setVisible(false);
 //        activityMainBinding.navView.getMenu().removeGroup(0);
-
-
 
 
         mDrawerLayout = activityMainBinding.drawerLayout;
@@ -85,6 +86,11 @@ public class MainActivity extends SingleFragmentActivity {
                     public boolean onNavigationItemSelected(MenuItem menuItem) {
                         // set item as selected to persist highlight
                         menuItem.setChecked(true);
+
+                        //helper method that contains switch statement
+                        // to navigate to topic questions directly
+                        NavigationDrawerMenuMethods.mainDrawerMenuNavigation(MainActivity.this, menuItem);
+
                         // close drawer when item is tapped
                         mDrawerLayout.closeDrawers();
 
@@ -107,8 +113,6 @@ public class MainActivity extends SingleFragmentActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
-
 
 
 }

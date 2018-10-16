@@ -2,6 +2,7 @@ package com.arr.angel.pertpratice.ui.view;
 
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
@@ -53,6 +54,10 @@ public class Question05Activity extends SingleFragmentActivity {
         if(savedInstanceState != null){
             topicId = savedInstanceState.getInt(EXTRA_TOPIC_ID);
         }
+
+//        make favButton appear only for results pages
+        FloatingActionButton floatingActionButton = activityMainBinding.floatingActionButton;
+        floatingActionButton.hide();
 
         Toolbar toolbar = activityMainBinding.toolbar;
         setSupportActionBar(toolbar);

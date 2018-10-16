@@ -19,29 +19,33 @@
 
             <TextView
                 android:id="@+id/textViewTopic"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="19dp"
                 android:layout_marginTop="22dp"
+                android:layout_marginEnd="16dp"
                 android:fontFamily="@font/roboto"
                 android:textSize="22sp"
+                app:layout_constraintEnd_toStartOf="@+id/imageTopic"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="Pratice Test" />
 
             <android.support.v7.widget.AppCompatImageView
                 android:id="@+id/imageTopic"
-                android:layout_width="184dp"
+                android:layout_width="0dp"
                 android:layout_height="160dp"
                 android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginEnd="8dp"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:src="@drawable/ic_udacity" />
 
             <Button
                 android:id="@+id/buttonPractice"
-                android:layout_width="92dp"
+                android:layout_width="wrap_content"
                 android:layout_height="36dp"
                 android:layout_marginStart="10dp"
                 android:layout_marginBottom="8dp"
@@ -53,17 +57,15 @@
 
             <Button
                 android:id="@+id/buttonResults"
-                android:layout_width="92dp"
+                android:layout_width="wrap_content"
                 android:layout_height="36dp"
-                android:layout_marginStart="9dp"
-                android:layout_marginEnd="208dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginBottom="8dp"
                 android:backgroundTint="@android:color/white"
                 android:elevation="0dp"
                 android:fontFamily="@font/roboto"
                 android:text="@string/topic_results"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/buttonPractice" />
 
         </android.support.constraint.ConstraintLayout>

@@ -6,6 +6,7 @@ import android.widget.RadioGroup;
 import com.arr.angel.pertpratice.ui.view.CorrectAnswerDialogFragment;
 import com.arr.angel.pertpratice.ui.view.InCorrectAnswerDialogFragment;
 import com.arr.angel.pertpratice.ui.view.MainActivity;
+import com.arr.angel.pertpratice.ui.view.Question01Activity;
 import com.arr.angel.pertpratice.ui.view.Question02Activity;
 import com.arr.angel.pertpratice.ui.view.Question03Activity;
 import com.arr.angel.pertpratice.ui.view.Question04Activity;
@@ -25,24 +26,24 @@ public class DialogCreations {
     //helper method to create Correct Dialog Fragment with necessary parameters/arguments and show correct dialog
     public static void showCorrectDialog(RadioGroup radioGroup, FragmentManager fragmentManager, int nextQuestion, int topicId){
         CorrectAnswerDialogFragment correctAnswerDialogFragment = CorrectAnswerDialogFragment.newInstance(nextQuestion, topicId);
-        radioGroup.clearCheck();
         correctAnswerDialogFragment.setCancelable(false);
         correctAnswerDialogFragment.show(fragmentManager, "Correct");
     }
 
     public static void showIncorrectDialog(RadioGroup radioGroup, FragmentManager fragmentManager, int nextQuestion, int topicId){
         InCorrectAnswerDialogFragment inCorrectAnswerDialogFragment = InCorrectAnswerDialogFragment.newInstance(nextQuestion, topicId);
-        radioGroup.clearCheck();
         inCorrectAnswerDialogFragment.setCancelable(false);
         inCorrectAnswerDialogFragment.show(fragmentManager, "incorrect");
     }
 
 
 
-    //helper method to launch correct question activity based on next question int argument
-    public static Class check(int nextQuestion){
+    //helper method to launch correct question activity
+    public static Class check(int question){
 
-        switch(nextQuestion){
+        switch(question){
+            case 1:
+                return Question01Activity.class;
             case 2:
                 return Question02Activity.class;
             case 3:

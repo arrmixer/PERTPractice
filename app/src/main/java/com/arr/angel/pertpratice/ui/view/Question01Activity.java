@@ -1,7 +1,9 @@
 package com.arr.angel.pertpratice.ui.view;
 
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
@@ -13,6 +15,7 @@ import android.view.MenuItem;
 import com.arr.angel.pertpratice.R;
 import com.arr.angel.pertpratice.databinding.ActivityMainBinding;
 import com.arr.angel.pertpratice.databinding.NavheaderBinding;
+import com.arr.angel.pertpratice.util.NavigationDrawerMenuMethods;
 import com.arr.angel.pertpratice.util.UtilMethods;
 
 import static com.arr.angel.pertpratice.ui.view.MainFragment.EXTRA_TOPIC_ID;
@@ -51,6 +54,10 @@ public class Question01Activity extends SingleFragmentActivity  {
             topicId = savedInstanceState.getInt(EXTRA_TOPIC_ID);
         }
 
+//        make favButton appear only for results pages
+        FloatingActionButton floatingActionButton = activityMainBinding.floatingActionButton;
+        floatingActionButton.hide();
+
         Toolbar toolbar = activityMainBinding.toolbar;
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
@@ -62,11 +69,17 @@ public class Question01Activity extends SingleFragmentActivity  {
             actionBar.setDisplayShowTitleEnabled(true);
         }
 
-        //use this to change the text
 
+        //setting up nav bar and changing the items for the questions
         NavheaderBinding navheaderBinding = NavheaderBinding.bind(activityMainBinding.navView.inflateHeaderView(R.layout.navheader));
         navheaderBinding.textView.setText(R.string.nav_title_questions);
-//        activityMainBinding.navView.getMenu().getItem(0).setTitle("Test Test");
+        activityMainBinding.navView.getMenu().getItem(0).setTitle(getString(R.string.question1));
+        activityMainBinding.navView.getMenu().getItem(1).setTitle(getString(R.string.question2));
+        activityMainBinding.navView.getMenu().getItem(2).setTitle(getString(R.string.question3));
+        activityMainBinding.navView.getMenu().getItem(3).setTitle(getString(R.string.question4));
+        activityMainBinding.navView.getMenu().getItem(4).setTitle(getString(R.string.question5));
+        activityMainBinding.navView.getMenu().getItem(5).setTitle(getString(R.string.question6));
+
 //        activityMainBinding.navView.getMenu().getItem(2).setVisible(false);
 //        activityMainBinding.navView.getMenu().removeGroup(0);
 
@@ -79,6 +92,12 @@ public class Question01Activity extends SingleFragmentActivity  {
                     public boolean onNavigationItemSelected(MenuItem menuItem) {
                         // set item as selected to persist highlight
                         menuItem.setChecked(true);
+
+                        //helper method that contains switch statement
+                        // to navigate to individual questions directly
+                        NavigationDrawerMenuMethods.questionDrawerMenuNavigation(Question01Activity.this, menuItem, topicId);
+
+
                         // close drawer when item is tapped
                         mDrawerLayout.closeDrawers();
 
