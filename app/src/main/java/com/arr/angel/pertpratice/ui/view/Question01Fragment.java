@@ -120,7 +120,7 @@ public class Question01Fragment extends Fragment {
             isAnswered = savedInstanceState.getBoolean(EXTRA_ISANSWERED);
         }
 
-        if(getArguments() != null){
+        if (getArguments() != null) {
             topicId = getArguments().getInt(ARGS_TOPIC_ID);
         }
 
@@ -139,6 +139,27 @@ public class Question01Fragment extends Fragment {
                 mTopic = topic;
                 populateView();
                 Log.d(TAG, "isAnswered is " + isAnswered);
+                if (isAnswered) {
+                    //placeholder for next unanswered question if any
+                    int nextUnansweredId = 0;
+//                    radioGroup.setVisibility(View.INVISIBLE);
+                    for (Question q : questions) {
+
+                        //check to see if question is already answered
+                        //and redirect user to next available question if any
+                        if (!q.isAnswered()) {
+                            //get question number from question id
+                            //example string PT01 question number is 1
+                            String number = q.getId().substring(3);
+                            nextUnansweredId = Integer.parseInt(number);
+                            break;
+                        }
+
+                    }
+
+                    DialogCreations.showAlreadyAnsweredDialog(getFragmentManager(), nextUnansweredId, topicId);
+
+                }
 
 
             }
@@ -158,7 +179,7 @@ public class Question01Fragment extends Fragment {
             public void onCheckedChanged(RadioGroup radioGroup, int checkId) {
 
                 //use helper method to generate radio group logic
-                RadioGroupHelper.radioButtonLogic(getContext(), getFragmentManager(), radioGroup, checkId, answer, possibleAnswers, nextQuestion, topicId);
+                RadioGroupHelper.radioButtonLogic(getFragmentManager(), checkId, answer, possibleAnswers, nextQuestion, topicId);
 
             }
         });
@@ -167,12 +188,40 @@ public class Question01Fragment extends Fragment {
     }
 
     @Override
+    public void onStart() {
+        super.onStart();
+//        Log.d(TAG, "previousIsAnswered is onStart: " + previousIsAnswered);
+//        if (previousIsAnswered) {
+//            radioGroup.setVisibility(View.INVISIBLE);
+//            DialogCreations.showCorrectDialog(radioGroup, getFragmentManager(), nextQuestion, topicId);
+//        }
+    }
+
+    @Override
     public void onResume() {
         super.onResume();
-        Log.d(TAG, "isAnswered is " + isAnswered);
-        if (isAnswered) {
+//        Log.d(TAG, "previousIsAnswered is onResume: " + previousIsAnswered);
+
+        //check to see if question is already answered
+        //a redirect user to next available question if any
+        //only used on back bottom navigation when activity is resumed
+        if (isAnswered && questions!= null) {
+            //placeholder for next unanswered question if any
+            int nextUnansweredId = 0;
             radioGroup.setVisibility(View.INVISIBLE);
-            DialogCreations.showCorrectDialog(radioGroup, getFragmentManager(), nextQuestion, topicId);
+            for (Question q : questions) {
+                if (!q.isAnswered()) {
+                    //get question number from question id
+                    //example string PT01 question number is 1
+                    String number = q.getId().substring(3);
+                    nextUnansweredId = Integer.parseInt(number);
+                    break;
+                }
+
+            }
+
+            DialogCreations.showAlreadyAnsweredDialog(getFragmentManager(), nextUnansweredId, topicId);
+
         }
 
     }
@@ -180,7 +229,7 @@ public class Question01Fragment extends Fragment {
     public void populateView() {
 
         questions = mTopic.getQuestions();
-        question = questions.get(topicId);
+        question = questions.get(0);
         answer = question.getAnswer();
         possibleAnswers = question.getPossibleAnswers();
         content.setText(question.getContent());
@@ -193,8 +242,6 @@ public class Question01Fragment extends Fragment {
         radio4.setText(possibleAnswers.get(3));
 
     }
-
-
 
 
 }

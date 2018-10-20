@@ -2,6 +2,7 @@ package com.arr.angel.pertpratice.ui.view;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -16,12 +17,16 @@ import android.widget.TextView;
 
 import com.arr.angel.pertpratice.R;
 import com.arr.angel.pertpratice.databinding.OverallResultsBinding;
+import com.arr.angel.pertpratice.model.Question;
 import com.arr.angel.pertpratice.model.Topic;
+import com.arr.angel.pertpratice.util.DialogCreations;
 import com.arr.angel.pertpratice.viewmodel.TopicViewModel;
 
 import java.util.List;
 
-public class OverallResultsFragment extends Fragment {
+import static com.arr.angel.pertpratice.ui.view.MainFragment.EXTRA_TOPIC_ID;
+
+public class OverallResultsFragment extends Fragment implements OverallResultsAdapter.ItemClickListenerOverallResults{
 
     private static final String TAG = OverallResultsFragment.class.getSimpleName();
 
@@ -91,10 +96,28 @@ public class OverallResultsFragment extends Fragment {
 
     private void setupAdapter(){
         if (isAdded() && mTopicList != null) {
-            OverallResultsAdapter overallResultsAdapter = new OverallResultsAdapter(getContext(), mTopicList);
+            OverallResultsAdapter overallResultsAdapter = new OverallResultsAdapter(this, getContext(), mTopicList);
             overallResultsBinding.recyclerViewOverallResults.setAdapter(overallResultsAdapter);
             overallResultsAdapter.notifyDataSetChanged();
         }
 
+    }
+
+    @Override
+    public void onItemClickListener(int itemId) {
+
+        List<Question> questions = mTopicList.get(itemId).getQuestions();
+        int questionNumber = 0;
+
+        for(Question q : questions){
+            if(!q.isAnswered()){
+                questionNumber = Integer.parseInt(q.getId().substring(3));
+                break;
+            }
+        }
+
+        Intent intent = new Intent(getContext(), DialogCreations.check(questionNumber));
+        intent.putExtra(EXTRA_TOPIC_ID, itemId);
+        startActivity(intent);
     }
 }

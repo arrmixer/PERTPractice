@@ -22,11 +22,15 @@ public class TopicResultsAdapter extends RecyclerView.Adapter<TopicResultsAdapte
 
     private static String TAG = TopicResultsAdapter.class.getSimpleName();
 
+    //     Member variable to handle item clicks
+    private final ItemClickListenerTopicResults itemClickListenerTopicResults;
+
     //    Class variables for the List that holds RecipeViewModel and the Context
     private final Context mContext;
     private final Topic mTopic;
 
-    public TopicResultsAdapter(Context mContext, Topic mTopic) {
+    public TopicResultsAdapter(ItemClickListenerTopicResults itemClickListenerTopicResults,  Context mContext, Topic mTopic) {
+        this.itemClickListenerTopicResults = itemClickListenerTopicResults;
         this.mContext = mContext;
         this.mTopic = mTopic;
     }
@@ -56,7 +60,11 @@ public class TopicResultsAdapter extends RecyclerView.Adapter<TopicResultsAdapte
         return mTopic.getQuestions().size();
     }
 
-    class QuestionHolder extends RecyclerView.ViewHolder {
+    public interface ItemClickListenerTopicResults {
+        void onItemClickListener(int itemId);
+    }
+
+    class QuestionHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         private final TopicResultListItemBinding mTopicResultListItemBinding;
 
@@ -70,6 +78,8 @@ public class TopicResultsAdapter extends RecyclerView.Adapter<TopicResultsAdapte
 
             //assign instance of RecipeListItemBinding to parameter
             mTopicResultListItemBinding = binding;
+
+            itemView.setOnClickListener(this);
 
             questionNumber = binding.textViewTopicResultQuestionTitle;
             questionResult = binding.imageViewTopicResultQuestion;
@@ -94,5 +104,12 @@ public class TopicResultsAdapter extends RecyclerView.Adapter<TopicResultsAdapte
                 questionUnavailable.setVisibility(View.VISIBLE);
             }
         }
+
+        @Override
+        public void onClick(View view) {
+            int elementId = getAdapterPosition();
+            itemClickListenerTopicResults.onItemClickListener(elementId);
+        }
+
     }
 }

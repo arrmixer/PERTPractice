@@ -16,12 +16,12 @@ import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.arr.angel.pertpratice.R;
 import com.arr.angel.pertpratice.databinding.Question03Binding;
 import com.arr.angel.pertpratice.model.Question;
 import com.arr.angel.pertpratice.model.Topic;
+import com.arr.angel.pertpratice.util.DialogCreations;
 import com.arr.angel.pertpratice.util.RadioGroupHelper;
 import com.arr.angel.pertpratice.viewmodel.TopicViewModel;
 
@@ -55,13 +55,18 @@ public class Question03Fragment extends Fragment {
 
     //place holder for question fields
     private Topic mTopic;
+    private int topicId;
     private String answer;
     private List<Question> questions;
     private Question question;
     private List<String> possibleAnswers;
-    boolean isAnswered;
-    boolean isCorrect;
-    private int topicId;
+
+    //boolean data for previous question
+    private boolean previousIsAnswered;
+    private boolean previousIsCorrect;
+
+    //boolean data for current question
+    private boolean isAnswered;
 
     //placeholder for next question int
     private int nextQuestion = 4;
@@ -117,9 +122,9 @@ public class Question03Fragment extends Fragment {
             possibleAnswers = savedInstanceState.getStringArrayList(EXTRA_POSSIBLE_ANSWERS);
         }
 
-        if (getArguments() != null){
-            isAnswered = getArguments().getBoolean(ARG_IS_ANSWERED);
-            isCorrect = getArguments().getBoolean(ARG_IS_CORRECT);
+        if (getArguments() != null) {
+            previousIsAnswered = getArguments().getBoolean(ARG_IS_ANSWERED);
+            previousIsCorrect = getArguments().getBoolean(ARG_IS_CORRECT);
             topicId = getArguments().getInt(ARGS_TOPIC_ID);
 
         }
@@ -138,17 +143,42 @@ public class Question03Fragment extends Fragment {
             public void onChanged(@Nullable Topic topic) {
                 mTopic = topic;
                 populateView();
-                if (isAnswered){
+                if (previousIsAnswered) {
                     Question previousQuestion = questions.get(1);
-                    previousQuestion.setCorrect(isCorrect);
-                    previousQuestion.setAnswered(isAnswered);
+                    previousQuestion.setCorrect(previousIsCorrect);
+                    previousQuestion.setAnswered(previousIsAnswered);
                     topicViewModel.insertTopic(mTopic);
                 }
+
+                //check to see if question is already answered
+                isAnswered = question.isAnswered();
+
+
+                //redirect user to next available question if any
+                if (isAnswered) {
+                    //placeholder for next unanswered question if any
+                    int nextUnansweredId = 0;
+                    radioGroup.setVisibility(View.INVISIBLE);
+                    for (Question q : questions) {
+                        if (!q.isAnswered()) {
+                            //get question number from question id
+                            //example string PT01 question number is 1
+                            String number = q.getId().substring(3);
+                            nextUnansweredId = Integer.parseInt(number);
+                            break;
+                        }
+
+                    }
+
+                    DialogCreations.showAlreadyAnsweredDialog(getFragmentManager(), nextUnansweredId, topicId);
+
+                }
+
             }
         });
 
 
-        Log.d(TAG, "isAnswered is " + isAnswered);
+        Log.d(TAG, "previousIsAnswered is " + previousIsAnswered);
 
 
         exampleButton.setOnClickListener(new View.OnClickListener() {
@@ -165,7 +195,7 @@ public class Question03Fragment extends Fragment {
 //                Log.d(TAG, "Radio clicked is " + getResources().getResourceName(radioGroup.getCheckedRadioButtonId()) +
 //                " and the id is " + getResources().getResourceName(checkId));
 
-                RadioGroupHelper.radioButtonLogic(getContext(), getFragmentManager(), radioGroup,
+                RadioGroupHelper.radioButtonLogic(getFragmentManager(),
                         checkId, answer, possibleAnswers, nextQuestion, topicId);
 
             }
@@ -173,6 +203,36 @@ public class Question03Fragment extends Fragment {
 
 
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+//        Log.d(TAG, "previousIsAnswered is onResume: " + previousIsAnswered);
+
+        //check to see if question is already answered
+        //a redirect user to next available question if any
+        //only used on back bottom navigation when activity is resumed
+        if (isAnswered && questions != null) {
+            //placeholder for next unanswered question if any
+            int nextUnansweredId = 0;
+            radioGroup.setVisibility(View.INVISIBLE);
+            for (Question q : questions) {
+                if (!q.isAnswered()) {
+                    //get question number from question id
+                    //example string PT01 question number is 1
+                    String number = q.getId().substring(3);
+                    nextUnansweredId = Integer.parseInt(number);
+                    break;
+                }
+
+            }
+
+            DialogCreations.showAlreadyAnsweredDialog(getFragmentManager(), nextUnansweredId, topicId);
+
+        }
+
+    }
+
 
     public void populateView() {
         questions = mTopic.getQuestions();

@@ -15,6 +15,7 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -25,12 +26,32 @@
         <activity android:name=".ui.view.Question05Activity" />
         <activity android:name=".ui.view.Question06Activity" />
         <activity android:name=".ui.view.TopicResultsActivity" />
-        <activity android:name=".ui.view.OverallTopicResultsActivity"/>
+        <activity android:name=".ui.view.OverallTopicResultsActivity" />
         <activity android:name=".ui.view.Example01" />
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+
+
+        <service
+            android:name=".WidgetUpdateService"
+            android:exported="false"
+            android:permission="android.permission.BIND_JOB_SERVICE">
+            <intent-filter>
+                <action android:name="com.ae.andriod.bakingapp.widgetupdateservice.update_app_widget_result" />
+            </intent-filter>
+        </service>
+
+        <receiver android:name=".PertPracticeWidget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/pert_practice_widget_info" />
+        </receiver>
     </application>
 
 </manifest>

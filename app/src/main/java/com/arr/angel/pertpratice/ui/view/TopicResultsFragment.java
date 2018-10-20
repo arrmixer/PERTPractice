@@ -18,18 +18,19 @@ import com.arr.angel.pertpratice.R;
 import com.arr.angel.pertpratice.databinding.TopicResultsBinding;
 import com.arr.angel.pertpratice.model.Question;
 import com.arr.angel.pertpratice.model.Topic;
+import com.arr.angel.pertpratice.util.DialogCreations;
 import com.arr.angel.pertpratice.viewmodel.TopicViewModel;
 
 import java.util.List;
 
+import static com.arr.angel.pertpratice.ui.view.MainFragment.EXTRA_TOPIC_ID;
 import static com.arr.angel.pertpratice.ui.view.Question01Fragment.ARGS_TOPIC_ID;
 import static com.arr.angel.pertpratice.ui.view.Question02Fragment.ARG_IS_ANSWERED;
 import static com.arr.angel.pertpratice.ui.view.Question02Fragment.ARG_IS_CORRECT;
 
-public class TopicResultsFragment extends Fragment {
+public class TopicResultsFragment extends Fragment implements TopicResultsAdapter.ItemClickListenerTopicResults{
 
     private static final String TAG = TopicResultsFragment.class.getSimpleName();
-    public static final String EXTRA_TOPIC_ID = "com.arr.angel.pertpratice.ui.view.topic.id";
 
     //instance of ViewModel
     private TopicViewModel topicViewModel;
@@ -48,8 +49,10 @@ public class TopicResultsFragment extends Fragment {
     private Topic mTopic;
     private List<Question> questions;
     private Question question;
-    private boolean isAnswered;
-    private boolean isCorrect;
+
+    //boolean values of previous questions
+    private boolean previousIsAnswered;
+    private boolean previousIsCorrect;
     private int topicId;
 
 
@@ -105,8 +108,8 @@ public class TopicResultsFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
         if (getArguments() != null) {
-            isAnswered = getArguments().getBoolean(ARG_IS_ANSWERED);
-            isCorrect = getArguments().getBoolean(ARG_IS_CORRECT);
+            previousIsAnswered = getArguments().getBoolean(ARG_IS_ANSWERED);
+            previousIsCorrect = getArguments().getBoolean(ARG_IS_CORRECT);
             topicId = getArguments().getInt(ARGS_TOPIC_ID);
         }
 
@@ -121,10 +124,10 @@ public class TopicResultsFragment extends Fragment {
                 mTopic = topic;
                 populateView();
                 setupAdapter();
-                if (isAnswered) {
+                if (previousIsAnswered) {
                     Question previousQuestion = questions.get(5);
-                    previousQuestion.setCorrect(isCorrect);
-                    previousQuestion.setAnswered(isAnswered);
+                    previousQuestion.setCorrect(previousIsCorrect);
+                    previousQuestion.setAnswered(previousIsAnswered);
                     topicViewModel.insertTopic(mTopic);
                 }
             }
@@ -143,7 +146,7 @@ public class TopicResultsFragment extends Fragment {
     //    make sure data is in before assigning to adapter
     private void setupAdapter() {
         if (isAdded() && mTopic != null) {
-            TopicResultsAdapter topicResultsAdapter = new TopicResultsAdapter(getContext(), mTopic);
+            TopicResultsAdapter topicResultsAdapter = new TopicResultsAdapter(this, getContext(), mTopic);
             topicResultsBinding.recyclerViewTopicResults.setAdapter(topicResultsAdapter);
             topicResultsAdapter.notifyDataSetChanged();
         }
@@ -162,4 +165,13 @@ public class TopicResultsFragment extends Fragment {
 
     }
 
+    @Override
+    public void onItemClickListener(int itemId) {
+        if(!questions.get(itemId).isAnswered()){
+            int questionNumber = itemId + 1;
+            Intent intent = new Intent(getContext(), DialogCreations.check(questionNumber));
+            intent.putExtra(EXTRA_TOPIC_ID, topicId);
+            startActivity(intent);
+        }
+    }
 }

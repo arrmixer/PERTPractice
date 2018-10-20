@@ -3,6 +3,8 @@ package com.arr.angel.pertpratice.util;
 import android.support.v4.app.FragmentManager;
 import android.widget.RadioGroup;
 
+import com.arr.angel.pertpratice.R;
+import com.arr.angel.pertpratice.ui.view.AlreadyAnsweredDialogFragment;
 import com.arr.angel.pertpratice.ui.view.CorrectAnswerDialogFragment;
 import com.arr.angel.pertpratice.ui.view.InCorrectAnswerDialogFragment;
 import com.arr.angel.pertpratice.ui.view.MainActivity;
@@ -24,16 +26,22 @@ public class DialogCreations {
     public static final String questionTotalArg =  "com.arr.angel.pertpratice.ui.view.total_questions";
 
     //helper method to create Correct Dialog Fragment with necessary parameters/arguments and show correct dialog
-    public static void showCorrectDialog(RadioGroup radioGroup, FragmentManager fragmentManager, int nextQuestion, int topicId){
+    public static void showCorrectDialog(FragmentManager fragmentManager, int nextQuestion, int topicId){
         CorrectAnswerDialogFragment correctAnswerDialogFragment = CorrectAnswerDialogFragment.newInstance(nextQuestion, topicId);
         correctAnswerDialogFragment.setCancelable(false);
-        correctAnswerDialogFragment.show(fragmentManager, "Correct");
+        correctAnswerDialogFragment.show(fragmentManager, "correct");
     }
 
-    public static void showIncorrectDialog(RadioGroup radioGroup, FragmentManager fragmentManager, int nextQuestion, int topicId){
+    public static void showIncorrectDialog(FragmentManager fragmentManager, int nextQuestion, int topicId){
         InCorrectAnswerDialogFragment inCorrectAnswerDialogFragment = InCorrectAnswerDialogFragment.newInstance(nextQuestion, topicId);
         inCorrectAnswerDialogFragment.setCancelable(false);
         inCorrectAnswerDialogFragment.show(fragmentManager, "incorrect");
+    }
+
+    public static void showAlreadyAnsweredDialog(FragmentManager fragmentManager, int nextQuestion, int topicId){
+        AlreadyAnsweredDialogFragment alreadyAnsweredDialogFragment = AlreadyAnsweredDialogFragment.newInstance(nextQuestion, topicId);
+        alreadyAnsweredDialogFragment.setCancelable(false);
+        alreadyAnsweredDialogFragment.show(fragmentManager, "already_answered");
     }
 
 

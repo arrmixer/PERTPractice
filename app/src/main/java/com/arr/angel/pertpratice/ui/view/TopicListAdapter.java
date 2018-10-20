@@ -110,7 +110,6 @@ public class TopicListAdapter extends RecyclerView.Adapter<TopicListAdapter.Topi
         public void onClick(View view) {
             int elementId = getAdapterPosition();
             mItemClickListener.onItemClickListener(elementId, view.getTag().toString());
-
         }
 
     }

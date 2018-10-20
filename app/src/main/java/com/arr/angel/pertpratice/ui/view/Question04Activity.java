@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import com.arr.angel.pertpratice.R;
 import com.arr.angel.pertpratice.databinding.ActivityMainBinding;
 import com.arr.angel.pertpratice.databinding.NavheaderBinding;
+import com.arr.angel.pertpratice.util.NavigationDrawerMenuMethods;
 import com.arr.angel.pertpratice.util.UtilMethods;
 
 import static com.arr.angel.pertpratice.ui.view.MainFragment.EXTRA_TOPIC_ID;
@@ -23,8 +24,9 @@ public class Question04Activity extends SingleFragmentActivity {
 
     //placeholders for boolean values of previous question
     // and topicId
-    private boolean isAnswered;
-    private boolean isCorrect;
+    private boolean previousIsAnswered;
+    private boolean previousIsCorrect;
+
     private int topicId;
 
     @Override
@@ -32,12 +34,12 @@ public class Question04Activity extends SingleFragmentActivity {
 
 
         if(getIntent() != null){
-            isAnswered = getIntent().getBooleanExtra(CorrectAnswerDialogFragment.EXTRA_IS_ANSWERED, false);
-            isCorrect = getIntent().getBooleanExtra(CorrectAnswerDialogFragment.EXTRA_IS_CORRECT, false);
+            previousIsAnswered = getIntent().getBooleanExtra(CorrectAnswerDialogFragment.EXTRA_IS_ANSWERED, false);
+            previousIsCorrect = getIntent().getBooleanExtra(CorrectAnswerDialogFragment.EXTRA_IS_CORRECT, false);
             topicId = getIntent().getIntExtra(MainFragment.EXTRA_TOPIC_ID, 0);
         }
 
-        return Question04Fragment.newInstance(isCorrect, isAnswered, topicId);
+        return Question04Fragment.newInstance(previousIsCorrect, previousIsAnswered, topicId);
     }
 
     @Override
@@ -71,13 +73,15 @@ public class Question04Activity extends SingleFragmentActivity {
             actionBar.setDisplayShowTitleEnabled(true);
         }
 
-        //use this to change the text
-
+        //setting up nav bar and changing the items for the questions
         NavheaderBinding navheaderBinding = NavheaderBinding.bind(activityMainBinding.navView.inflateHeaderView(R.layout.navheader));
         navheaderBinding.textView.setText("Questions");
-//        activityMainBinding.navView.getMenu().getItem(0).setTitle("Test Test");
-//        activityMainBinding.navView.getMenu().getItem(2).setVisible(false);
-//        activityMainBinding.navView.getMenu().removeGroup(0);
+        activityMainBinding.navView.getMenu().getItem(0).setTitle(getString(R.string.question1));
+        activityMainBinding.navView.getMenu().getItem(1).setTitle(getString(R.string.question2));
+        activityMainBinding.navView.getMenu().getItem(2).setTitle(getString(R.string.question3));
+        activityMainBinding.navView.getMenu().getItem(3).setTitle(getString(R.string.question4));
+        activityMainBinding.navView.getMenu().getItem(4).setTitle(getString(R.string.question5));
+        activityMainBinding.navView.getMenu().getItem(5).setTitle(getString(R.string.question6));
 
 
 
@@ -91,6 +95,12 @@ public class Question04Activity extends SingleFragmentActivity {
                         // set item as selected to persist highlight
                         menuItem.setChecked(true);
                         // close drawer when item is tapped
+
+                        //helper method that contains switch statement
+                        // to navigate to individual questions directly
+                        NavigationDrawerMenuMethods.questionDrawerMenuNavigation(Question04Activity.this, menuItem, topicId);
+
+
                         mDrawerLayout.closeDrawers();
 
                         // Add code here to update the UI based on the item selected

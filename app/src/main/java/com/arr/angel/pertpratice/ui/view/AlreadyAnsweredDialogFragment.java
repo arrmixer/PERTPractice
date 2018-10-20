@@ -8,16 +8,18 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
+import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.widget.Toast;
 
 import com.arr.angel.pertpratice.R;
 import com.arr.angel.pertpratice.util.DialogCreations;
 
-public class CorrectAnswerDialogFragment extends DialogFragment {
+import static com.arr.angel.pertpratice.ui.view.CorrectAnswerDialogFragment.EXTRA_IS_ANSWERED;
+import static com.arr.angel.pertpratice.ui.view.CorrectAnswerDialogFragment.EXTRA_IS_CORRECT;
 
-    public static final String EXTRA_IS_CORRECT = "com.arr.angel.pertpratice.ui.view.is.correct.extra";
-    public static final String EXTRA_IS_ANSWERED = "com.arr.angel.pertpratice.ui.view.is.answered.extra";
+public class AlreadyAnsweredDialogFragment extends DialogFragment {
+
     private static String TAG = CorrectAnswerDialogFragment.class.getSimpleName();
 
     //placeholder for int to the next question
@@ -26,16 +28,18 @@ public class CorrectAnswerDialogFragment extends DialogFragment {
     private int topicId;
 
     //adding the int of the next question to figure out the next activity to launch
-    public static CorrectAnswerDialogFragment newInstance(int nextQuestion, int topicId) {
+    public static AlreadyAnsweredDialogFragment newInstance(int nextQuestion, int topicId) {
 
-        CorrectAnswerDialogFragment correctAnswerDialogFragment = new CorrectAnswerDialogFragment();
+        AlreadyAnsweredDialogFragment alreadyAnsweredDialogFragment = new AlreadyAnsweredDialogFragment();
         Bundle bundle = new Bundle();
         bundle.putInt(DialogCreations.questionNumberArg, nextQuestion);
         bundle.putInt(Question01Fragment.ARGS_TOPIC_ID, topicId);
-        correctAnswerDialogFragment.setArguments(bundle);
+        alreadyAnsweredDialogFragment.setArguments(bundle);
 
-        return correctAnswerDialogFragment;
+        return alreadyAnsweredDialogFragment;
     }
+
+
 
     @NonNull
     @Override
@@ -55,14 +59,12 @@ public class CorrectAnswerDialogFragment extends DialogFragment {
         }
 
 
-        builder.setMessage(R.string.dialog_correct)
+        builder.setMessage(R.string.dialog_already_answer)
                 .setPositiveButton(R.string.dialog_next, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
 //                        Toast.makeText(getContext(), "Next!", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(getActivity(), DialogCreations.check(nextQuestion));
-                        intent.putExtra(EXTRA_IS_CORRECT, true);
-                        intent.putExtra(EXTRA_IS_ANSWERED, true);
                         intent.putExtra(MainFragment.EXTRA_TOPIC_ID, topicId);
                         startActivity(intent);
                     }
@@ -70,20 +72,4 @@ public class CorrectAnswerDialogFragment extends DialogFragment {
 
         return builder.create();
     }
-
-//    private Class check(){
-////        Log.d(TAG, "next question number is " + getArguments().getInt("QuestionNumber"));
-//        int nextQuestion = getArguments().getInt(DialogCreations.questionNumberArg);
-//        switch(nextQuestion){
-//            case 2:
-//                return Question02Activity.class;
-//            case 3:
-//                return Question03Activity.class;
-//            case 4:
-//                return Question04Activity.class;
-//            case 5:
-//                return Question05Activity.class;
-//        }
-//        return MainActivity.class;
-//    }
 }
