@@ -1,5 +1,6 @@
 package com.arr.angel.pertpratice;
 
+import android.app.Application;
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
@@ -8,12 +9,23 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.RemoteViews;
 
+import com.arr.angel.pertpratice.model.Topic;
 import com.arr.angel.pertpratice.ui.view.MainActivity;
+import com.arr.angel.pertpratice.ui.view.TopicResultsActivity;
+import com.arr.angel.pertpratice.util.ResultsSharedPreferences;
+import com.arr.angel.pertpratice.viewmodel.TopicViewModel;
+
+import static com.arr.angel.pertpratice.ui.view.MainFragment.EXTRA_TOPIC_ID;
 
 /**
  * Implementation of App Widget functionality.
  */
 public class PertPracticeWidget extends AppWidgetProvider {
+
+    //placeholders for txtViews values
+    //inside the widgets
+    private static String title;
+    private static String percentageString;
 
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
                                 int appWidgetId) {
@@ -34,8 +46,15 @@ public class PertPracticeWidget extends AppWidgetProvider {
     private static RemoteViews getViewForBiggerWidget(Context context) {
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_result_percentage);
 
-        Intent intent = new Intent(context, MainActivity.class);
-        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
+        views.setTextViewText(R.id.textView_widget_title, title);
+        views.setTextViewText(R.id.textView_widget_result, percentageString);
+
+        Intent intent = new Intent(context, TopicResultsActivity.class);
+
+        //get current topic result viewed
+        int topicId = ResultsSharedPreferences.getPrefTopicId(context);
+        intent.putExtra(EXTRA_TOPIC_ID, topicId);
+        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
         views.setOnClickPendingIntent(R.id.textView_widget_result, pendingIntent);
 
         return views;
@@ -52,8 +71,6 @@ public class PertPracticeWidget extends AppWidgetProvider {
         return views;
 
     }
-
-
 
 
     public static void updateAllAppWidget(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
@@ -85,6 +102,19 @@ public class PertPracticeWidget extends AppWidgetProvider {
     @Override
     public void onDisabled(Context context) {
         // Enter relevant functionality for when the last widget is disabled
+    }
+
+    public static void setTextViews(Context context) {
+
+        //use shared preferences to get the
+        // current topic title and percentage
+        int percentage = ResultsSharedPreferences.getPrefTopicPercentage(context);
+        title = ResultsSharedPreferences.getPrefTopicTitle(context);
+
+        //format string
+        percentageString = context.getString(R.string.percentage, percentage);
+
+
     }
 }
 

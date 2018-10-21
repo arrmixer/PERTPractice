@@ -33,6 +33,7 @@ public class WidgetUpdateService extends JobIntentService {
             final String action = intent.getAction();
             if (ACTION_UPDATE_RESULT_VIEW.equals(action)) {
                 handleActionUpdateListView();
+
             }
 
         }
@@ -42,6 +43,8 @@ public class WidgetUpdateService extends JobIntentService {
 
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(this);
         int[] appWidgetIds = appWidgetManager.getAppWidgetIds(new ComponentName(this, PertPracticeWidget.class));
+
+        PertPracticeWidget.setTextViews(getApplicationContext());
 
        PertPracticeWidget.updateAllAppWidget(this, appWidgetManager, appWidgetIds);
 

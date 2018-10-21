@@ -12,8 +12,7 @@
         android:layout_height="34dp"
         android:paddingTop="8dp"
         android:textAlignment="center"
-        android:background="@color/light_blue"
-        android:text="@string/overall_results"
+        android:background="@color/design_default_color_primary"
         android:textColor="@color/white"
         android:typeface="sans"
         tools:text="Practice Test" />

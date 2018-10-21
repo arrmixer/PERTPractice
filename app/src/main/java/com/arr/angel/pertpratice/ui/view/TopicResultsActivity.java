@@ -50,7 +50,7 @@ public class TopicResultsActivity extends SingleFragmentActivity {
         if (getIntent() != null) {
             isAnswered = getIntent().getBooleanExtra(CorrectAnswerDialogFragment.EXTRA_IS_ANSWERED, false);
             isCorrect = getIntent().getBooleanExtra(CorrectAnswerDialogFragment.EXTRA_IS_CORRECT, false);
-            topicId = getIntent().getIntExtra(MainFragment.EXTRA_TOPIC_ID, 0);
+            topicId = getIntent().getIntExtra(MainFragment.EXTRA_TOPIC_ID,0);
         }
 
         return TopicResultsFragment.newInstance(isCorrect, isAnswered, topicId);

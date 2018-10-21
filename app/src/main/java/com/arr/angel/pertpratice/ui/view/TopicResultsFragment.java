@@ -19,6 +19,7 @@ import com.arr.angel.pertpratice.databinding.TopicResultsBinding;
 import com.arr.angel.pertpratice.model.Question;
 import com.arr.angel.pertpratice.model.Topic;
 import com.arr.angel.pertpratice.util.DialogCreations;
+import com.arr.angel.pertpratice.util.ResultsSharedPreferences;
 import com.arr.angel.pertpratice.viewmodel.TopicViewModel;
 
 import java.util.List;
@@ -53,7 +54,10 @@ public class TopicResultsFragment extends Fragment implements TopicResultsAdapte
     //boolean values of previous questions
     private boolean previousIsAnswered;
     private boolean previousIsCorrect;
+
+    //placeholder for topicId and results
     private int topicId;
+    private int resultPercentage;
 
 
 //    @Override
@@ -130,6 +134,7 @@ public class TopicResultsFragment extends Fragment implements TopicResultsAdapte
                     previousQuestion.setAnswered(previousIsAnswered);
                     topicViewModel.insertTopic(mTopic);
                 }
+                addTopicTitleAndResultPref();
             }
         });
 
@@ -152,11 +157,12 @@ public class TopicResultsFragment extends Fragment implements TopicResultsAdapte
         }
     }
 
+
+//helper method to populate views of topic results layout
     public void populateView() {
-
-
+        //get questions from topic and results
         questions = mTopic.getQuestions();
-        int resultPercentage = mTopic.getResultPercentage();
+        resultPercentage = mTopic.getResultPercentage();
 
         //format String percentage
         String resultPercentageString = getString(R.string.percentage, resultPercentage);
@@ -165,6 +171,8 @@ public class TopicResultsFragment extends Fragment implements TopicResultsAdapte
 
     }
 
+    //onclick listener from recycler view
+    //takes user to question if not answered yet
     @Override
     public void onItemClickListener(int itemId) {
         if(!questions.get(itemId).isAnswered()){
@@ -174,4 +182,17 @@ public class TopicResultsFragment extends Fragment implements TopicResultsAdapte
             startActivity(intent);
         }
     }
+
+    //add current topic title and results to
+    // shared preferences to update widget info
+    private void addTopicTitleAndResultPref(){
+        String title = mTopic.getName();
+
+        ResultsSharedPreferences.setPrefTopicId(getContext(), topicId);
+        ResultsSharedPreferences.setPrefTopicTitle(getContext(), title);
+        ResultsSharedPreferences.setPrefTopicResultPercentage(getContext(), resultPercentage);
+
+    }
+
+
 }
