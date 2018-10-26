@@ -70,17 +70,4 @@ public class Question {
         return isCorrect;
     }
 
-//    public void setCorrect(boolean correct) {
-//        isCorrect = correct;
-//    }
-
-    //check to see if response is correct
-    public void isResponseCorrect(String response) {
-        if(response.equals(getAnswer())){
-            isCorrect = true;
-        }else{
-            isCorrect = false;
-        }
-    }
-
 }

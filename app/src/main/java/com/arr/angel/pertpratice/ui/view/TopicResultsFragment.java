@@ -20,16 +20,18 @@ import com.arr.angel.pertpratice.model.Question;
 import com.arr.angel.pertpratice.model.Topic;
 import com.arr.angel.pertpratice.util.DialogCreations;
 import com.arr.angel.pertpratice.util.ResultsSharedPreferences;
+import com.arr.angel.pertpratice.util.UtilMethods;
 import com.arr.angel.pertpratice.viewmodel.TopicViewModel;
 
 import java.util.List;
 
 import static com.arr.angel.pertpratice.ui.view.MainFragment.EXTRA_TOPIC_ID;
+import static com.arr.angel.pertpratice.ui.view.Question01Fragment.ARGS_CURRENT_ID;
 import static com.arr.angel.pertpratice.ui.view.Question01Fragment.ARGS_TOPIC_ID;
 import static com.arr.angel.pertpratice.ui.view.Question02Fragment.ARG_IS_ANSWERED;
 import static com.arr.angel.pertpratice.ui.view.Question02Fragment.ARG_IS_CORRECT;
 
-public class TopicResultsFragment extends Fragment implements TopicResultsAdapter.ItemClickListenerTopicResults{
+public class TopicResultsFragment extends Fragment implements TopicResultsAdapter.ItemClickListenerTopicResults {
 
     private static final String TAG = TopicResultsFragment.class.getSimpleName();
 
@@ -41,6 +43,7 @@ public class TopicResultsFragment extends Fragment implements TopicResultsAdapte
 
 
     //views
+    private TextView resultsTitle;
     private TextView resultsPercentage;
     private TextView resultsDescription;
 
@@ -52,6 +55,7 @@ public class TopicResultsFragment extends Fragment implements TopicResultsAdapte
     private Question question;
 
     //boolean values of previous questions
+    private int previousQuestionId;
     private boolean previousIsAnswered;
     private boolean previousIsCorrect;
 
@@ -68,10 +72,12 @@ public class TopicResultsFragment extends Fragment implements TopicResultsAdapte
 //        mCallbacks = (Callbacks) context;
 //    }
 
-    public static TopicResultsFragment newInstance(boolean correct, boolean answered, int topicId) {
+    public static TopicResultsFragment newInstance(int previousQuestionId, boolean correct, boolean answered, int topicId) {
 
         TopicResultsFragment topicResultsFragment = new TopicResultsFragment();
+
         Bundle bundle = new Bundle();
+        bundle.putInt(ARGS_CURRENT_ID, previousQuestionId);
         bundle.putBoolean(ARG_IS_CORRECT, correct);
         bundle.putBoolean(ARG_IS_ANSWERED, answered);
         bundle.putInt(Question01Fragment.ARGS_TOPIC_ID, topicId);
@@ -112,29 +118,48 @@ public class TopicResultsFragment extends Fragment implements TopicResultsAdapte
         super.onActivityCreated(savedInstanceState);
 
         if (getArguments() != null) {
+            previousQuestionId = getArguments().getInt(ARGS_CURRENT_ID);
             previousIsAnswered = getArguments().getBoolean(ARG_IS_ANSWERED);
             previousIsCorrect = getArguments().getBoolean(ARG_IS_CORRECT);
             topicId = getArguments().getInt(ARGS_TOPIC_ID);
         }
 
+        resultsTitle = topicResultsBinding.textViewTopicTotalResultsTitle;
         resultsPercentage = topicResultsBinding.textViewTopicTotalResultsPercentage;
         resultsDescription = topicResultsBinding.textViewTopicTotalResultsDescription;
 
         topicViewModel = ViewModelProviders.of(this).get(TopicViewModel.class);
 
+
         topicViewModel.getLiveTopicDataFromDB(topicId).observe(this, new Observer<Topic>() {
             @Override
             public void onChanged(@Nullable Topic topic) {
+
+                // only want to load topic from db once
+//                if(mTopic == null){
+
                 mTopic = topic;
                 populateView();
                 setupAdapter();
+
+                Question previousQuestion;
+
                 if (previousIsAnswered) {
-                    Question previousQuestion = questions.get(5);
+
+                    //questions are indexed at 1 not 0
+                    previousQuestion = questions.get(previousQuestionId - 1);
                     previousQuestion.setCorrect(previousIsCorrect);
                     previousQuestion.setAnswered(previousIsAnswered);
+                    mTopic.setResultPercentage(UtilMethods.calculateTotalPercentage(mTopic.getQuestions()));
                     topicViewModel.insertTopic(mTopic);
+
+                    //reset boolean to keep onchange from updating
+                    previousIsAnswered = false;
                 }
                 addTopicTitleAndResultPref();
+//                }
+
+
             }
         });
 
@@ -158,7 +183,7 @@ public class TopicResultsFragment extends Fragment implements TopicResultsAdapte
     }
 
 
-//helper method to populate views of topic results layout
+    //helper method to populate views of topic results layout
     public void populateView() {
         //get questions from topic and results
         questions = mTopic.getQuestions();
@@ -166,6 +191,7 @@ public class TopicResultsFragment extends Fragment implements TopicResultsAdapte
 
         //format String percentage
         String resultPercentageString = getString(R.string.percentage, resultPercentage);
+        resultsTitle.setText(getString(R.string.topic_results));
         resultsPercentage.setText(resultPercentageString);
         resultsDescription.setText(R.string.latin_text);
 
@@ -175,7 +201,7 @@ public class TopicResultsFragment extends Fragment implements TopicResultsAdapte
     //takes user to question if not answered yet
     @Override
     public void onItemClickListener(int itemId) {
-        if(!questions.get(itemId).isAnswered()){
+        if (!questions.get(itemId).isAnswered()) {
             int questionNumber = itemId + 1;
             Intent intent = new Intent(getContext(), DialogCreations.check(questionNumber));
             intent.putExtra(EXTRA_TOPIC_ID, topicId);
@@ -185,7 +211,7 @@ public class TopicResultsFragment extends Fragment implements TopicResultsAdapte
 
     //add current topic title and results to
     // shared preferences to update widget info
-    private void addTopicTitleAndResultPref(){
+    private void addTopicTitleAndResultPref() {
         String title = mTopic.getName();
 
         ResultsSharedPreferences.setPrefTopicId(getContext(), topicId);

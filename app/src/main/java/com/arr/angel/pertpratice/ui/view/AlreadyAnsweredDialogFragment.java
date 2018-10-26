@@ -8,15 +8,12 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
-import android.support.v4.app.Fragment;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.arr.angel.pertpratice.R;
 import com.arr.angel.pertpratice.util.DialogCreations;
 
-import static com.arr.angel.pertpratice.ui.view.CorrectAnswerDialogFragment.EXTRA_IS_ANSWERED;
-import static com.arr.angel.pertpratice.ui.view.CorrectAnswerDialogFragment.EXTRA_IS_CORRECT;
+import static com.arr.angel.pertpratice.ui.view.Question01Fragment.EXTRA_CURRENT_QUESTION_ID;
 
 public class AlreadyAnsweredDialogFragment extends DialogFragment {
 
@@ -24,16 +21,20 @@ public class AlreadyAnsweredDialogFragment extends DialogFragment {
 
     //placeholder for int to the next question
     //and topic id
+    private int currentQuestion;
     private int nextQuestion;
     private int topicId;
+    private boolean isCorrect;
 
     //adding the int of the next question to figure out the next activity to launch
-    public static AlreadyAnsweredDialogFragment newInstance(int nextQuestion, int topicId) {
+    public static AlreadyAnsweredDialogFragment newInstance(int currentQuestion, int nextQuestion, int topicId, boolean isCorrect) {
 
         AlreadyAnsweredDialogFragment alreadyAnsweredDialogFragment = new AlreadyAnsweredDialogFragment();
         Bundle bundle = new Bundle();
-        bundle.putInt(DialogCreations.questionNumberArg, nextQuestion);
+        bundle.putInt(DialogCreations.currentQuestionNumberArg, currentQuestion);
+        bundle.putInt(DialogCreations.nextQuestionNumberArg, nextQuestion);
         bundle.putInt(Question01Fragment.ARGS_TOPIC_ID, topicId);
+        bundle.putBoolean(DialogCreations.currentQuestionIsCorrectArg, isCorrect);
         alreadyAnsweredDialogFragment.setArguments(bundle);
 
         return alreadyAnsweredDialogFragment;
@@ -51,8 +52,10 @@ public class AlreadyAnsweredDialogFragment extends DialogFragment {
 
         //make sure bundle has int value
         if (getArguments() != null) {
-            nextQuestion = getArguments().getInt(DialogCreations.questionNumberArg);
+            currentQuestion = getArguments().getInt(DialogCreations.currentQuestionNumberArg);
+            nextQuestion = getArguments().getInt(DialogCreations.nextQuestionNumberArg);
             topicId = getArguments().getInt(Question01Fragment.ARGS_TOPIC_ID);
+            isCorrect = getArguments().getBoolean(DialogCreations.currentQuestionIsCorrectArg);
         } else {
             Log.d(TAG, "No int argument for next question");
             nextQuestion = 0;
@@ -65,7 +68,10 @@ public class AlreadyAnsweredDialogFragment extends DialogFragment {
                     public void onClick(DialogInterface dialogInterface, int i) {
 //                        Toast.makeText(getContext(), "Next!", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(getActivity(), DialogCreations.check(nextQuestion));
+                        intent.putExtra(EXTRA_CURRENT_QUESTION_ID, currentQuestion);
                         intent.putExtra(MainFragment.EXTRA_TOPIC_ID, topicId);
+                        intent.putExtra(CorrectAnswerDialogFragment.EXTRA_IS_ANSWERED, true);
+                        intent.putExtra(CorrectAnswerDialogFragment.EXTRA_IS_CORRECT, isCorrect);
                         startActivity(intent);
                     }
                 });

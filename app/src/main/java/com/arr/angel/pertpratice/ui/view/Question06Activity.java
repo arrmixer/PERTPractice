@@ -18,13 +18,15 @@ import com.arr.angel.pertpratice.util.NavigationDrawerMenuMethods;
 import com.arr.angel.pertpratice.util.UtilMethods;
 
 import static com.arr.angel.pertpratice.ui.view.MainFragment.EXTRA_TOPIC_ID;
+import static com.arr.angel.pertpratice.ui.view.Question01Fragment.EXTRA_CURRENT_QUESTION_ID;
 
 public class Question06Activity extends SingleFragmentActivity {
 
     private DrawerLayout mDrawerLayout;
 
-    //placeholders for boolean values of previous question
+    //placeholders for values of previous question
     // and topicId
+    private int previousQuestionId;
     private boolean previousIsAnswered;
     private boolean previousIsCorrect;
 
@@ -34,12 +36,13 @@ public class Question06Activity extends SingleFragmentActivity {
     protected Fragment createFragment() {
 
         if(getIntent() != null){
+            previousQuestionId = getIntent().getIntExtra(EXTRA_CURRENT_QUESTION_ID, 0);
             previousIsAnswered = getIntent().getBooleanExtra(CorrectAnswerDialogFragment.EXTRA_IS_ANSWERED, false);
             previousIsCorrect = getIntent().getBooleanExtra(CorrectAnswerDialogFragment.EXTRA_IS_CORRECT, false);
             topicId = getIntent().getIntExtra(MainFragment.EXTRA_TOPIC_ID, 0);
         }
 
-        return Question06Fragment.newInstance(previousIsCorrect, previousIsAnswered, topicId);
+        return Question06Fragment.newInstance(previousQuestionId, previousIsCorrect, previousIsAnswered, topicId);
     }
 
     @Override

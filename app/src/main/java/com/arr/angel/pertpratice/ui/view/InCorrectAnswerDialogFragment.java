@@ -16,21 +16,24 @@ import com.arr.angel.pertpratice.util.DialogCreations;
 
 import static com.arr.angel.pertpratice.ui.view.CorrectAnswerDialogFragment.EXTRA_IS_ANSWERED;
 import static com.arr.angel.pertpratice.ui.view.CorrectAnswerDialogFragment.EXTRA_IS_CORRECT;
+import static com.arr.angel.pertpratice.ui.view.Question01Fragment.EXTRA_CURRENT_QUESTION_ID;
 
 public class InCorrectAnswerDialogFragment extends DialogFragment {
 
     private static String TAG = InCorrectAnswerDialogFragment.class.getSimpleName();
 
     //placeholder for int to the next question
-    //and topic id
+    //, current question, and topic id
+    private int currentQuestion;
     private int nextQuestion;
     private int topicId;
 
-    public static InCorrectAnswerDialogFragment newInstance(int nextQuestion, int topicId) {
+    public static InCorrectAnswerDialogFragment newInstance(int currentQuestion, int nextQuestion, int topicId) {
 
         InCorrectAnswerDialogFragment inCorrectAnswerDialogFragment = new InCorrectAnswerDialogFragment();
         Bundle bundle = new Bundle();
-        bundle.putInt(DialogCreations.questionNumberArg, nextQuestion);
+        bundle.putInt(DialogCreations.currentQuestionNumberArg, currentQuestion);
+        bundle.putInt(DialogCreations.nextQuestionNumberArg, nextQuestion);
         bundle.putInt(Question01Fragment.ARGS_TOPIC_ID, topicId);
         inCorrectAnswerDialogFragment.setArguments(bundle);
 
@@ -46,7 +49,8 @@ public class InCorrectAnswerDialogFragment extends DialogFragment {
 
         //make sure bundle has int value
         if (getArguments() != null) {
-            nextQuestion = getArguments().getInt(DialogCreations.questionNumberArg);
+            currentQuestion = getArguments().getInt(DialogCreations.currentQuestionNumberArg);
+            nextQuestion = getArguments().getInt(DialogCreations.nextQuestionNumberArg);
             topicId = getArguments().getInt(Question01Fragment.ARGS_TOPIC_ID);
         }else{
             Log.d(TAG, "No int argument for next question");
@@ -61,6 +65,7 @@ public class InCorrectAnswerDialogFragment extends DialogFragment {
                         Intent intent = new Intent(getActivity(), DialogCreations.check(nextQuestion));
                         intent.putExtra(EXTRA_IS_CORRECT, false);
                         intent.putExtra(EXTRA_IS_ANSWERED, true);
+                        intent.putExtra(EXTRA_CURRENT_QUESTION_ID, currentQuestion);
                         intent.putExtra(MainFragment.EXTRA_TOPIC_ID, topicId);
                         startActivity(intent);
                     }

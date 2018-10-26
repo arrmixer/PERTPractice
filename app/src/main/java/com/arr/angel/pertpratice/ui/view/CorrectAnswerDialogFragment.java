@@ -9,10 +9,11 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.arr.angel.pertpratice.R;
 import com.arr.angel.pertpratice.util.DialogCreations;
+
+import static com.arr.angel.pertpratice.ui.view.Question01Fragment.EXTRA_CURRENT_QUESTION_ID;
 
 public class CorrectAnswerDialogFragment extends DialogFragment {
 
@@ -21,16 +22,18 @@ public class CorrectAnswerDialogFragment extends DialogFragment {
     private static String TAG = CorrectAnswerDialogFragment.class.getSimpleName();
 
     //placeholder for int to the next question
-    //and topic id
+    //, current question, and topic id
+    private int currentQuestion;
     private int nextQuestion;
     private int topicId;
 
     //adding the int of the next question to figure out the next activity to launch
-    public static CorrectAnswerDialogFragment newInstance(int nextQuestion, int topicId) {
+    public static CorrectAnswerDialogFragment newInstance(int currentQuestion, int nextQuestion, int topicId) {
 
         CorrectAnswerDialogFragment correctAnswerDialogFragment = new CorrectAnswerDialogFragment();
         Bundle bundle = new Bundle();
-        bundle.putInt(DialogCreations.questionNumberArg, nextQuestion);
+        bundle.putInt(DialogCreations.currentQuestionNumberArg, currentQuestion);
+        bundle.putInt(DialogCreations.nextQuestionNumberArg, nextQuestion);
         bundle.putInt(Question01Fragment.ARGS_TOPIC_ID, topicId);
         correctAnswerDialogFragment.setArguments(bundle);
 
@@ -47,7 +50,8 @@ public class CorrectAnswerDialogFragment extends DialogFragment {
 
         //make sure bundle has int value
         if (getArguments() != null) {
-            nextQuestion = getArguments().getInt(DialogCreations.questionNumberArg);
+            currentQuestion = getArguments().getInt(DialogCreations.currentQuestionNumberArg);
+            nextQuestion = getArguments().getInt(DialogCreations.nextQuestionNumberArg);
             topicId = getArguments().getInt(Question01Fragment.ARGS_TOPIC_ID);
         } else {
             Log.d(TAG, "No int argument for next question");
@@ -63,6 +67,7 @@ public class CorrectAnswerDialogFragment extends DialogFragment {
                         Intent intent = new Intent(getActivity(), DialogCreations.check(nextQuestion));
                         intent.putExtra(EXTRA_IS_CORRECT, true);
                         intent.putExtra(EXTRA_IS_ANSWERED, true);
+                        intent.putExtra(EXTRA_CURRENT_QUESTION_ID, currentQuestion);
                         intent.putExtra(MainFragment.EXTRA_TOPIC_ID, topicId);
                         startActivity(intent);
                     }
@@ -71,19 +76,4 @@ public class CorrectAnswerDialogFragment extends DialogFragment {
         return builder.create();
     }
 
-//    private Class check(){
-////        Log.d(TAG, "next question number is " + getArguments().getInt("QuestionNumber"));
-//        int nextQuestion = getArguments().getInt(DialogCreations.questionNumberArg);
-//        switch(nextQuestion){
-//            case 2:
-//                return Question02Activity.class;
-//            case 3:
-//                return Question03Activity.class;
-//            case 4:
-//                return Question04Activity.class;
-//            case 5:
-//                return Question05Activity.class;
-//        }
-//        return MainActivity.class;
-//    }
 }

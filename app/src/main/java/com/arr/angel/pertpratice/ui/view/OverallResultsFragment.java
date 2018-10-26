@@ -94,10 +94,12 @@ public class OverallResultsFragment extends Fragment implements OverallResultsAd
 
     }
 
+    //also added text to description textView
     private void setupAdapter(){
         if (isAdded() && mTopicList != null) {
             OverallResultsAdapter overallResultsAdapter = new OverallResultsAdapter(this, getContext(), mTopicList);
             overallResultsBinding.recyclerViewOverallResults.setAdapter(overallResultsAdapter);
+            overallDescription.setText(getString(R.string.latin_text));
             overallResultsAdapter.notifyDataSetChanged();
         }
 

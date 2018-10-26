@@ -21,28 +21,34 @@ import com.arr.angel.pertpratice.ui.view.TopicResultsActivity;
 public class DialogCreations {
 
     //use as key to put string args for next question
-    public static final String questionNumberArg = "com.arr.angel.pertpratice.ui.view.correct_answer_next";
+    public static final String nextQuestionNumberArg = "com.arr.angel.pertpratice.ui.view.next_question";
 
     //use as key to put total number of questions
-    public static final String questionTotalArg =  "com.arr.angel.pertpratice.ui.view.total_questions";
+    public static final String currentQuestionNumberArg =  "com.arr.angel.pertpratice.ui.view.current_question_id";
+
+    //use as key to check if already answered question was correct or incorrect
+    public static final String currentQuestionIsCorrectArg =  "com.arr.angel.pertpratice.ui.view.current_question_is_correct";
 
     //helper method to create Correct Dialog Fragment with necessary parameters/arguments and show correct dialog
-    public static void showCorrectDialog(FragmentManager fragmentManager, int nextQuestion, int topicId){
-        CorrectAnswerDialogFragment correctAnswerDialogFragment = CorrectAnswerDialogFragment.newInstance(nextQuestion, topicId);
+    public static void showCorrectDialog(FragmentManager fragmentManager, int currentQuestion,  int nextQuestion, int topicId){
+        CorrectAnswerDialogFragment correctAnswerDialogFragment = CorrectAnswerDialogFragment.newInstance(currentQuestion, nextQuestion, topicId);
         correctAnswerDialogFragment.setCancelable(false);
         correctAnswerDialogFragment.show(fragmentManager, "correct");
     }
 
-    public static void showIncorrectDialog(FragmentManager fragmentManager, int nextQuestion, int topicId){
-        InCorrectAnswerDialogFragment inCorrectAnswerDialogFragment = InCorrectAnswerDialogFragment.newInstance(nextQuestion, topicId);
+    public static void showIncorrectDialog(FragmentManager fragmentManager, int currentQuestion, int nextQuestion, int topicId){
+        InCorrectAnswerDialogFragment inCorrectAnswerDialogFragment = InCorrectAnswerDialogFragment.newInstance(currentQuestion, nextQuestion, topicId);
         inCorrectAnswerDialogFragment.setCancelable(false);
         inCorrectAnswerDialogFragment.show(fragmentManager, "incorrect");
     }
 
-    public static void showAlreadyAnsweredDialog(FragmentManager fragmentManager, int nextQuestion, int topicId){
-        AlreadyAnsweredDialogFragment alreadyAnsweredDialogFragment = AlreadyAnsweredDialogFragment.newInstance(nextQuestion, topicId);
+    public static void showAlreadyAnsweredDialog(FragmentManager fragmentManager, int currentQuestion, int nextQuestion, int topicId, boolean isCorrect){
+        AlreadyAnsweredDialogFragment alreadyAnsweredDialogFragment = AlreadyAnsweredDialogFragment.newInstance(currentQuestion, nextQuestion, topicId, isCorrect);
         alreadyAnsweredDialogFragment.setCancelable(false);
-        alreadyAnsweredDialogFragment.show(fragmentManager, "already_answered");
+
+        if(!alreadyAnsweredDialogFragment.isVisible()) {
+            alreadyAnsweredDialogFragment.show(fragmentManager, "already_answered");
+        }
     }
 
 

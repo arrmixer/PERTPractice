@@ -61,7 +61,6 @@ public class Topic {
     }
 
     public void setResultPercentage(int resultPercentage) {
-        resultPercentage = calculateTotalPercentage();
         this.resultPercentage = resultPercentage;
     }
 

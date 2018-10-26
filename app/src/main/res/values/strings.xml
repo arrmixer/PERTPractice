@@ -44,6 +44,7 @@
     <string name="start">Start</string>
     <string name="appwidget_text">EXAMPLE</string>
     <string name="add_widget">Add widget</string>
+    <string name="nav_menu_title_questions">Questions</string>
 
 
 </resources>

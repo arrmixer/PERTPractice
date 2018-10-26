@@ -28,7 +28,10 @@ import com.arr.angel.pertpratice.viewmodel.TopicViewModel;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.arr.angel.pertpratice.ui.view.Question01Fragment.ARGS_CURRENT_ID;
 import static com.arr.angel.pertpratice.ui.view.Question01Fragment.ARGS_TOPIC_ID;
+import static com.arr.angel.pertpratice.ui.view.Question01Fragment.EXTRA_IS_ANSWERED;
+import static com.arr.angel.pertpratice.ui.view.Question01Fragment.EXTRA_IS_NEXT_UNANSWERED_QUESTION_ID;
 import static com.arr.angel.pertpratice.ui.view.Question02Fragment.ARG_IS_ANSWERED;
 import static com.arr.angel.pertpratice.ui.view.Question02Fragment.ARG_IS_CORRECT;
 
@@ -40,6 +43,9 @@ public class Question06Fragment extends Fragment {
 
     //instance of ViewModel
     private TopicViewModel topicViewModel;
+
+    //DataBinding instance
+    Question06Binding questionBinding;
 
     //views
     private TextView content;
@@ -58,21 +64,32 @@ public class Question06Fragment extends Fragment {
     private Question question;
     private List<String> possibleAnswers;
 
+    //id for next unanswered question
+    //in question list
+    private int nextUnansweredQuestionId;
+
     //boolean data for previous question
+    private int previousQuestionId;
     private boolean previousIsAnswered;
     private boolean previousIsCorrect;
 
     //boolean data for current question
     private boolean isAnswered;
+    private boolean isCorrect;
 
     //placeholder for next question int
     //currently this is the last question
     // so int 0 takes user to the results page
     private int nextQuestion = 0;
 
-    public static Question06Fragment newInstance(boolean correct, boolean answered, int topicId) {
+    //placeholder for current question int
+    private int currentQuestion;
+
+    public static Question06Fragment newInstance(int previousQuestionId, boolean correct, boolean answered, int topicId) {
         Question06Fragment question06Fragment = new Question06Fragment();
+
         Bundle bundle = new Bundle();
+        bundle.putInt(ARGS_CURRENT_ID, previousQuestionId);
         bundle.putBoolean(ARG_IS_CORRECT, correct);
         bundle.putBoolean(ARG_IS_ANSWERED, answered);
         bundle.putInt(ARGS_TOPIC_ID, topicId);
@@ -81,9 +98,6 @@ public class Question06Fragment extends Fragment {
 
         return question06Fragment;
     }
-
-    //DataBinding instance
-    Question06Binding questionBinding;
 
     //Interface for hosting activities
     public interface Callbacks {
@@ -95,6 +109,8 @@ public class Question06Fragment extends Fragment {
         super.onSaveInstanceState(outState);
         outState.putString(EXTRA_ANSWER, answer);
         outState.putStringArrayList(EXTRA_POSSIBLE_ANSWERS, (ArrayList<String>) possibleAnswers);
+        outState.putBoolean(EXTRA_IS_ANSWERED, isAnswered);
+        outState.putInt(EXTRA_IS_NEXT_UNANSWERED_QUESTION_ID, nextUnansweredQuestionId);
 
     }
 
@@ -119,11 +135,16 @@ public class Question06Fragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
         if (savedInstanceState != null) {
+
             answer = savedInstanceState.getString(EXTRA_ANSWER);
             possibleAnswers = savedInstanceState.getStringArrayList(EXTRA_POSSIBLE_ANSWERS);
+            isAnswered = savedInstanceState.getBoolean(EXTRA_IS_ANSWERED);
+            nextUnansweredQuestionId = savedInstanceState.getInt(EXTRA_IS_NEXT_UNANSWERED_QUESTION_ID);
         }
 
         if (getArguments() != null) {
+
+            previousQuestionId = getArguments().getInt(ARGS_CURRENT_ID);
             previousIsAnswered = getArguments().getBoolean(ARG_IS_ANSWERED);
             previousIsCorrect = getArguments().getBoolean(ARG_IS_CORRECT);
             topicId = getArguments().getInt(ARGS_TOPIC_ID);
@@ -141,40 +162,52 @@ public class Question06Fragment extends Fragment {
         topicViewModel.getLiveTopicDataFromDB(topicId).observe(this, new Observer<Topic>() {
             @Override
             public void onChanged(@Nullable Topic topic) {
+
                 mTopic = topic;
                 populateView();
+
                 if (previousIsAnswered) {
-                    Question previousQuestion = questions.get(4);
+
+                    //questions are indexed at 1 not 0
+                    Question previousQuestion = questions.get(previousQuestionId - 1);
                     previousQuestion.setCorrect(previousIsCorrect);
                     previousQuestion.setAnswered(previousIsAnswered);
                     topicViewModel.insertTopic(mTopic);
+
+                    //reset boolean to keep onchange from updating
+                    previousIsAnswered = false;
                 }
 
                 //check to see if question is already answered
                 isAnswered = question.isAnswered();
                 Log.d(TAG, "isAnswered is " + isAnswered);
 
+
                 //redirect user to next available question if any
                 if (isAnswered) {
                     //placeholder for next unanswered question if any
-                    int nextUnansweredId = 0;
-//                    radioGroup.setVisibility(View.INVISIBLE);
+                    nextUnansweredQuestionId = 0;
+
+                    //check to see if question was answered correctly
+                    isCorrect = question.isCorrect();
+
+                    //check to see if question is already answered
+                    //and redirect user to next available question if any
                     for (Question q : questions) {
                         if (!q.isAnswered()) {
                             //get question number from question id
                             //example string PT01 question number is 1
                             String number = q.getId().substring(3);
-                            nextUnansweredId = Integer.parseInt(number);
+                            nextUnansweredQuestionId = Integer.parseInt(number);
                             break;
                         }
 
                     }
 
-                    DialogCreations.showAlreadyAnsweredDialog(getFragmentManager(), nextUnansweredId, topicId);
-
                 }
 
             }
+
         });
 
         exampleButton.setOnClickListener(new View.OnClickListener() {
@@ -191,8 +224,12 @@ public class Question06Fragment extends Fragment {
 //                Log.d(TAG, "Radio clicked is " + getResources().getResourceName(radioGroup.getCheckedRadioButtonId()) +
 //                " and the id is " + getResources().getResourceName(checkId));
 
-                RadioGroupHelper.radioButtonLogic(getFragmentManager(),
-                        checkId, answer, possibleAnswers, nextQuestion, topicId);
+                if (!isAnswered) {
+                    RadioGroupHelper.radioButtonLogic(radioGroup, getFragmentManager(),
+                            checkId, answer, possibleAnswers, currentQuestion, nextQuestion, topicId);
+                } else {
+                    DialogCreations.showAlreadyAnsweredDialog(getFragmentManager(), currentQuestion, nextUnansweredQuestionId, topicId, isCorrect);
+                }
 
             }
         });
@@ -203,34 +240,18 @@ public class Question06Fragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-
-        //check to see if question is already answered
-        //and redirect user to next available question if any
-        //only used on back bottom navigation when activity is resumed
-        if (isAnswered && questions!= null) {
-            //placeholder for next unanswered question if any
-            int nextUnansweredId = 0;
-            radioGroup.setVisibility(View.INVISIBLE);
-            for (Question q : questions) {
-                if (!q.isAnswered()) {
-                    //get question number from question id
-                    //example string PT01 question number is 1
-                    String number = q.getId().substring(3);
-                    nextUnansweredId = Integer.parseInt(number);
-                    break;
-                }
-
-            }
-
-            DialogCreations.showAlreadyAnsweredDialog(getFragmentManager(), nextUnansweredId, topicId);
-
-        }
+        radioGroup.clearCheck();
     }
 
     public void populateView() {
         questions = mTopic.getQuestions();
         question = questions.get(5);
+
+        //get question int
+        currentQuestion = Integer.parseInt(question.getId().substring(3));
         answer = question.getAnswer();
+
+
         possibleAnswers = question.getPossibleAnswers();
         content.setText(question.getContent());
 

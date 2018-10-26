@@ -29,13 +29,16 @@ import com.arr.angel.pertpratice.viewmodel.TopicViewModel;
 import java.util.List;
 
 import static com.arr.angel.pertpratice.ui.view.MainFragment.EXTRA_TOPIC_ID;
+import static com.arr.angel.pertpratice.ui.view.Question01Fragment.EXTRA_CURRENT_QUESTION_ID;
 
 public class TopicResultsActivity extends SingleFragmentActivity {
 
 
     private static final String TAG = TopicResultsActivity.class.getSimpleName();
-    //placeholders for boolean values of previous question
+
+    //placeholders for values of previous question
     // and topicId
+    private int previousQuestionId;
     private boolean isAnswered;
     private boolean isCorrect;
     private int topicId;
@@ -48,12 +51,13 @@ public class TopicResultsActivity extends SingleFragmentActivity {
     @Override
     protected Fragment createFragment() {
         if (getIntent() != null) {
+            previousQuestionId = getIntent().getIntExtra(EXTRA_CURRENT_QUESTION_ID, 0);
             isAnswered = getIntent().getBooleanExtra(CorrectAnswerDialogFragment.EXTRA_IS_ANSWERED, false);
             isCorrect = getIntent().getBooleanExtra(CorrectAnswerDialogFragment.EXTRA_IS_CORRECT, false);
-            topicId = getIntent().getIntExtra(MainFragment.EXTRA_TOPIC_ID,0);
+            topicId = getIntent().getIntExtra(MainFragment.EXTRA_TOPIC_ID, 0);
         }
 
-        return TopicResultsFragment.newInstance(isCorrect, isAnswered, topicId);
+        return TopicResultsFragment.newInstance(previousQuestionId, isCorrect, isAnswered, topicId);
     }
 
     @Override
@@ -122,14 +126,15 @@ public class TopicResultsActivity extends SingleFragmentActivity {
             startActivity(intent);
             return true;
         } else if (id == R.id.retake_settings) {
-            for(Question q : questions){
-            q.setAnswered(false);
-            q.setCorrect(false);
-        }
-        topicViewModel.insertTopic(mTopic);
-        Intent intent = new Intent(this, Question01Activity.class);
-        intent.putExtra(MainFragment.EXTRA_TOPIC_ID, topicId);
-        startActivity(intent);
+            for (Question q : questions) {
+                q.setAnswered(false);
+                q.setCorrect(false);
+            }
+            mTopic.setResultPercentage(UtilMethods.calculateTotalPercentage(mTopic.getQuestions()));
+            topicViewModel.insertTopic(mTopic);
+            Intent intent = new Intent(this, Question01Activity.class);
+            intent.putExtra(MainFragment.EXTRA_TOPIC_ID, topicId);
+            startActivity(intent);
             return true;
         }
         return super.onOptionsItemSelected(item);
