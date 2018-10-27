@@ -115,6 +115,7 @@ public class Question01Fragment extends Fragment {
         outState.putStringArrayList(EXTRA_POSSIBLE_ANSWERS, (ArrayList<String>) possibleAnswers);
         outState.putBoolean(EXTRA_IS_ANSWERED, isAnswered);
         outState.putInt(EXTRA_IS_NEXT_UNANSWERED_QUESTION_ID, nextUnansweredQuestionId);
+        outState.putInt(EXTRA_CURRENT_QUESTION_ID, currentQuestion);
 
     }
 
@@ -143,6 +144,7 @@ public class Question01Fragment extends Fragment {
             possibleAnswers = savedInstanceState.getStringArrayList(EXTRA_POSSIBLE_ANSWERS);
             isAnswered = savedInstanceState.getBoolean(EXTRA_IS_ANSWERED);
             nextUnansweredQuestionId = savedInstanceState.getInt(EXTRA_IS_NEXT_UNANSWERED_QUESTION_ID);
+            currentQuestion = savedInstanceState.getInt(EXTRA_CURRENT_QUESTION_ID);
         }
 
         if (getArguments() != null) {
