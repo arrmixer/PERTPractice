@@ -189,10 +189,35 @@ public class TopicResultsFragment extends Fragment implements TopicResultsAdapte
         questions = mTopic.getQuestions();
         resultPercentage = mTopic.getResultPercentage();
 
-        //format String percentage
-        String resultPercentageString = getString(R.string.percentage, resultPercentage);
+        String resultPercentageString;
+        boolean allQuestionAnswered = true;
+
+        //check to see if any of the questons are unanswered
+        for (Question q : questions) {
+            if (!q.isAnswered()) {
+                allQuestionAnswered = false;
+                break;
+            }
+        }
+
+        //add logic to either display actuall percentage if all the questions are answered
+        //or "incomplete" otherwise
+        if (allQuestionAnswered) {
+            //format String percentage
+            resultPercentageString = getString(R.string.percentage, resultPercentage);
+        } else {
+            resultPercentageString = getString(R.string.incomplete);
+        }
+
         resultsTitle.setText(getString(R.string.topic_results));
-        resultsPercentage.setText(resultPercentageString);
+
+        String resultsTextInTextView = resultsPercentage.getText().toString();
+
+        //only change textView if result is different
+        if(!resultsTextInTextView.equals(resultPercentageString)){
+            resultsPercentage.setText(resultPercentageString);
+        }
+
         resultsDescription.setText(R.string.latin_text);
 
     }
