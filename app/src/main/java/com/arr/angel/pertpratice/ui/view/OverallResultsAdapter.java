@@ -95,7 +95,7 @@ public class OverallResultsAdapter extends RecyclerView.Adapter<OverallResultsAd
             //format String percentage
             String resultPercentageString = mContext.getString(R.string.percentage, resultPercentage);
 
-            overallResultListItemBinding.textViewTopicTile.setText(title);
+            overallResultListItemBinding.textViewTopicTitle.setText(title);
 
             //check how many questions answered
             int questionCount = 0;

@@ -2,27 +2,33 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="single">
         <item
+            android:id="@+id/practice_test"
             android:icon="@drawable/ic_radio_button_unchecked_black_24dp"
             android:tint="@color/button_grey"
             android:title="@string/practice_test"
             />
         <item
+            android:id="@+id/basic"
             android:icon="@drawable/ic_radio_button_unchecked_black_24dp"
             android:tint="@color/button_grey"
             android:title="@string/basic" />
         <item
+            android:id="@+id/intermediate"
             android:icon="@drawable/ic_radio_button_unchecked_black_24dp"
             android:tint="@color/button_grey"
             android:title="@string/intermediate" />
         <item
+            android:id="@+id/advance"
             android:icon="@drawable/ic_radio_button_unchecked_black_24dp"
             android:tint="@color/button_grey"
             android:title="@string/advance" />
         <item
+            android:id="@+id/application"
             android:icon="@drawable/ic_radio_button_unchecked_black_24dp"
             android:tint="@color/button_grey"
             android:title="@string/application" />
         <item
+            android:id="@+id/overall_results"
             android:icon="@drawable/ic_radio_button_unchecked_black_24dp"
             android:tint="@color/button_grey"
             android:title="@string/overall_results" />
