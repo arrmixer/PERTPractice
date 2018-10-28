@@ -1,6 +1,12 @@
 package com.arr.angel.pertpratice.ui.view;
 
 
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.StateListDrawable;
+import android.support.annotation.DrawableRes;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.espresso.IdlingRegistry;
 import android.support.test.espresso.IdlingResource;
@@ -10,8 +16,11 @@ import android.support.test.espresso.contrib.NavigationViewActions;
 import android.support.test.espresso.matcher.BoundedMatcher;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
+import android.support.v7.view.menu.ActionMenuItemView;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
+import android.view.View;
+import android.widget.ActionMenuView;
 import android.widget.TextView;
 
 import com.arr.angel.pertpratice.R;
@@ -141,6 +150,24 @@ public class MainActivityTest {
 
     }
 
+    @Test
+    public void clickOnYourNavigationItem_ShowsYourScreen6() {
+        // Open Drawer to click on navigation.
+        onView(withId(R.id.drawer_layout))
+                .check(matches(isClosed(Gravity.LEFT))) // Left Drawer should be closed.
+                .perform(DrawerActions.open()); // Open Drawer
+
+        // Start the screen of your activity.
+        onView(withId(R.id.nav_view)).perform(NavigationViewActions.navigateTo(R.id.overall_results));
+
+        registerIdlingResource();
+
+        CharSequence title = InstrumentationRegistry
+                .getTargetContext().getString(R.string.overall_results);
+        matchToolbarTitle(title);
+
+    }
+
     // Remember to unregister resources when not needed to avoid malfunction.
     @After
     public void unregisterIdlingResource() {
@@ -173,4 +200,6 @@ public class MainActivityTest {
             }
         };
     }
+
+
 }

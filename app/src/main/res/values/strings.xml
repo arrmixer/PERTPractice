@@ -45,6 +45,7 @@
     <string name="appwidget_text">EXAMPLE</string>
     <string name="add_widget">Add widget</string>
     <string name="nav_menu_title_questions">Questions</string>
+    <string name="google_plus">Google Plus</string>
 
 
 </resources>

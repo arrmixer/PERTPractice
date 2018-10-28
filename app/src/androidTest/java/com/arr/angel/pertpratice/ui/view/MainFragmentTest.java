@@ -32,6 +32,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withContentDescription;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
+import static com.arr.angel.pertpratice.ui.view.TopicResultsFragmentTest.withViewAtPosition;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.is;
 
@@ -87,20 +88,6 @@ public class MainFragmentTest {
 
     }
 
-    public static Matcher<View> withViewAtPosition(final int position, final Matcher<View> itemMatcher) {
-        return new BoundedMatcher<View, RecyclerView>(RecyclerView.class) {
-            @Override
-            public void describeTo(Description description) {
-                itemMatcher.describeTo(description);
-            }
 
-            @Override
-            protected boolean matchesSafely(RecyclerView recyclerView) {
-
-                final RecyclerView.ViewHolder viewHolder = recyclerView.findViewHolderForAdapterPosition(position);
-                return viewHolder != null && itemMatcher.matches(viewHolder.itemView);
-            }
-        };
-    }
 
 }

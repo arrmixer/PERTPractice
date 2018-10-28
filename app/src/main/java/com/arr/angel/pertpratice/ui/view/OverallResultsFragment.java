@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.arr.angel.pertpratice.R;
 import com.arr.angel.pertpratice.databinding.OverallResultsBinding;
@@ -85,7 +86,7 @@ public class OverallResultsFragment extends Fragment implements OverallResultsAd
         topicViewModel.getLiveTopicListDataFromDB().observe(this, new Observer<List<Topic>>() {
             @Override
             public void onChanged(@Nullable List<Topic> topics) {
-                Log.i(TAG, "OnChanged called!");
+//                Log.i(TAG, "OnChanged called!");
                 mTopicList = topics;
                 setupAdapter();
             }
@@ -117,6 +118,9 @@ public class OverallResultsFragment extends Fragment implements OverallResultsAd
                 break;
             }
         }
+
+        Log.d(TAG, "Item number is " + itemId);
+
 
         Intent intent = new Intent(getContext(), DialogCreations.check(questionNumber));
         intent.putExtra(EXTRA_TOPIC_ID, itemId);

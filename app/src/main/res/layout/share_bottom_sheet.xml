@@ -83,7 +83,7 @@
 
 
         <ImageView
-            android:id="@+id/img_instagram"
+            android:id="@+id/img_message"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_marginStart="32dp"
@@ -95,21 +95,21 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divider2"
             app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/ic_instagram" />
+            app:srcCompat="@drawable/ic_textsms_grey_24dp" />
 
         <TextView
-            android:id="@+id/textView_instagram_title"
+            android:id="@+id/textView_message_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="36dp"
             android:layout_marginEnd="116dp"
             android:layout_marginBottom="8dp"
-            android:text="@string/instagram"
+            android:text="@string/message"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
             app:layout_constraintBottom_toTopOf="@+id/divider3"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/img_instagram"
+            app:layout_constraintStart_toEndOf="@+id/img_message"
             app:layout_constraintTop_toBottomOf="@+id/divider2"
             app:layout_constraintVertical_bias="0.318" />
 
@@ -127,7 +127,7 @@
             app:layout_constraintTop_toBottomOf="@+id/divider2" />
 
         <ImageView
-            android:id="@+id/img_snapchat"
+            android:id="@+id/img_google_plus"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_marginStart="32dp"
@@ -139,21 +139,21 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divider3"
             app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/ic_snapchat" />
+            app:srcCompat="@drawable/ic_google_plus" />
 
         <TextView
-            android:id="@+id/textView_snap_chat_title"
+            android:id="@+id/textView_google_plus_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="36dp"
             android:layout_marginEnd="116dp"
             android:layout_marginBottom="8dp"
-            android:text="@string/snapchat"
+            android:text="@string/google_plus"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
             app:layout_constraintBottom_toTopOf="@+id/divider4"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/img_snapchat"
+            app:layout_constraintStart_toEndOf="@+id/img_google_plus"
             app:layout_constraintTop_toBottomOf="@+id/divider3"
             app:layout_constraintVertical_bias="0.318" />
 

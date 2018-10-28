@@ -30,8 +30,8 @@ public class DialogShare extends BottomSheetDialogFragment {
     //views
     ImageView twitterIcon;
     ImageView messageIcon;
-    ImageView instagramIcon;
-    ImageView snapchatIcon;
+    ImageView googlePlusIcon;
+
 
     private String message;
 
@@ -65,8 +65,8 @@ public class DialogShare extends BottomSheetDialogFragment {
         );
 
         twitterIcon = shareBottomSheetBinding.imgTwitter;
-        instagramIcon = shareBottomSheetBinding.imgInstagram;
-        snapchatIcon = shareBottomSheetBinding.imgSnapchat;
+        messageIcon = shareBottomSheetBinding.imgMessage;
+        googlePlusIcon = shareBottomSheetBinding.imgGooglePlus;
 
 
 
@@ -95,6 +95,17 @@ public class DialogShare extends BottomSheetDialogFragment {
                 share.setData(Uri.parse(url.toString()));
                 startActivity(share);
 
+            }
+        });
+
+       messageIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent sendIntent = new Intent();
+                sendIntent.setAction(Intent.ACTION_SEND);
+                sendIntent.putExtra(Intent.EXTRA_TEXT, message);
+                sendIntent.setType("text/plain");
+                startActivity(sendIntent);
             }
         });
 
