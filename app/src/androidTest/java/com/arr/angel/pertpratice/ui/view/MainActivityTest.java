@@ -10,7 +10,12 @@ import android.support.annotation.DrawableRes;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.espresso.IdlingRegistry;
 import android.support.test.espresso.IdlingResource;
+import android.support.test.espresso.ViewAction;
 import android.support.test.espresso.ViewInteraction;
+import android.support.test.espresso.action.CoordinatesProvider;
+import android.support.test.espresso.action.GeneralLocation;
+import android.support.test.espresso.action.Press;
+import android.support.test.espresso.action.Swipe;
 import android.support.test.espresso.contrib.DrawerActions;
 import android.support.test.espresso.contrib.NavigationViewActions;
 import android.support.test.espresso.matcher.BoundedMatcher;
@@ -188,6 +193,9 @@ public class MainActivityTest {
                 .check(matches(withToolbarTitle(is(title))));
     }
 
+    /*matcher used from the great @chiuki:
+    http://chiuki.github.io/advanced-android-espresso/#/17
+    https://www.youtube.com/watch?v=JlHJFZvZyxw#t=7m40s*/
     private static Matcher<Object> withToolbarTitle(
             final Matcher<CharSequence> textMatcher) {
         return new BoundedMatcher<Object, Toolbar>(Toolbar.class) {

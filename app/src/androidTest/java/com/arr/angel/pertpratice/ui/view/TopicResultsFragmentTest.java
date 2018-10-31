@@ -29,7 +29,6 @@ import static android.support.test.espresso.matcher.ViewMatchers.isAssignableFro
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
-import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.Matchers.allOf;
 
 @RunWith(AndroidJUnit4.class)
@@ -111,12 +110,12 @@ public class TopicResultsFragmentTest {
        onView(isAssignableFrom(ConstraintLayout.class)).check(matches(isDisplayed()));
 
        onView(withText(R.string.share_success)).check(matches(isDisplayed()));
-       onView(withId(R.id.img_twitter)).check(matches(isDisplayed()));
+       onView(withId(R.id.img_twitter)).check(matches(isDisplayed())).perform(click());
         onView(withId(R.id.img_message)).check(matches(isDisplayed()));
-        onView(withId(R.id.img_google_plus)).check(matches(isDisplayed()));
-        onView(withId(R.id.textView_google_plus_title)).check(matches(isDisplayed()));
         onView(withId(R.id.textView_twitter_title)).check(matches(isDisplayed()));
         onView(withId(R.id.textView_message_title)).check(matches(isDisplayed()));
+
+//        onView(withId(R.id.img_twitter)).check(matches(isDisplayed())).perform(click());
     }
 
     public static Matcher<View> withViewAtPosition(final int position, final Matcher<View> itemMatcher) {

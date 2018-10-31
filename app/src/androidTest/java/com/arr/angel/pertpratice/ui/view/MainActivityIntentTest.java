@@ -20,6 +20,7 @@ import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.contrib.DrawerMatchers.isClosed;
 import static android.support.test.espresso.intent.Intents.intended;
 import static android.support.test.espresso.intent.Intents.intending;
+import static android.support.test.espresso.intent.matcher.IntentMatchers.hasExtra;
 import static android.support.test.espresso.intent.matcher.IntentMatchers.hasExtraWithKey;
 import static android.support.test.espresso.intent.matcher.IntentMatchers.isInternal;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
@@ -40,6 +41,9 @@ public class MainActivityIntentTest {
         intending(not(isInternal())).respondWith(new Instrumentation.ActivityResult(Activity.RESULT_OK, null));
     }
 
+    /* all the tests below test the intents sent from items the nav menu
+    * on the main page. The tests verify correct key and topic id.
+     * modified this test: https://stackoverflow.com/a/35949911/5104935 */
 
     @Test
     public void intentNavItemHasExtras(){
@@ -52,7 +56,7 @@ public class MainActivityIntentTest {
         onView(withId(R.id.nav_view)).perform(NavigationViewActions.navigateTo(R.id.practice_test));
 
         intended(allOf(
-                hasExtraWithKey(MainFragment.EXTRA_TOPIC_ID))
+                hasExtra(MainFragment.EXTRA_TOPIC_ID, 0))
         );
 
     }
@@ -68,7 +72,7 @@ public class MainActivityIntentTest {
         onView(withId(R.id.nav_view)).perform(NavigationViewActions.navigateTo(R.id.basic));
 
         intended(allOf(
-                hasExtraWithKey(MainFragment.EXTRA_TOPIC_ID))
+                hasExtra(MainFragment.EXTRA_TOPIC_ID, 1))
         );
 
     }
@@ -84,7 +88,7 @@ public class MainActivityIntentTest {
         onView(withId(R.id.nav_view)).perform(NavigationViewActions.navigateTo(R.id.intermediate));
 
         intended(allOf(
-                hasExtraWithKey(MainFragment.EXTRA_TOPIC_ID))
+                hasExtra(MainFragment.EXTRA_TOPIC_ID, 2))
         );
 
     }
@@ -100,7 +104,7 @@ public class MainActivityIntentTest {
         onView(withId(R.id.nav_view)).perform(NavigationViewActions.navigateTo(R.id.advance));
 
         intended(allOf(
-                hasExtraWithKey(MainFragment.EXTRA_TOPIC_ID))
+                hasExtra(MainFragment.EXTRA_TOPIC_ID, 3))
         );
 
     }
@@ -116,7 +120,7 @@ public class MainActivityIntentTest {
         onView(withId(R.id.nav_view)).perform(NavigationViewActions.navigateTo(R.id.application));
 
         intended(allOf(
-                hasExtraWithKey(MainFragment.EXTRA_TOPIC_ID))
+                hasExtra(MainFragment.EXTRA_TOPIC_ID, 4))
         );
 
     }

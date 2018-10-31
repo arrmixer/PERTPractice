@@ -30,15 +30,15 @@ public class DialogShare extends BottomSheetDialogFragment {
     //views
     ImageView twitterIcon;
     ImageView messageIcon;
-    ImageView googlePlusIcon;
+
 
 
     private String message;
 
 
-
     private int topicResults;
-    public static DialogShare newInstance(int result){
+
+    public static DialogShare newInstance(int result) {
 
         DialogShare dialogShare = new DialogShare();
         Bundle bundle = new Bundle();
@@ -54,9 +54,8 @@ public class DialogShare extends BottomSheetDialogFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
 
-
         //make sure bundle has int value
-        if(getArguments() != null){
+        if (getArguments() != null) {
             topicResults = getArguments().getInt(ARGS_TOPIC_RESULT);
         }
 
@@ -66,7 +65,6 @@ public class DialogShare extends BottomSheetDialogFragment {
 
         twitterIcon = shareBottomSheetBinding.imgTwitter;
         messageIcon = shareBottomSheetBinding.imgMessage;
-        googlePlusIcon = shareBottomSheetBinding.imgGooglePlus;
 
 
 
@@ -98,7 +96,7 @@ public class DialogShare extends BottomSheetDialogFragment {
             }
         });
 
-       messageIcon.setOnClickListener(new View.OnClickListener() {
+        messageIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent sendIntent = new Intent();
@@ -108,6 +106,8 @@ public class DialogShare extends BottomSheetDialogFragment {
                 startActivity(sendIntent);
             }
         });
+
+
 
 
     }

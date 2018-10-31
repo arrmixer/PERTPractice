@@ -2,29 +2,42 @@ package com.arr.angel.pertpratice.ui.view;
 
 import android.app.Activity;
 import android.app.Instrumentation;
+import android.content.Intent;
+import android.net.Uri;
+import android.support.annotation.IdRes;
 import android.support.annotation.StringRes;
+import android.support.test.InstrumentationRegistry;
 import android.support.test.espresso.ViewInteraction;
 import android.support.test.espresso.contrib.RecyclerViewActions;
 import android.support.test.espresso.intent.rule.IntentsTestRule;
 import android.support.test.runner.AndroidJUnit4;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
 import com.arr.angel.pertpratice.R;
+import com.arr.angel.pertpratice.util.ResultsSharedPreferences;
 
+import org.hamcrest.Matcher;
 import org.hamcrest.core.AllOf;
+import org.hamcrest.core.AnyOf;
+import org.hamcrest.core.StringStartsWith;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import static android.support.test.espresso.Espresso.onView;
+import static android.support.test.espresso.Espresso.openActionBarOverflowOrOptionsMenu;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.intent.Intents.intended;
 import static android.support.test.espresso.intent.Intents.intending;
+import static android.support.test.espresso.intent.matcher.IntentMatchers.hasAction;
 import static android.support.test.espresso.intent.matcher.IntentMatchers.hasComponent;
+import static android.support.test.espresso.intent.matcher.IntentMatchers.hasData;
 import static android.support.test.espresso.intent.matcher.IntentMatchers.hasExtra;
 import static android.support.test.espresso.intent.matcher.IntentMatchers.hasExtraWithKey;
+import static android.support.test.espresso.intent.matcher.IntentMatchers.hasType;
 import static android.support.test.espresso.intent.matcher.IntentMatchers.isInternal;
 import static android.support.test.espresso.matcher.ViewMatchers.hasDescendant;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
@@ -33,6 +46,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static com.arr.angel.pertpratice.ui.view.TopicResultsFragmentTest.withMenuIdOrText;
 import static com.arr.angel.pertpratice.ui.view.TopicResultsFragmentTest.withViewAtPosition;
 import static org.hamcrest.Matchers.allOf;
+import static org.hamcrest.Matchers.hasXPath;
 import static org.hamcrest.core.IsNot.not;
 
 @RunWith(AndroidJUnit4.class)
@@ -55,14 +69,14 @@ public class TopicResultsIntentTest {
     }
 
     @Test
-    public void toolbarMenuIsDisplayedMainMenu(){
+    public void toolbarMenuIsDisplayedMainMenu() {
         onView(withMenuIdOrText(R.id.main_settings, R.string.main_page)).perform(click());
 
         intended(AllOf.allOf(hasComponent("com.arr.angel.pertpratice.ui.view.MainActivity")));
     }
 
     @Test
-    public void toolbarMenuIsDisplayedRetake(){
+    public void toolbarMenuIsDisplayedRetake() {
         onView(withMenuIdOrText(R.id.retake_settings, R.string.retake)).perform(click());
 
         intended(AllOf.allOf(
@@ -73,118 +87,135 @@ public class TopicResultsIntentTest {
 
     }
 
+    //all intent tests will only pass if user has
+    //not taken/answered the question
+    //if the question is already answered then the tests will fail
+    //this is because the click listener is active if and only if
+    //the question is not answered
+
     @Test
-    public void intentOnRecyclerViewItemHasExtras1(){
+    public void intentOnRecyclerViewItemHasExtras1() {
         ViewInteraction recyclerView = onView(
                 withId(R.id.recycler_view_topic_results));
 
-        questionAnsweredOrNot(recyclerView, R.string.not_taken, 0, R.string.question1);
-
-
-        intended(AllOf.allOf(
-                hasExtraWithKey(MainFragment.EXTRA_TOPIC_ID))
-        );
-
-        intended(AllOf.allOf(hasComponent("com.arr.angel.pertpratice.ui.view.Question01Activity")));
-
-
-    }
-    @Test
-    public void intentOnRecyclerViewItemHasExtras2(){
-        ViewInteraction recyclerView = onView(
-                withId(R.id.recycler_view_topic_results));
-
-        questionAnsweredOrNot(recyclerView, R.string.not_taken, 1, R.string.question2);
-
-
-        intended(AllOf.allOf(
-                hasExtraWithKey(MainFragment.EXTRA_TOPIC_ID))
-        );
-
-        intended(AllOf.allOf(hasComponent("com.arr.angel.pertpratice.ui.view.Question02Activity")));
-
-    }
-    @Test
-    public void intentOnRecyclerViewItemHasExtras3(){
-        ViewInteraction recyclerView = onView(
-                withId(R.id.recycler_view_topic_results));
-
-        questionAnsweredOrNot(recyclerView, R.string.not_taken, 2, R.string.question3);
-
-
-        intended(AllOf.allOf(
-                hasExtraWithKey(MainFragment.EXTRA_TOPIC_ID))
-        );
-
-        intended(AllOf.allOf(hasComponent("com.arr.angel.pertpratice.ui.view.Question03Activity")));
-
-
-    }
-    @Test
-    public void intentOnRecyclerViewItemHasExtras4(){
-        ViewInteraction recyclerView = onView(
-                withId(R.id.recycler_view_topic_results));
-
-        questionAnsweredOrNot(recyclerView, R.string.not_taken, 3, R.string.question4);
-
-
-        intended(AllOf.allOf(
-                hasExtraWithKey(MainFragment.EXTRA_TOPIC_ID))
-        );
-
-        intended(AllOf.allOf(hasComponent("com.arr.angel.pertpratice.ui.view.Question04Activity")));
-
-
-    }
-    @Test
-    public void intentOnRecyclerViewItemHasExtras5(){
-        ViewInteraction recyclerView = onView(
-                withId(R.id.recycler_view_topic_results));
-
-        questionAnsweredOrNot(recyclerView, R.string.not_taken, 4, R.string.question5);
-
-
-        intended(AllOf.allOf(
-                hasExtraWithKey(MainFragment.EXTRA_TOPIC_ID))
-        );
-
-        intended(AllOf.allOf(hasComponent("com.arr.angel.pertpratice.ui.view.Question05Activity")));
-
-
-    }
-    @Test
-    public void intentOnRecyclerViewItemHasExtras6(){
-        ViewInteraction recyclerView = onView(
-                withId(R.id.recycler_view_topic_results));
-
-        questionAnsweredOrNot(recyclerView, R.string.not_taken, 5, R.string.question6);
-
-
-        intended(AllOf.allOf(
-                hasExtraWithKey(MainFragment.EXTRA_TOPIC_ID))
-        );
-
-        intended(AllOf.allOf(hasComponent("com.arr.angel.pertpratice.ui.view.Question06Activity")));
+        questionAnsweredOrNot(recyclerView, R.string.not_taken,
+                0, R.string.question1, MainFragment.EXTRA_TOPIC_ID,
+                "com.arr.angel.pertpratice.ui.view.Question01Activity");
 
 
     }
 
+    @Test
+    public void intentOnRecyclerViewItemHasExtras2() {
+        ViewInteraction recyclerView = onView(
+                withId(R.id.recycler_view_topic_results));
+
+        questionAnsweredOrNot(recyclerView, R.string.not_taken,
+                1, R.string.question2, MainFragment.EXTRA_TOPIC_ID,
+                "com.arr.angel.pertpratice.ui.view.Question02Activity");
 
 
-    //just checking is the question is not answered if so then click
-    //to check for intent data otherwise just make sure question correct
-    //question is displayed
-    public static void questionAnsweredOrNot(ViewInteraction viewInteraction, @StringRes int notTake, int position, @StringRes int question){
+    }
 
-        try{
-            viewInteraction.check(matches(withViewAtPosition(position,
-                    hasDescendant(allOf(withText(notTake),
-                            isDisplayed()))))).perform(RecyclerViewActions.actionOnItemAtPosition(position, click()));
-        }catch (AssertionError e){
-            viewInteraction.check(matches(withViewAtPosition(position,
-                    hasDescendant(allOf(withText(question),
-                            isDisplayed())))));
-        }
+    @Test
+    public void intentOnRecyclerViewItemHasExtras3() {
+        ViewInteraction recyclerView = onView(
+                withId(R.id.recycler_view_topic_results));
+
+        questionAnsweredOrNot(recyclerView, R.string.not_taken, 2,
+                R.string.question3, MainFragment.EXTRA_TOPIC_ID,
+                "com.arr.angel.pertpratice.ui.view.Question03Activity");
+
+
+    }
+
+    @Test
+    public void intentOnRecyclerViewItemHasExtras4() {
+        ViewInteraction recyclerView = onView(
+                withId(R.id.recycler_view_topic_results));
+
+        questionAnsweredOrNot(recyclerView, R.string.not_taken, 3,
+                R.string.question4, MainFragment.EXTRA_TOPIC_ID,
+                "com.arr.angel.pertpratice.ui.view.Question04Activity");
+
+
+    }
+
+    @Test
+    public void intentOnRecyclerViewItemHasExtras5() {
+        ViewInteraction recyclerView = onView(
+                withId(R.id.recycler_view_topic_results));
+
+        questionAnsweredOrNot(recyclerView, R.string.not_taken, 4,
+                R.string.question5, MainFragment.EXTRA_TOPIC_ID,
+                "com.arr.angel.pertpratice.ui.view.Question05Activity");
+
+
+    }
+
+    @Test
+    public void intentOnRecyclerViewItemHasExtras6() {
+        ViewInteraction recyclerView = onView(
+                withId(R.id.recycler_view_topic_results));
+
+        questionAnsweredOrNot(recyclerView, R.string.not_taken, 5,
+                R.string.question6, MainFragment.EXTRA_TOPIC_ID,
+                "com.arr.angel.pertpratice.ui.view.Question06Activity"
+        );
+
+
+    }
+
+    //test on twitter icon
+    //make sure correct action is sent
+    @Test
+    public void intentOnTwitterShare() {
+        ViewInteraction fab = onView(withId(R.id.floatingActionButton));
+        fab.check(matches(isDisplayed()));
+        fab.perform(click());
+
+        onView(withId(R.id.img_twitter)).perform(click());
+
+        intended(AllOf.allOf(hasAction(Intent.ACTION_VIEW)));
+
+
+    }
+
+    //test on message icon
+    //make sure correct message, type, and action is sent
+    @Test
+    public void intentOnGeneralShare() {
+        ViewInteraction fab = onView(withId(R.id.floatingActionButton));
+        fab.check(matches(isDisplayed()));
+        fab.perform(click());
+
+        //make message that would be sent
+        //results are saved in saved preferences
+        String message = "Hey I'm building my confidence with PERTPractice! I got a "
+                + ResultsSharedPreferences.getPrefTopicPercentage(mTopicResultsActivity.getActivity().getApplicationContext());
+
+        onView(withId(R.id.img_message)).perform(click());
+        intended(AllOf.allOf(hasAction(Intent.ACTION_SEND)));
+        intended(AllOf.allOf(hasType("text/plain")));
+        intended(AllOf.allOf(hasExtra(Intent.EXTRA_TEXT, message)));
+
+    }
+
+
+    //verify "n/a" is displayed if question is not answer
+    //then check the correct intent with class is sent
+    public static void questionAnsweredOrNot(ViewInteraction viewInteraction, @StringRes int notTake, int position, @StringRes int question, String intentKey, String className) {
+
+        viewInteraction.check(matches(withViewAtPosition(position,
+                hasDescendant(allOf(withText(notTake),
+                        isDisplayed()))))).perform(RecyclerViewActions.actionOnItemAtPosition(position, click()));
+
+        intended(AllOf.allOf(
+                hasExtraWithKey(intentKey))
+        );
+
+        intended(AllOf.allOf(hasComponent(className)));
+
     }
 
 

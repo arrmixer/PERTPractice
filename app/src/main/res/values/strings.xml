@@ -33,11 +33,6 @@
     <string name="question4">Question 4</string>
     <string name="question5">Question 5</string>
     <string name="question6">Question 6</string>
-
-    //formatting strings
-    <string name="percentage">%1$d%%</string>
-    <string name="question">Question %1$d</string>
-    <string name="share">Hey I\'m building my confidence with PERTPratice! I got a %1$d</string>
     <string name="incomplete">Incomplete</string>
     <string name="dialog_already_answer">Question Already Answered!</string>
     <string name="tag_dialog_correct">Correct</string>
@@ -46,6 +41,13 @@
     <string name="add_widget">Add widget</string>
     <string name="nav_menu_title_questions">Questions</string>
     <string name="google_plus">Google Plus</string>
+
+
+    //formatting strings
+    <string name="percentage">%1$d%%</string>
+    <string name="question">Question %1$d</string>
+    <string name="share">Hey I\'m building my confidence with PERTPractice! I got a %1$d</string>
+
 
 
 </resources>
