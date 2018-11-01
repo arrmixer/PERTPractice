@@ -22,12 +22,17 @@ import org.junit.Rule;
 import org.junit.Test;
 
 import static android.support.test.espresso.Espresso.onView;
+import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.intent.Intents.intended;
 import static android.support.test.espresso.intent.Intents.intending;
 import static android.support.test.espresso.intent.matcher.IntentMatchers.hasComponent;
 import static android.support.test.espresso.intent.matcher.IntentMatchers.hasExtra;
+import static android.support.test.espresso.intent.matcher.IntentMatchers.hasExtraWithKey;
 import static android.support.test.espresso.intent.matcher.IntentMatchers.isInternal;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
+import static android.support.test.espresso.matcher.ViewMatchers.withText;
+import static com.arr.angel.pertpratice.ui.view.Question01Fragment.EXTRA_CURRENT_QUESTION_ID;
+import static org.hamcrest.core.AllOf.allOf;
 import static org.hamcrest.core.IsNot.not;
 
 public class MainFragmentIntentTest {
@@ -63,12 +68,18 @@ public class MainFragmentIntentTest {
         ViewInteraction recyclerView = onView(
                 withId(R.id.recycler_view_topics));
 
+        // checks intent sent to QuestionActivity
         checkIntentSentInButton(
                 recyclerView,
                 R.id.buttonPractice,
                 0, 0,
                 MainFragment.EXTRA_TOPIC_ID,
                 classNameQuestion01);
+
+        //checks intent sent from Dialog of first question only
+        checkIntentSentFromNextButtonInDialog(1);
+
+
 
     }
 
@@ -84,6 +95,9 @@ public class MainFragmentIntentTest {
                 MainFragment.EXTRA_TOPIC_ID,
                 classNameQuestion01);
 
+        //checks intent sent from Dialog of first question only
+        checkIntentSentFromNextButtonInDialog(1);
+
     }
 
     @Test
@@ -97,6 +111,9 @@ public class MainFragmentIntentTest {
                 2, 2,
                 MainFragment.EXTRA_TOPIC_ID,
                 classNameQuestion01);
+
+        //checks intent sent from Dialog of first question only
+        checkIntentSentFromNextButtonInDialog(1);
 
     }
 
@@ -126,6 +143,9 @@ public class MainFragmentIntentTest {
                 MainFragment.EXTRA_TOPIC_ID,
                 classNameQuestion01);
 
+        //checks intent sent from Dialog of first question only
+        checkIntentSentFromNextButtonInDialog(1);
+
     }
 
     @Test
@@ -140,6 +160,8 @@ public class MainFragmentIntentTest {
                 MainFragment.EXTRA_TOPIC_ID,
                 classNameTopicResults);
 
+
+
     }
 
     @Test
@@ -153,6 +175,7 @@ public class MainFragmentIntentTest {
                 1, 1,
                 MainFragment.EXTRA_TOPIC_ID,
                 classNameTopicResults);
+
 
     }
 
@@ -215,8 +238,10 @@ public class MainFragmentIntentTest {
     // , topicId, and correct class was sent
     public void checkIntentSentInButton(ViewInteraction view, @IdRes int id, int position, int topicId, String key, String className) {
 
+        //get position, correct button, and click on it
         view.perform(RecyclerViewActions.actionOnItemAtPosition(position, clickChildViewWithId(id)));
 
+        //check intent key  and day was sent
         intended(AllOf.allOf(
                 hasExtra(key, topicId))
         );
@@ -225,9 +250,35 @@ public class MainFragmentIntentTest {
 
     }
 
+
+    //helper method to check if the dialog next
+    //button sends the correct intent keys and data
+    public static void checkIntentSentFromNextButtonInDialog(@IdRes int id){
+
+        //get radio button and click on it
+        onView(withId(R.id.radioButton)).perform(click());
+
+        onView(withText(R.string.dialog_next)).perform(click());
+
+        //check intent data and keys
+        intended(allOf(
+                hasExtra(CorrectAnswerDialogFragment.EXTRA_IS_ANSWERED, true))
+        );
+
+        intended(allOf(
+                hasExtraWithKey(CorrectAnswerDialogFragment.EXTRA_IS_CORRECT))
+        );
+
+        intended(allOf(
+                hasExtra(EXTRA_CURRENT_QUESTION_ID, id))
+        );
+
+
+    }
+
     // great helper method used to click on child in
     // recycler View item credit: https://stackoverflow.com/a/30338665/5104935
-    private static ViewAction clickChildViewWithId(final int id) {
+    public static ViewAction clickChildViewWithId(final int id) {
         return new ViewAction() {
             @Override
             public Matcher<View> getConstraints() {

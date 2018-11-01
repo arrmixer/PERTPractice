@@ -17,8 +17,8 @@ import static com.arr.angel.pertpratice.ui.view.Question01Fragment.EXTRA_CURRENT
 
 public class CorrectAnswerDialogFragment extends DialogFragment {
 
-    public static final String EXTRA_IS_CORRECT = "com.arr.angel.pertpratice.ui.view.is.correct.extra";
-    public static final String EXTRA_IS_ANSWERED = "com.arr.angel.pertpratice.ui.view.is.answered.extra";
+    protected static final String EXTRA_IS_CORRECT = "com.arr.angel.pertpratice.ui.view.is.correct.extra";
+    protected static final String EXTRA_IS_ANSWERED = "com.arr.angel.pertpratice.ui.view.is.answered.extra";
     private static String TAG = CorrectAnswerDialogFragment.class.getSimpleName();
 
     //placeholder for int to the next question
