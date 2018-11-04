@@ -16,7 +16,8 @@ import com.arr.angel.pertpratice.util.DialogCreations;
 
 import static com.arr.angel.pertpratice.ui.view.CorrectAnswerDialogFragment.EXTRA_IS_ANSWERED;
 import static com.arr.angel.pertpratice.ui.view.CorrectAnswerDialogFragment.EXTRA_IS_CORRECT;
-import static com.arr.angel.pertpratice.ui.view.Question01Fragment.EXTRA_CURRENT_QUESTION_ID;
+import static com.arr.angel.pertpratice.ui.view.MainFragment.ARGS_TOPIC_ID;
+import static com.arr.angel.pertpratice.ui.view.MainFragment.EXTRA_CURRENT_QUESTION_ID;
 
 public class InCorrectAnswerDialogFragment extends DialogFragment {
 
@@ -34,7 +35,7 @@ public class InCorrectAnswerDialogFragment extends DialogFragment {
         Bundle bundle = new Bundle();
         bundle.putInt(DialogCreations.currentQuestionNumberArg, currentQuestion);
         bundle.putInt(DialogCreations.nextQuestionNumberArg, nextQuestion);
-        bundle.putInt(Question01Fragment.ARGS_TOPIC_ID, topicId);
+        bundle.putInt(ARGS_TOPIC_ID, topicId);
         inCorrectAnswerDialogFragment.setArguments(bundle);
 
         return inCorrectAnswerDialogFragment;
@@ -51,7 +52,7 @@ public class InCorrectAnswerDialogFragment extends DialogFragment {
         if (getArguments() != null) {
             currentQuestion = getArguments().getInt(DialogCreations.currentQuestionNumberArg);
             nextQuestion = getArguments().getInt(DialogCreations.nextQuestionNumberArg);
-            topicId = getArguments().getInt(Question01Fragment.ARGS_TOPIC_ID);
+            topicId = getArguments().getInt(ARGS_TOPIC_ID);
         }else{
             Log.d(TAG, "No int argument for next question");
             nextQuestion = 0;

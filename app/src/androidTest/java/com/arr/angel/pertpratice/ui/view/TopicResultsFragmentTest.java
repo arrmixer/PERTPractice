@@ -110,7 +110,7 @@ public class TopicResultsFragmentTest {
        onView(isAssignableFrom(ConstraintLayout.class)).check(matches(isDisplayed()));
 
        onView(withText(R.string.share_success)).check(matches(isDisplayed()));
-       onView(withId(R.id.img_twitter)).check(matches(isDisplayed())).perform(click());
+       onView(withId(R.id.img_twitter)).check(matches(isDisplayed()));
         onView(withId(R.id.img_message)).check(matches(isDisplayed()));
         onView(withId(R.id.textView_twitter_title)).check(matches(isDisplayed()));
         onView(withId(R.id.textView_message_title)).check(matches(isDisplayed()));

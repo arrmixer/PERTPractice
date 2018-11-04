@@ -75,6 +75,7 @@ public class OverallTopicResultsActivity extends SingleFragmentActivity {
             ActionBar actionBar = getSupportActionBar();
             actionBar.setTitle(getString(R.string.overall_results));
             actionBar.setDisplayShowTitleEnabled(true);
+            actionBar.setHomeActionContentDescription(R.string.home_content_description);
         }
 
         final FloatingActionButton floatingActionButton = activityMainBinding.floatingActionButton;

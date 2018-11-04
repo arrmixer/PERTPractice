@@ -95,9 +95,11 @@ public class TopicResultsAdapter extends RecyclerView.Adapter<TopicResultsAdapte
 
             if (question.isCorrect()) {
                 Drawable correctImg = mContext.getDrawable(R.drawable.ic_correct);
+                questionResult.setContentDescription(mContext.getString(R.string.correct_content_description));
                 questionResult.setImageDrawable(correctImg);
             } else if (!question.isCorrect() && question.isAnswered()){
                 Drawable incorrectImg = mContext.getDrawable(R.drawable.ic_incorrect);
+                questionResult.setContentDescription(mContext.getString(R.string.incorrect_content_description));
                 questionResult.setImageDrawable(incorrectImg);
             }else{
                 questionResult.setVisibility(View.INVISIBLE);

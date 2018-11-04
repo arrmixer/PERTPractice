@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,7 +22,6 @@ import com.arr.angel.pertpratice.model.Question;
 import com.arr.angel.pertpratice.model.Topic;
 import com.arr.angel.pertpratice.util.DialogCreations;
 import com.arr.angel.pertpratice.util.RadioGroupHelper;
-import com.arr.angel.pertpratice.util.UtilMethods;
 import com.arr.angel.pertpratice.viewmodel.TopicViewModel;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -31,21 +29,20 @@ import com.google.android.gms.ads.AdView;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.arr.angel.pertpratice.ui.view.Question02Fragment.ARG_IS_ANSWERED;
-import static com.arr.angel.pertpratice.ui.view.Question02Fragment.ARG_IS_CORRECT;
+import static com.arr.angel.pertpratice.ui.view.CorrectAnswerDialogFragment.EXTRA_IS_ANSWERED;
+import static com.arr.angel.pertpratice.ui.view.MainFragment.ARGS_CURRENT_ID;
+import static com.arr.angel.pertpratice.ui.view.MainFragment.ARGS_TOPIC_ID;
+import static com.arr.angel.pertpratice.ui.view.MainFragment.ARG_IS_ANSWERED;
+import static com.arr.angel.pertpratice.ui.view.MainFragment.ARG_IS_CORRECT;
+import static com.arr.angel.pertpratice.ui.view.MainFragment.EXTRA_ANSWER;
+import static com.arr.angel.pertpratice.ui.view.MainFragment.EXTRA_CURRENT_QUESTION_ID;
+import static com.arr.angel.pertpratice.ui.view.MainFragment.EXTRA_IS_NEXT_UNANSWERED_QUESTION_ID;
+import static com.arr.angel.pertpratice.ui.view.MainFragment.EXTRA_POSSIBLE_ANSWERS;
 
 public class Question01Fragment extends Fragment {
 
     private static final String TAG = Question01Fragment.class.getSimpleName();
 
-    protected static final String EXTRA_ANSWER = "com.arr.angel.pertpratice.ui.view.answer";
-    protected static final String EXTRA_POSSIBLE_ANSWERS = "com.arr.angel.pertpratice.ui.view.possibleAnswers";
-    protected static final String EXTRA_IS_ANSWERED = "com.arr.angel.pertpratice.ui.view.is.answered";
-    protected static final String EXTRA_IS_NEXT_UNANSWERED_QUESTION_ID = "com.arr.angel.pertpratice.ui.view.is.next.unanswered.question.id";
-    protected static final String EXTRA_CURRENT_QUESTION_ID = "com.arr.angel.pertpratice.ui.view.is.current.question.id";
-
-    protected static final String ARGS_TOPIC_ID = "com.arr.angel.pertpratice.ui.view.topic.id";
-    protected static final String ARGS_CURRENT_ID = "com.arr.angel.pertpratice.ui.view.topic.question.id";
 
     //instance of ViewModel
     private TopicViewModel topicViewModel;
@@ -225,7 +222,9 @@ public class Question01Fragment extends Fragment {
         exampleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getContext(), Example01.class);
+                Intent intent = new Intent(getContext(), Example.class);
+                intent.putExtra(EXTRA_CURRENT_QUESTION_ID, currentQuestion);
+                intent.putExtra(MainFragment.EXTRA_TOPIC_ID, topicId);
                 startActivity(intent);
             }
         });
@@ -294,6 +293,7 @@ public class Question01Fragment extends Fragment {
         answer = question.getAnswer();
         possibleAnswers = question.getPossibleAnswers();
         content.setText(question.getContent());
+
 
         radio1.setText(possibleAnswers.get(0));
         radio2.setText(possibleAnswers.get(1));

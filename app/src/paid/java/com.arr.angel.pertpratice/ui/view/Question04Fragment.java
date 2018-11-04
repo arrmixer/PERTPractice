@@ -28,19 +28,19 @@ import com.arr.angel.pertpratice.viewmodel.TopicViewModel;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.arr.angel.pertpratice.ui.view.Question01Fragment.ARGS_CURRENT_ID;
-import static com.arr.angel.pertpratice.ui.view.Question01Fragment.ARGS_TOPIC_ID;
-import static com.arr.angel.pertpratice.ui.view.Question01Fragment.EXTRA_CURRENT_QUESTION_ID;
-import static com.arr.angel.pertpratice.ui.view.Question01Fragment.EXTRA_IS_ANSWERED;
-import static com.arr.angel.pertpratice.ui.view.Question01Fragment.EXTRA_IS_NEXT_UNANSWERED_QUESTION_ID;
-import static com.arr.angel.pertpratice.ui.view.Question02Fragment.ARG_IS_ANSWERED;
-import static com.arr.angel.pertpratice.ui.view.Question02Fragment.ARG_IS_CORRECT;
+import static com.arr.angel.pertpratice.ui.view.CorrectAnswerDialogFragment.EXTRA_IS_ANSWERED;
+import static com.arr.angel.pertpratice.ui.view.MainFragment.ARGS_CURRENT_ID;
+import static com.arr.angel.pertpratice.ui.view.MainFragment.ARGS_TOPIC_ID;
+import static com.arr.angel.pertpratice.ui.view.MainFragment.ARG_IS_ANSWERED;
+import static com.arr.angel.pertpratice.ui.view.MainFragment.ARG_IS_CORRECT;
+import static com.arr.angel.pertpratice.ui.view.MainFragment.EXTRA_ANSWER;
+import static com.arr.angel.pertpratice.ui.view.MainFragment.EXTRA_CURRENT_QUESTION_ID;
+import static com.arr.angel.pertpratice.ui.view.MainFragment.EXTRA_IS_NEXT_UNANSWERED_QUESTION_ID;
+import static com.arr.angel.pertpratice.ui.view.MainFragment.EXTRA_POSSIBLE_ANSWERS;
 
 public class Question04Fragment extends Fragment {
     private static final String TAG = Question04Fragment.class.getSimpleName();
 
-    protected static final String EXTRA_ANSWER = "com.arr.angel.pertpratice.ui.view.answer";
-    protected static final String EXTRA_POSSIBLE_ANSWERS = "com.arr.angel.pertpratice.ui.view.possibleAnswers";
 
     /*Placeholders for Topics*/
     private List<Topic> mTopicList;
@@ -220,7 +220,7 @@ public class Question04Fragment extends Fragment {
         exampleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getContext(), Example01.class);
+                Intent intent = new Intent(getContext(), Example4.class);
                 startActivity(intent);
             }
         });
@@ -241,7 +241,22 @@ public class Question04Fragment extends Fragment {
             }
         });
 
+    }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
     }
 
     @Override

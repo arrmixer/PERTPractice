@@ -27,7 +27,12 @@
         <activity android:name=".ui.view.Question06Activity" />
         <activity android:name=".ui.view.TopicResultsActivity" />
         <activity android:name=".ui.view.OverallTopicResultsActivity" />
-        <activity android:name=".ui.view.Example01" />
+        <activity android:name=".ui.view.Example" />
+        <activity android:name=".ui.view.Example2"/>
+        <activity android:name=".ui.view.Example3" />
+        <activity android:name=".ui.view.Example4" />
+        <activity android:name=".ui.view.Example5" />
+        <activity android:name=".ui.view.Example6" />
 
         <meta-data
             android:name="preloaded_fonts"

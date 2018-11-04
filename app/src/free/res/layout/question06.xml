@@ -25,30 +25,24 @@
 
                 <TextView
                     android:id="@+id/question_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="44dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="84dp"
-                    android:layout_marginEnd="8dp"
-                    android:ellipsize="end"
-                    android:lineSpacingExtra="8sp"
+                    style="@style/question_txtView"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:text="Lorem ipsum dolor sit amet, ut sed tractatos torquatos intellegebat./t Ne vel meis partemdelicata." />
+                    tools:text="What is the value of the algebraic expression if x = 1/2, y = -1, and z = 2?" />
+
+                <TextView
+                    android:id="@+id/question_text2"
+                    style="@style/question_txtView2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.17"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/question_text"
+                    tools:text="6x(y²z)" />
 
                 <Button
                     android:id="@+id/button_Example"
-                    style="@style/Widget.AppCompat.Button.Borderless"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:background="@android:color/transparent"
-                    android:fontFamily="@font/roboto"
-                    android:text="@string/txt_question_example"
-                    android:textColor="@color/colorAccent"
-                    android:typeface="normal"
+                    style="@style/question_example_button"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:text="EXAMPLE" />
@@ -64,60 +58,22 @@
 
             <RadioButton
                 android:id="@+id/radioButton"
-                style="@android:style/Widget.Material.CompoundButton.RadioButton"
-                android:layout_width="188dp"
-                android:layout_height="36dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="28dp"
-                android:buttonTint="?android:attr/colorControlNormal"
-                android:checked="false"
-                android:fontFamily="@font/roboto"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
-                android:textColor="@color/colorAccent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                style="@style/question_radio_button_1"
                 tools:text="Answer 1" />
 
             <RadioButton
                 android:id="@+id/radioButton2"
-                style="@android:style/Widget.Material.CompoundButton.RadioButton"
-                android:layout_width="188dp"
-                android:layout_height="40dp"
-                android:layout_marginStart="16dp"
-                android:buttonTint="?android:attr/colorControlNormal"
-                android:fontFamily="@font/roboto"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
-                android:textColor="@color/colorAccent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/radioButton"
+                style="@style/question_radio_button"
                 tools:text="Answer 2" />
 
             <RadioButton
                 android:id="@+id/radioButton3"
-                style="@android:style/Widget.Material.CompoundButton.RadioButton"
-                android:layout_width="188dp"
-                android:layout_height="36dp"
-                android:layout_marginStart="16dp"
-                android:buttonTint="?android:attr/colorControlNormal"
-                android:fontFamily="@font/roboto"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
-                android:textColor="@color/colorAccent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/radioButton2"
+                style="@style/question_radio_button"
                 tools:text="Answer 3" />
 
             <RadioButton
                 android:id="@+id/radioButton4"
-                style="@android:style/Widget.Material.CompoundButton.RadioButton"
-                android:layout_width="188dp"
-                android:layout_height="36dp"
-                android:layout_marginStart="16dp"
-                android:buttonTint="?android:attr/colorControlNormal"
-                android:fontFamily="@font/roboto"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
-                android:textColor="@color/colorAccent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/radioButton3"
+                style="@style/question_radio_button"
                 tools:text="Answer 4" />
         </RadioGroup>
 

@@ -26,6 +26,15 @@ public class MainFragment extends Fragment implements TopicListAdapter.ItemClick
 
     private static final String TAG = MainFragment.class.getSimpleName();
     public static final String EXTRA_TOPIC_ID = "com.arr.angel.pertpratice.ui.view.topic.id";
+    public static final String EXTRA_ANSWER = "com.arr.angel.pertpratice.ui.view.answer";
+    public static final String EXTRA_POSSIBLE_ANSWERS = "com.arr.angel.pertpratice.ui.view.possibleAnswers";
+    public static final String EXTRA_IS_NEXT_UNANSWERED_QUESTION_ID = "com.arr.angel.pertpratice.ui.view.is.next.unanswered.question.id";
+    public static final String EXTRA_CURRENT_QUESTION_ID = "com.arr.angel.pertpratice.ui.view.is.current.question.id";
+
+    public static final String ARGS_TOPIC_ID = "com.arr.angel.pertpratice.ui.view.topic.id";
+    public static final String ARGS_CURRENT_ID = "com.arr.angel.pertpratice.ui.view.topic.question.id";
+    public static final String ARG_IS_CORRECT = "com.arr.angel.pertpratice.ui.view.is.correct.arg";
+    public static final String ARG_IS_ANSWERED = "com.arr.angel.pertpratice.ui.view.is.answered.arg";
 
     /*Placeholders for Topics*/
     private List<Topic> mTopicList;

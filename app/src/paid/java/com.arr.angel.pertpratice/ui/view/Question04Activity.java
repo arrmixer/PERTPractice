@@ -17,8 +17,9 @@ import com.arr.angel.pertpratice.databinding.NavheaderBinding;
 import com.arr.angel.pertpratice.util.NavigationDrawerMenuMethods;
 import com.arr.angel.pertpratice.util.UtilMethods;
 
+import static com.arr.angel.pertpratice.ui.view.MainFragment.EXTRA_CURRENT_QUESTION_ID;
 import static com.arr.angel.pertpratice.ui.view.MainFragment.EXTRA_TOPIC_ID;
-import static com.arr.angel.pertpratice.ui.view.Question01Fragment.EXTRA_CURRENT_QUESTION_ID;
+
 
 public class Question04Activity extends SingleFragmentActivity {
     private DrawerLayout mDrawerLayout;

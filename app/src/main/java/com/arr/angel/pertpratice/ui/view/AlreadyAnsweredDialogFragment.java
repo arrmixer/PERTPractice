@@ -13,7 +13,9 @@ import android.util.Log;
 import com.arr.angel.pertpratice.R;
 import com.arr.angel.pertpratice.util.DialogCreations;
 
-import static com.arr.angel.pertpratice.ui.view.Question01Fragment.EXTRA_CURRENT_QUESTION_ID;
+import static com.arr.angel.pertpratice.ui.view.MainFragment.ARGS_TOPIC_ID;
+import static com.arr.angel.pertpratice.ui.view.MainFragment.EXTRA_CURRENT_QUESTION_ID;
+
 
 public class AlreadyAnsweredDialogFragment extends DialogFragment {
 
@@ -33,7 +35,7 @@ public class AlreadyAnsweredDialogFragment extends DialogFragment {
         Bundle bundle = new Bundle();
         bundle.putInt(DialogCreations.currentQuestionNumberArg, currentQuestion);
         bundle.putInt(DialogCreations.nextQuestionNumberArg, nextQuestion);
-        bundle.putInt(Question01Fragment.ARGS_TOPIC_ID, topicId);
+        bundle.putInt(ARGS_TOPIC_ID, topicId);
         bundle.putBoolean(DialogCreations.currentQuestionIsCorrectArg, isCorrect);
         alreadyAnsweredDialogFragment.setArguments(bundle);
 
@@ -54,7 +56,7 @@ public class AlreadyAnsweredDialogFragment extends DialogFragment {
         if (getArguments() != null) {
             currentQuestion = getArguments().getInt(DialogCreations.currentQuestionNumberArg);
             nextQuestion = getArguments().getInt(DialogCreations.nextQuestionNumberArg);
-            topicId = getArguments().getInt(Question01Fragment.ARGS_TOPIC_ID);
+            topicId = getArguments().getInt(ARGS_TOPIC_ID);
             isCorrect = getArguments().getBoolean(DialogCreations.currentQuestionIsCorrectArg);
         } else {
             Log.d(TAG, "No int argument for next question");

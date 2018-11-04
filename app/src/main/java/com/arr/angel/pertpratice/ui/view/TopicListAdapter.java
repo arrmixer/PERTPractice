@@ -100,11 +100,11 @@ public class TopicListAdapter extends RecyclerView.Adapter<TopicListAdapter.Topi
             String title = topic.getName();
             mTopicListItemBinding.textViewTopic.setText(title);
 
-            Drawable img = mContext.getDrawable(R.drawable.ic_udacity);
+            Drawable img = mContext.getDrawable(R.drawable.ic_pert_icon);
             mTopicListItemBinding.imageTopic.setImageDrawable(img);
+            mTopicListItemBinding.imageTopic.setContentDescription(mContext.getString(R.string.app_name));
 
         }
-
 
         @Override
         public void onClick(View view) {

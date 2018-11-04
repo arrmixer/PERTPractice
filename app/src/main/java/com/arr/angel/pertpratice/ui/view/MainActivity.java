@@ -67,6 +67,7 @@ public class MainActivity extends SingleFragmentActivity {
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setHomeAsUpIndicator(R.drawable.ic_menu_white_24dp);
             actionBar.setDisplayShowTitleEnabled(true);
+            actionBar.setHomeActionContentDescription(R.string.home_content_description);
         }
 
         //use this to change the text

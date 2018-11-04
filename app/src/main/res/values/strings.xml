@@ -41,6 +41,10 @@
     <string name="add_widget">Add widget</string>
     <string name="nav_menu_title_questions">Questions</string>
     <string name="google_plus">Google Plus</string>
+    <string name="share_on_twitter">Share on Twitter</string>
+    <string name="share_where_you_choose">Share where you choose</string>
+    <string name="correct_content_description">correct!</string>
+    <string name="incorrect_content_description">incorrect</string>
 
 
     //formatting strings
@@ -49,5 +53,75 @@
     <string name="share">Hey I\'m building my confidence with PERTPractice! I got a %1$d</string>
 
 
+    //strings for the first example
+    <string name="t1_example_question01_txt1">Step 1 Distribute the 1 in front of the parenthesis:</string>
+    <string name="t1_example_question01_txt2">c &#43; 4 &#45; 3c &#45; 2 &#61; 0</string>
+    <string name="t1_example_question01_txt4">c &#45; 3c &#43; 4 &#45; 2 &#61; 0</string>
+    <string name="t1_example_question01_txt5">2c &#45; 2 &#61; 0</string>
+    <string name="t1_example_question01_txt10">&#45;2c&#47;&#45;2 &#61; 2&#47;&#45;2</string>
+    <string name="t1_example_question01_txt9">Step 4 apply division property of equality and divide by -2 to both sides:</string>
+    <string name="t1_example_question01_txt11">c &#61; &#45;1</string>
+    <string name="t1_example_question01_txt3">Step 2 combine like terms:</string>
+    <string name="t1_example_question01_txt6">Step 3 apply addition property of equality by adding 2 to both sides:</string>
+    <string name="t1_example_question01_txt8">2c &#45; 2 &#43; 2 &#61; 0 &#43; 2</string>
+
+    //strings for the second example
+    <string name="t1_example_question02_txt1">Step 1: Find the values of a, b, c in ax²&#43;bx&#43;c:</string>
+    <string name="t1_example_question02_txt2">x²&#45;6x&#43;5&#61;0 </string>
+    <string name="t1_example_question02_txt3">A&#61;1, B&#61;&#45;6, C&#61;5</string>
+    <string name="t1_example_question02_txt4">Step 2: Since A &#61; 1, Find the factors of C that have a sum that equals to B:</string>
+    <string name="t1_example_question02_txt5">1 &#43; 5 &#61; 6  </string>
+    <string name="t1_example_question02_txt6">6 is not equal to &#45;6  </string>
+    <string name="t1_example_question02_txt7">&#45;1 &#43; &#45;5 &#61; &#45;6  </string>
+    <string name="t1_example_question02_txt8">&#45;6 is equal to &#45;6  </string>
+    <string name="t1_example_question02_txt9">So, the factors of C that have a sum of B are &#45;1 and &#45;5. </string>
+    <string name="t1_example_question02_txt10">Step 3: Use the factors to factor out the quadratic equation: </string>
+    <string name="t1_example_question02_txt11">&#40;x&#45;1&#41;&#40;x&#45;5&#41;&#61;0  </string>
+    <string name="t1_example_question02_txt12">Step 4: Now make each factor equal to zero and solve for x on each:</string>
+    <string name="t1_example_question02_txt13">x &#45; 1 &#61; 0 and x &#45; 5 &#61; 0 </string>
+    <string name="t1_example_question02_txt14">x &#45; 1 &#43; 1 &#61; 0 &#43; 1 and x &#45; 5 &#43; 5 &#61; 0 &#43; 5</string>
+    <string name="t1_example_question02_txt15">x &#61; 1  and x &#61; 5</string>
+
+    //strings for third example
+    <string name="t1_example_question03_txt1">Step 1 Multiply and apply the Product rule for exponents: </string>
+    <string name="t1_example_question03_txt2">(3&#185;a&#185;b&#185;)(&#45;5&#185;a&#185;b&#185;)</string>
+    <string name="t1_example_question03_txt3">3 &#42; &#45;5 &#42; a &#185;&#43;&#185; &#42; b &#185;&#43;&#185;</string>
+    <string name="t1_example_question03_txt4">&#45;15a²b²</string>
+
+    //strings for forth example
+    <string name="t1_example_question04_txt1">Step 1: Find the values of a, b, c in ax²&#43;bx&#43;c:</string>
+    <string name="t1_example_question04_txt2">x²&#45;x&#45;6 </string>
+    <string name="t1_example_question04_txt3">A&#61;1, B&#61;&#45;1, C&#61;&#45;6</string>
+    <string name="t1_example_question04_txt4">Step 2: Since A &#61; 1, Find the factors of C that have a sum that equals to B:</string>
+    <string name="t1_example_question04_txt5">&#45;1 &#43; 6 &#61; 5  </string>
+    <string name="t1_example_question04_txt6">5 is not equal to &#45;1  </string>
+    <string name="t1_example_question04_txt7">1 &#43; &#45;6 &#61; &#45;5  </string>
+    <string name="t1_example_question04_txt8">&#45;5 is not equal to &#45;1  </string>
+    <string name="t1_example_question04_txt9">2 &#43; &#45;3 &#61; &#45;1  </string>
+    <string name="t1_example_question04_txt10">&#45;1 is equal to &#45;1  </string>
+    <string name="t1_example_question04_txt11">So, the factors of C that have a sum of B are 2 and &#45;3. </string>
+    <string name="t1_example_question04_txt12">Step 3: Use the factors to factor out the quadratic expression: </string>
+    <string name="t1_example_question04_txt13">&#40;x&#43;2&#41;&#40;x&#45;3&#41;</string>
+
+
+    //strings for the fifth example
+    <string name="t1_example_question05_txt1">Step 1: Apply the order of operations. Do parenthesis first then exponents.</string>
+    <string name="t1_example_question05_txt2">&#40;8 &#45; 5&#41;&#47;2³ </string>
+    <string name="t1_example_question05_txt3">3&#47;2³</string>
+    <string name="t1_example_question05_txt4">3&#47;8</string>
+    <string name="t1_example_question05_txt5">Step 2: Simplify if possible.</string>
+    <string name="t1_example_question05_txt6">3&#47;8 is already simplify so leave expression “as is”. Done.  </string>
+
+    //strings for the six example
+    <string name="t1_example_question06_txt1">Step 1: Substitute the values into the expression:</string>
+    <string name="t1_example_question06_txt2">06 &#42; 1&#47;2 &#42; (&#45;1² &#42; 2) </string>
+    <string name="t1_example_question06_txt3">Step 2: Apply the order of operations: </string>
+    <string name="t1_example_question06_txt4">parenthesis then exponents </string>
+    <string name="t1_example_question06_txt5"> 06 &#42; 1&#47;2 &#42; (1 &#42; 2)</string>
+    <string name="t1_example_question06_txt6">06 &#42; 1&#47;2 &#42; (2) </string>
+    <string name="t1_example_question06_txt7">Multiply from left to right </string>
+    <string name="t1_example_question06_txt8">3 &#42; 2 </string>
+    <string name="t1_example_question06_txt9">6</string>
+    <string name="home_content_description">Home Menu</string>
 
 </resources>

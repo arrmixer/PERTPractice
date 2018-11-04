@@ -25,11 +25,11 @@ import com.arr.angel.pertpratice.viewmodel.TopicViewModel;
 
 import java.util.List;
 
+import static com.arr.angel.pertpratice.ui.view.MainFragment.ARGS_CURRENT_ID;
+import static com.arr.angel.pertpratice.ui.view.MainFragment.ARGS_TOPIC_ID;
+import static com.arr.angel.pertpratice.ui.view.MainFragment.ARG_IS_ANSWERED;
+import static com.arr.angel.pertpratice.ui.view.MainFragment.ARG_IS_CORRECT;
 import static com.arr.angel.pertpratice.ui.view.MainFragment.EXTRA_TOPIC_ID;
-import static com.arr.angel.pertpratice.ui.view.Question01Fragment.ARGS_CURRENT_ID;
-import static com.arr.angel.pertpratice.ui.view.Question01Fragment.ARGS_TOPIC_ID;
-import static com.arr.angel.pertpratice.ui.view.Question02Fragment.ARG_IS_ANSWERED;
-import static com.arr.angel.pertpratice.ui.view.Question02Fragment.ARG_IS_CORRECT;
 
 public class TopicResultsFragment extends Fragment implements TopicResultsAdapter.ItemClickListenerTopicResults {
 
@@ -80,7 +80,7 @@ public class TopicResultsFragment extends Fragment implements TopicResultsAdapte
         bundle.putInt(ARGS_CURRENT_ID, previousQuestionId);
         bundle.putBoolean(ARG_IS_CORRECT, correct);
         bundle.putBoolean(ARG_IS_ANSWERED, answered);
-        bundle.putInt(Question01Fragment.ARGS_TOPIC_ID, topicId);
+        bundle.putInt(ARGS_TOPIC_ID, topicId);
         topicResultsFragment.setArguments(bundle);
 
         return topicResultsFragment;

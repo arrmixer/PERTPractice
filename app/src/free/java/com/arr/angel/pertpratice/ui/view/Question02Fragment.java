@@ -30,19 +30,18 @@ import com.google.android.gms.ads.AdView;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.arr.angel.pertpratice.ui.view.Question01Fragment.ARGS_CURRENT_ID;
-import static com.arr.angel.pertpratice.ui.view.Question01Fragment.ARGS_TOPIC_ID;
-import static com.arr.angel.pertpratice.ui.view.Question01Fragment.EXTRA_CURRENT_QUESTION_ID;
-import static com.arr.angel.pertpratice.ui.view.Question01Fragment.EXTRA_IS_ANSWERED;
-import static com.arr.angel.pertpratice.ui.view.Question01Fragment.EXTRA_IS_NEXT_UNANSWERED_QUESTION_ID;
+import static com.arr.angel.pertpratice.ui.view.CorrectAnswerDialogFragment.EXTRA_IS_ANSWERED;
+import static com.arr.angel.pertpratice.ui.view.MainFragment.ARGS_CURRENT_ID;
+import static com.arr.angel.pertpratice.ui.view.MainFragment.ARGS_TOPIC_ID;
+import static com.arr.angel.pertpratice.ui.view.MainFragment.ARG_IS_ANSWERED;
+import static com.arr.angel.pertpratice.ui.view.MainFragment.ARG_IS_CORRECT;
+import static com.arr.angel.pertpratice.ui.view.MainFragment.EXTRA_ANSWER;
+import static com.arr.angel.pertpratice.ui.view.MainFragment.EXTRA_CURRENT_QUESTION_ID;
+import static com.arr.angel.pertpratice.ui.view.MainFragment.EXTRA_IS_NEXT_UNANSWERED_QUESTION_ID;
+import static com.arr.angel.pertpratice.ui.view.MainFragment.EXTRA_POSSIBLE_ANSWERS;
 
 public class Question02Fragment extends Fragment {
     private static final String TAG = Question02Fragment.class.getSimpleName();
-
-    protected static final String EXTRA_ANSWER = "com.arr.angel.pertpratice.ui.view.answer";
-    protected static final String EXTRA_POSSIBLE_ANSWERS = "com.arr.angel.pertpratice.ui.view.possibleAnswers";
-    public static final String ARG_IS_CORRECT = "com.arr.angel.pertpratice.ui.view.is.correct.arg";
-    public static final String ARG_IS_ANSWERED = "com.arr.angel.pertpratice.ui.view.is.answered.arg";
 
     /*Placeholders for Topics*/
     private List<Topic> mTopicList;
@@ -232,7 +231,7 @@ public class Question02Fragment extends Fragment {
         exampleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getContext(), Example01.class);
+                Intent intent = new Intent(getContext(), Example2.class);
                 startActivity(intent);
             }
         });

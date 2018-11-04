@@ -28,8 +28,9 @@ import com.arr.angel.pertpratice.viewmodel.TopicViewModel;
 
 import java.util.List;
 
+import static com.arr.angel.pertpratice.ui.view.MainFragment.EXTRA_CURRENT_QUESTION_ID;
 import static com.arr.angel.pertpratice.ui.view.MainFragment.EXTRA_TOPIC_ID;
-import static com.arr.angel.pertpratice.ui.view.Question01Fragment.EXTRA_CURRENT_QUESTION_ID;
+
 
 public class TopicResultsActivity extends SingleFragmentActivity {
 
@@ -95,6 +96,7 @@ public class TopicResultsActivity extends SingleFragmentActivity {
             ActionBar actionBar = getSupportActionBar();
             actionBar.setTitle(UtilMethods.showTopicTitle(topicId));
             actionBar.setDisplayShowTitleEnabled(true);
+            actionBar.setHomeActionContentDescription(R.string.home_content_description);
         }
 
         final FloatingActionButton floatingActionButton = activityMainBinding.floatingActionButton;

@@ -10,4 +10,71 @@
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
     </style>
 
+    <style name="example_txtView_center">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:layout_marginStart">8dp</item>
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:layout_marginEnd">8dp</item>
+        <item name="android:paddingEnd">8dp</item>
+        <item name="android:paddingStart">8dp</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="example_txtView_step">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">8dp</item>
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:layout_marginEnd">16dp</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="question_txtView">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">16dp</item>
+        <item name="android:layout_marginTop">84dp</item>
+        <item name="android:layout_marginEnd">16dp</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:lineSpacingExtra">8sp</item>
+    </style>
+
+    <style name="question_txtView2" parent="question_txtView">
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:layout_marginStart">32dp</item>
+    </style>
+
+    <style name="question_example_button" parent="@style/Widget.AppCompat.Button.Borderless">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">8dp</item>
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:layout_marginEnd">8dp</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:text">@string/txt_question_example</item>
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:typeface">normal</item>
+    </style>
+
+    <style name="question_radio_button_1" parent="@android:style/Widget.Material.CompoundButton.RadioButton">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">16dp</item>
+        <item name="android:layout_marginTop">28dp</item>
+        <item name="android:paddingEnd">8dp</item>
+        <item name="android:buttonTint">?android:attr/colorControlNormal</item>
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Body2</item>
+        <item name="android:textColor">@color/colorAccent</item>
+    </style>
+
+    <style name="question_radio_button" parent="question_radio_button_1">
+        <item name="android:layout_marginTop">0dp</item>
+    </style>
+
+
 </resources>

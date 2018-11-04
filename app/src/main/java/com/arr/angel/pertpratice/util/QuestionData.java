@@ -10,12 +10,11 @@ import java.util.List;
 public class QuestionData {
 
     private List<Question> questionListPraticeTest = new ArrayList<>();
-    private List<String> possibleAnswers = new ArrayList<>();
+    private List<String> mPossibleAnswers;
 
 
     //adding mock question01 data
     private List<Question> makePracticeTestQuestions(){
-        makePossibleAnswers();
         Question question1PT = new Question("PT01");
         Question question2PT = new Question("PT02");
         Question question3PT = new Question("PT03");
@@ -23,31 +22,31 @@ public class QuestionData {
         Question question5PT = new Question("PT05");
         Question question6PT = new Question("PT06");
 
-        question1PT.setContent("Lorem ipsum dolor sit amet, doming molestie te quo, vim eu lobortis argumentum quaerendum. Ipsum nusquam indoctum eam ad, vidit feugiat platonem eam ex. Reque illum explicari ex ius, no erant vivendum sensibus vis. Eum cu clita libris ancillae. Id pri graeco suavitate. Nulla detraxit sea ei.");
-        question1PT.setPossibleAnswers(getPossibleAnswers());
-        question1PT.setAnswer(getPossibleAnswers().get(0));
+        question1PT.setContent("Which of the following is a solution to the equation c + (4 - 3c) - 2 = 0");
+
+        question1PT.setPossibleAnswers(makePossibleAnswers("-1", "0", "1", "2"));
+        question1PT.setAnswer(question1PT.getPossibleAnswers().get(2));
 
 
-        question2PT.setContent("Probo consetetur mei in. Et elit posse torquatos usu. Sit an denique vituperata. Ne saepe inermis ius, pro dicta detraxit te, ne soleat complectitur mei. Vix ei diceret ancillae signiferumque. Doctus fabulas vim ea.\n" +
-                "\n");
-        question2PT.setPossibleAnswers(getPossibleAnswers());
-        question2PT.setAnswer(getPossibleAnswers().get(1));
+        question2PT.setContent("Which of the following is a solution to the equation x\u00B2 - 6x + 5 = 0?");
+        question2PT.setPossibleAnswers(makePossibleAnswers("-5", "-1", "1/5", "5"));
+        question2PT.setAnswer(question2PT.getPossibleAnswers().get(3));
 
-        question3PT.setContent("Nam id iusto choro quando. Quo te omittam appareat adipisci, viris ornatus pertinacia vim eu, dolor persius fierent eam ea. Ei eam velit commune deserunt, an mel labore scripta. Harum dissentiunt quo et, sed no utinam evertitur. Duo id quas quidam.");
-        question3PT.setPossibleAnswers(getPossibleAnswers());
-        question3PT.setAnswer(getPossibleAnswers().get(2));
+        question3PT.setContent("Which of the following is equivalent to the expression (3ab)(-5ab)?");
+        question3PT.setPossibleAnswers( makePossibleAnswers("-2ab", "-2a\u00B2b\u00B2", "-15ab", "-15a\u00B2b\u00B2"));
+        question3PT.setAnswer(question3PT.getPossibleAnswers().get(3));
 
-        question4PT.setContent("Qui et integre intellegam, vidit partiendo cum id, qui duis lorem probatus eu. Qui liber dicunt ut, mea nonumes invenire liberavisse an, vis albucius consetetur dissentiet no. Sit erant efficiendi no, eum cu labores lobortis, cu mel utamur fabellas lobortis. Per ei magna decore doming, vis soluta partiendo imperdiet ut, ea falli cotidieque has.");
-        question4PT.setPossibleAnswers(getPossibleAnswers());
-        question4PT.setAnswer(getPossibleAnswers().get(3));
+        question4PT.setContent("Factor completely: x\u00B2 - x - 6");
+        question4PT.setPossibleAnswers(makePossibleAnswers("(x - 2)(x + 3)", "(x - 1)(x - 6)", "(x + 2)(x - 3)","(x + 1)(x - 6)"));
+        question4PT.setAnswer(question4PT.getPossibleAnswers().get(2));
 
-        question5PT.setContent("Postea liberavisse ei mei, perfecto consequuntur necessitatibus no vim. Ut melius splendide vis, wisi volumus consulatu sea no, sed ea autem aperiam. Ut equidem inermis mediocrem has. Nam nisl torquatos temporibus ea, id viris blandit intellegam nam, pro id magna eleifend. Ad eius quaestio interpretaris vis.");
-        question5PT.setPossibleAnswers(getPossibleAnswers());
-        question5PT.setAnswer(getPossibleAnswers().get(0));
+        question5PT.setContent("Which of the following is equivalent to (8 - 5) / 2\u00B3?");
+        question5PT.setPossibleAnswers(makePossibleAnswers("3/8", "19/8", "27/48", "1/125"));
+        question5PT.setAnswer(question5PT.getPossibleAnswers().get(0));
 
-        question6PT.setContent("Vim ex nullam accumsan, feugiat omnesque volutpat ei sea, ut essent nostro evertitur vis. Accusam commune no vim, has id eripuit mandamus. Perfecto pericula repudiandae at vel, in munere eloquentiam est. Te usu modus inciderint, ad ullum temporibus eos, mel mundi suscipiantur id.");
-        question6PT.setPossibleAnswers(getPossibleAnswers());
-        question6PT.setAnswer(getPossibleAnswers().get(1));
+        question6PT.setContent("What is the value of the algebraic expression if x = 1/2, y = -1, and z = 2? 6x(y\u00B2z)");
+        question6PT.setPossibleAnswers(makePossibleAnswers("-12", "-6", "1", "6"));
+        question6PT.setAnswer(question6PT.getPossibleAnswers().get(3));
 
 
         questionListPraticeTest.add(question1PT);
@@ -64,22 +63,19 @@ public class QuestionData {
         return makePracticeTestQuestions();
     }
 
-    public List<String> makePossibleAnswers(){
-        String a = "a";
-        String b = "b";
-        String c = "c";
-        String d = "d";
+    public List<String> makePossibleAnswers(String a, String b, String c, String d){
+
+        List<String> possibleAnswers = new ArrayList<>();
 
         possibleAnswers.add(a);
         possibleAnswers.add(b);
         possibleAnswers.add(c);
         possibleAnswers.add(d);
 
+
+
         return possibleAnswers;
 
     }
 
-    public List<String> getPossibleAnswers() {
-        return possibleAnswers;
-    }
 }

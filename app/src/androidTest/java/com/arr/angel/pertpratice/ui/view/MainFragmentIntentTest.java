@@ -31,7 +31,7 @@ import static android.support.test.espresso.intent.matcher.IntentMatchers.hasExt
 import static android.support.test.espresso.intent.matcher.IntentMatchers.isInternal;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
-import static com.arr.angel.pertpratice.ui.view.Question01Fragment.EXTRA_CURRENT_QUESTION_ID;
+import static com.arr.angel.pertpratice.ui.view.MainFragment.EXTRA_CURRENT_QUESTION_ID;
 import static org.hamcrest.core.AllOf.allOf;
 import static org.hamcrest.core.IsNot.not;
 
@@ -80,7 +80,6 @@ public class MainFragmentIntentTest {
         checkIntentSentFromNextButtonInDialog(1);
 
 
-
     }
 
     @Test
@@ -88,6 +87,7 @@ public class MainFragmentIntentTest {
         ViewInteraction recyclerView = onView(
                 withId(R.id.recycler_view_topics));
 
+        // checks intent sent to QuestionActivity
         checkIntentSentInButton(
                 recyclerView,
                 R.id.buttonPractice,
@@ -105,6 +105,7 @@ public class MainFragmentIntentTest {
         ViewInteraction recyclerView = onView(
                 withId(R.id.recycler_view_topics));
 
+        // checks intent sent to QuestionActivity
         checkIntentSentInButton(
                 recyclerView,
                 R.id.buttonPractice,
@@ -122,6 +123,7 @@ public class MainFragmentIntentTest {
         ViewInteraction recyclerView = onView(
                 withId(R.id.recycler_view_topics));
 
+        // checks intent sent to QuestionActivity
         checkIntentSentInButton(
                 recyclerView,
                 R.id.buttonPractice,
@@ -136,6 +138,7 @@ public class MainFragmentIntentTest {
         ViewInteraction recyclerView = onView(
                 withId(R.id.recycler_view_topics));
 
+        // checks intent sent to QuestionActivity
         checkIntentSentInButton(
                 recyclerView,
                 R.id.buttonPractice,
@@ -159,7 +162,6 @@ public class MainFragmentIntentTest {
                 0, 0,
                 MainFragment.EXTRA_TOPIC_ID,
                 classNameTopicResults);
-
 
 
     }
@@ -222,8 +224,6 @@ public class MainFragmentIntentTest {
     }
 
 
-
-
     // Remember to unregister resources when not needed to avoid malfunction.
     @After
     public void unregisterIdlingResource() {
@@ -253,7 +253,7 @@ public class MainFragmentIntentTest {
 
     //helper method to check if the dialog next
     //button sends the correct intent keys and data
-    public static void checkIntentSentFromNextButtonInDialog(@IdRes int id){
+    public static void checkIntentSentFromNextButtonInDialog(@IdRes int id) {
 
         //get radio button and click on it
         onView(withId(R.id.radioButton)).perform(click());

@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,27 +22,27 @@ import com.arr.angel.pertpratice.model.Question;
 import com.arr.angel.pertpratice.model.Topic;
 import com.arr.angel.pertpratice.util.DialogCreations;
 import com.arr.angel.pertpratice.util.RadioGroupHelper;
-import com.arr.angel.pertpratice.util.UtilMethods;
 import com.arr.angel.pertpratice.viewmodel.TopicViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.arr.angel.pertpratice.ui.view.Question02Fragment.ARG_IS_ANSWERED;
-import static com.arr.angel.pertpratice.ui.view.Question02Fragment.ARG_IS_CORRECT;
+import static com.arr.angel.pertpratice.ui.view.CorrectAnswerDialogFragment.EXTRA_IS_ANSWERED;
+import static com.arr.angel.pertpratice.ui.view.MainFragment.ARGS_CURRENT_ID;
+import static com.arr.angel.pertpratice.ui.view.MainFragment.ARGS_TOPIC_ID;
+import static com.arr.angel.pertpratice.ui.view.MainFragment.ARG_IS_ANSWERED;
+import static com.arr.angel.pertpratice.ui.view.MainFragment.ARG_IS_CORRECT;
+import static com.arr.angel.pertpratice.ui.view.MainFragment.EXTRA_ANSWER;
+import static com.arr.angel.pertpratice.ui.view.MainFragment.EXTRA_CURRENT_QUESTION_ID;
+import static com.arr.angel.pertpratice.ui.view.MainFragment.EXTRA_IS_NEXT_UNANSWERED_QUESTION_ID;
+import static com.arr.angel.pertpratice.ui.view.MainFragment.EXTRA_POSSIBLE_ANSWERS;
+
+
 
 public class Question01Fragment extends Fragment {
 
     private static final String TAG = Question01Fragment.class.getSimpleName();
 
-    protected static final String EXTRA_ANSWER = "com.arr.angel.pertpratice.ui.view.answer";
-    protected static final String EXTRA_POSSIBLE_ANSWERS = "com.arr.angel.pertpratice.ui.view.possibleAnswers";
-    protected static final String EXTRA_IS_ANSWERED = "com.arr.angel.pertpratice.ui.view.is.answered";
-    protected static final String EXTRA_IS_NEXT_UNANSWERED_QUESTION_ID = "com.arr.angel.pertpratice.ui.view.is.next.unanswered.question.id";
-    protected static final String EXTRA_CURRENT_QUESTION_ID = "com.arr.angel.pertpratice.ui.view.is.current.question.id";
-
-    protected static final String ARGS_TOPIC_ID = "com.arr.angel.pertpratice.ui.view.topic.id";
-    protected static final String ARGS_CURRENT_ID = "com.arr.angel.pertpratice.ui.view.topic.question.id";
 
     //instance of ViewModel
     private TopicViewModel topicViewModel;
@@ -88,7 +87,7 @@ public class Question01Fragment extends Fragment {
     private int currentQuestion;
 
 
-    public static Question01Fragment newInstance(int previousQuestionId, boolean correct, boolean answered,int topicId) {
+    public static Question01Fragment newInstance(int previousQuestionId, boolean correct, boolean answered, int topicId) {
 
         Question01Fragment question01Fragment = new Question01Fragment();
 
@@ -168,59 +167,61 @@ public class Question01Fragment extends Fragment {
             public void onChanged(@Nullable Topic topic) {
 
 
-                    mTopic = topic;
-                    populateView();
+                mTopic = topic;
+                populateView();
 
-                    if (previousIsAnswered) {
+                if (previousIsAnswered) {
 
-                        //questions are indexed at 1 not 0
-                        Question previousQuestion = questions.get(previousQuestionId - 1);
-                        previousQuestion.setCorrect(previousIsCorrect);
-                        previousQuestion.setAnswered(previousIsAnswered);
-                        topicViewModel.insertTopic(mTopic);
+                    //questions are indexed at 1 not 0
+                    Question previousQuestion = questions.get(previousQuestionId - 1);
+                    previousQuestion.setCorrect(previousIsCorrect);
+                    previousQuestion.setAnswered(previousIsAnswered);
+                    topicViewModel.insertTopic(mTopic);
 
-                        //reset boolean to keep onchange from updating
-                        previousIsAnswered = false;
-                    }
+                    //reset boolean to keep onchange from updating
+                    previousIsAnswered = false;
+                }
 
 
-                    //check to see if question is already answered
-                    isAnswered = question.isAnswered();
+                //check to see if question is already answered
+                isAnswered = question.isAnswered();
 //                    Log.d(TAG, "isAnswered is " + isAnswered);
 
-                    if (isAnswered) {
-                        //placeholder for next unanswered question if any
-                        nextUnansweredQuestionId = 0;
+                if (isAnswered) {
+                    //placeholder for next unanswered question if any
+                    nextUnansweredQuestionId = 0;
 
-                        //check to see if question was answered correctly
-                        isCorrect = question.isCorrect();
+                    //check to see if question was answered correctly
+                    isCorrect = question.isCorrect();
 
-                        for (Question q : questions) {
+                    for (Question q : questions) {
 
-                            //check to see if question is already answered
-                            //and redirect user to next available question if any
-                            if (!q.isAnswered()) {
-                                //get question number from question id
-                                //example string PT01 question number is 1
-                                String number = q.getId().substring(3);
-                                nextUnansweredQuestionId = Integer.parseInt(number);
-                                break;
-                            }
-
+                        //check to see if question is already answered
+                        //and redirect user to next available question if any
+                        if (!q.isAnswered()) {
+                            //get question number from question id
+                            //example string PT01 question number is 1
+                            String number = q.getId().substring(3);
+                            nextUnansweredQuestionId = Integer.parseInt(number);
+                            break;
                         }
-
 
                     }
 
 
                 }
 
+
+            }
+
         });
 
         exampleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getContext(), Example01.class);
+                Intent intent = new Intent(getContext(), Example.class);
+                intent.putExtra(EXTRA_CURRENT_QUESTION_ID, currentQuestion);
+                intent.putExtra(MainFragment.EXTRA_TOPIC_ID, topicId);
                 startActivity(intent);
             }
         });
@@ -250,9 +251,21 @@ public class Question01Fragment extends Fragment {
     }
 
     @Override
+    public void onPause() {
+        super.onPause();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+    }
+
+    @Override
     public void onResume() {
         super.onResume();
         radioGroup.clearCheck();
+
+
     }
 
     public void populateView() {
@@ -266,6 +279,7 @@ public class Question01Fragment extends Fragment {
         answer = question.getAnswer();
         possibleAnswers = question.getPossibleAnswers();
         content.setText(question.getContent());
+
 
         radio1.setText(possibleAnswers.get(0));
         radio2.setText(possibleAnswers.get(1));
