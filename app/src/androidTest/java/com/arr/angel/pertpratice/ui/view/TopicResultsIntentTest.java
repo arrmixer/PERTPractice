@@ -3,38 +3,28 @@ package com.arr.angel.pertpratice.ui.view;
 import android.app.Activity;
 import android.app.Instrumentation;
 import android.content.Intent;
-import android.net.Uri;
-import android.support.annotation.IdRes;
 import android.support.annotation.StringRes;
-import android.support.test.InstrumentationRegistry;
 import android.support.test.espresso.ViewInteraction;
 import android.support.test.espresso.contrib.RecyclerViewActions;
 import android.support.test.espresso.intent.rule.IntentsTestRule;
 import android.support.test.runner.AndroidJUnit4;
-import android.support.v7.widget.RecyclerView;
-import android.view.View;
 
 import com.arr.angel.pertpratice.R;
 import com.arr.angel.pertpratice.util.ResultsSharedPreferences;
 
-import org.hamcrest.Matcher;
 import org.hamcrest.core.AllOf;
-import org.hamcrest.core.AnyOf;
-import org.hamcrest.core.StringStartsWith;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import static android.support.test.espresso.Espresso.onView;
-import static android.support.test.espresso.Espresso.openActionBarOverflowOrOptionsMenu;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.intent.Intents.intended;
 import static android.support.test.espresso.intent.Intents.intending;
 import static android.support.test.espresso.intent.matcher.IntentMatchers.hasAction;
 import static android.support.test.espresso.intent.matcher.IntentMatchers.hasComponent;
-import static android.support.test.espresso.intent.matcher.IntentMatchers.hasData;
 import static android.support.test.espresso.intent.matcher.IntentMatchers.hasExtra;
 import static android.support.test.espresso.intent.matcher.IntentMatchers.hasExtraWithKey;
 import static android.support.test.espresso.intent.matcher.IntentMatchers.hasType;
@@ -46,7 +36,6 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static com.arr.angel.pertpratice.ui.view.TopicResultsFragmentTest.withMenuIdOrText;
 import static com.arr.angel.pertpratice.ui.view.TopicResultsFragmentTest.withViewAtPosition;
 import static org.hamcrest.Matchers.allOf;
-import static org.hamcrest.Matchers.hasXPath;
 import static org.hamcrest.core.IsNot.not;
 
 @RunWith(AndroidJUnit4.class)

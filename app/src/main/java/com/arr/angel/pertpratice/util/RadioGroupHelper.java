@@ -1,14 +1,9 @@
 package com.arr.angel.pertpratice.util;
 
-import android.content.Context;
 import android.support.v4.app.FragmentManager;
-import android.view.View;
 import android.widget.RadioGroup;
-import android.widget.Toast;
 
 import com.arr.angel.pertpratice.R;
-import com.arr.angel.pertpratice.model.Question;
-import com.arr.angel.pertpratice.viewmodel.TopicViewModel;
 
 import java.util.List;
 

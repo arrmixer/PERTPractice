@@ -1,14 +1,10 @@
 package com.arr.angel.pertpratice.util;
 
-import android.content.Context;
 import android.support.v4.app.FragmentManager;
-import android.widget.RadioGroup;
 
-import com.arr.angel.pertpratice.R;
 import com.arr.angel.pertpratice.ui.view.AlreadyAnsweredDialogFragment;
 import com.arr.angel.pertpratice.ui.view.CorrectAnswerDialogFragment;
 import com.arr.angel.pertpratice.ui.view.InCorrectAnswerDialogFragment;
-import com.arr.angel.pertpratice.ui.view.MainActivity;
 import com.arr.angel.pertpratice.ui.view.Question01Activity;
 import com.arr.angel.pertpratice.ui.view.Question02Activity;
 import com.arr.angel.pertpratice.ui.view.Question03Activity;

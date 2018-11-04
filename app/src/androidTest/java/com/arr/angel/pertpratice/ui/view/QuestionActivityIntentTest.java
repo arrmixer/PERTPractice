@@ -20,7 +20,6 @@ import static android.support.test.espresso.contrib.DrawerMatchers.isClosed;
 import static android.support.test.espresso.intent.Intents.intended;
 import static android.support.test.espresso.intent.Intents.intending;
 import static android.support.test.espresso.intent.matcher.IntentMatchers.hasComponent;
-import static android.support.test.espresso.intent.matcher.IntentMatchers.hasExtra;
 import static android.support.test.espresso.intent.matcher.IntentMatchers.hasExtraWithKey;
 import static android.support.test.espresso.intent.matcher.IntentMatchers.isInternal;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;

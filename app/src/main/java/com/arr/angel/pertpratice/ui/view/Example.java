@@ -1,23 +1,12 @@
 package com.arr.angel.pertpratice.ui.view;
 
-import android.arch.lifecycle.Observer;
-import android.arch.lifecycle.ViewModelProviders;
 import android.databinding.DataBindingUtil;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.arr.angel.pertpratice.R;
 import com.arr.angel.pertpratice.databinding.Example01Binding;
-import com.arr.angel.pertpratice.model.Question;
-import com.arr.angel.pertpratice.model.Topic;
-import com.arr.angel.pertpratice.viewmodel.TopicViewModel;
-
-import java.util.List;
 
 import static com.arr.angel.pertpratice.ui.view.MainFragment.EXTRA_CURRENT_QUESTION_ID;
 import static com.arr.angel.pertpratice.ui.view.MainFragment.EXTRA_TOPIC_ID;

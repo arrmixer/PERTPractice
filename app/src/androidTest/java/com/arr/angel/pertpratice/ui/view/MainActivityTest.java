@@ -1,32 +1,17 @@
 package com.arr.angel.pertpratice.ui.view;
 
 
-import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.StateListDrawable;
-import android.support.annotation.DrawableRes;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.espresso.IdlingRegistry;
 import android.support.test.espresso.IdlingResource;
-import android.support.test.espresso.ViewAction;
 import android.support.test.espresso.ViewInteraction;
-import android.support.test.espresso.action.CoordinatesProvider;
-import android.support.test.espresso.action.GeneralLocation;
-import android.support.test.espresso.action.Press;
-import android.support.test.espresso.action.Swipe;
 import android.support.test.espresso.contrib.DrawerActions;
 import android.support.test.espresso.contrib.NavigationViewActions;
 import android.support.test.espresso.matcher.BoundedMatcher;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
-import android.support.v7.view.menu.ActionMenuItemView;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
-import android.view.View;
-import android.widget.ActionMenuView;
-import android.widget.TextView;
 
 import com.arr.angel.pertpratice.R;
 
@@ -41,14 +26,9 @@ import org.junit.runner.RunWith;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.contrib.DrawerMatchers.isClosed;
-import static android.support.test.espresso.matcher.ViewMatchers.hasDescendant;
 import static android.support.test.espresso.matcher.ViewMatchers.isAssignableFrom;
-import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
-import static android.support.test.espresso.matcher.ViewMatchers.withParent;
-import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.core.AllOf.allOf;
 
 @RunWith(AndroidJUnit4.class)
 public class MainActivityTest {

@@ -12,8 +12,6 @@ import com.arr.angel.pertpratice.model.Question;
 import com.arr.angel.pertpratice.model.Topic;
 
 import java.util.List;
-import java.util.concurrent.AbstractExecutorService;
-import java.util.concurrent.Executor;
 
 public class TopicViewModel extends AndroidViewModel {
 

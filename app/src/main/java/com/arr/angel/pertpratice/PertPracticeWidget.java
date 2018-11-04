@@ -1,6 +1,5 @@
 package com.arr.angel.pertpratice;
 
-import android.app.Application;
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
@@ -9,11 +8,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.RemoteViews;
 
-import com.arr.angel.pertpratice.model.Topic;
 import com.arr.angel.pertpratice.ui.view.MainActivity;
 import com.arr.angel.pertpratice.ui.view.TopicResultsActivity;
 import com.arr.angel.pertpratice.util.ResultsSharedPreferences;
-import com.arr.angel.pertpratice.viewmodel.TopicViewModel;
 
 import static com.arr.angel.pertpratice.ui.view.MainFragment.EXTRA_TOPIC_ID;
 

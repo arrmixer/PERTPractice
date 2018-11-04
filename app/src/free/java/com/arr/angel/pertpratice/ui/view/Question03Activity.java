@@ -2,6 +2,7 @@ package com.arr.angel.pertpratice.ui.view;
 
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -79,7 +80,7 @@ public class Question03Activity extends SingleFragmentActivity {
 
         //setting up nav bar and changing the items for the questions
         NavheaderBinding navheaderBinding = NavheaderBinding.bind(activityMainBinding.navView.inflateHeaderView(R.layout.navheader));
-        navheaderBinding.textView.setText("Questions");
+        navheaderBinding.textView.setText(R.string.nav_questions_title);
         activityMainBinding.navView.getMenu().getItem(0).setTitle(getString(R.string.question1));
         activityMainBinding.navView.getMenu().getItem(1).setTitle(getString(R.string.question2));
         activityMainBinding.navView.getMenu().getItem(2).setTitle(getString(R.string.question3));
@@ -95,7 +96,7 @@ public class Question03Activity extends SingleFragmentActivity {
         navigationView.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {
                     @Override
-                    public boolean onNavigationItemSelected(MenuItem menuItem) {
+                    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                         // set item as selected to persist highlight
                         menuItem.setChecked(true);
 

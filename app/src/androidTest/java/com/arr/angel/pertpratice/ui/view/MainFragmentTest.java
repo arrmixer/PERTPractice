@@ -11,42 +11,29 @@ import android.support.test.espresso.action.CoordinatesProvider;
 import android.support.test.espresso.action.GeneralLocation;
 import android.support.test.espresso.action.Press;
 import android.support.test.espresso.action.Swipe;
-import android.support.test.espresso.action.ViewActions;
-import android.support.test.espresso.contrib.DrawerActions;
 import android.support.test.espresso.contrib.RecyclerViewActions;
-import android.support.test.espresso.matcher.BoundedMatcher;
-import android.support.test.espresso.matcher.ViewMatchers;
-import android.support.test.filters.LargeTest;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
 
 import com.arr.angel.pertpratice.R;
 
-import org.hamcrest.Description;
-import org.hamcrest.Matcher;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import static android.support.test.espresso.Espresso.onIdle;
 import static android.support.test.espresso.Espresso.onView;
-import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
-import static android.support.test.espresso.contrib.DrawerMatchers.isClosed;
 import static android.support.test.espresso.matcher.ViewMatchers.hasDescendant;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static android.support.test.espresso.matcher.ViewMatchers.withContentDescription;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static com.arr.angel.pertpratice.ui.view.TopicResultsFragmentTest.withViewAtPosition;
 import static org.hamcrest.Matchers.allOf;
-import static org.hamcrest.Matchers.is;
 
 
 @RunWith(AndroidJUnit4.class)
@@ -132,10 +119,6 @@ public class MainFragmentTest {
         ViewInteraction recyclerView = onView(
                 withId(R.id.recycler_view_topics));
 
-        RecyclerView recyclerView2 = mActivityTestRule.getActivity().findViewById(R.id.recycler_view_topics);
-        int itemCount = recyclerView2.getAdapter().getItemCount();
-
-        Log.d(TAG, "Item count is " + String.valueOf(itemCount));
 
         onView(withId(R.id.recycler_view_topics)).perform(swipeFromCenterToTop());
 

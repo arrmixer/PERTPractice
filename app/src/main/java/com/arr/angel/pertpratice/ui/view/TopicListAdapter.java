@@ -13,7 +13,6 @@ import android.widget.Button;
 import com.arr.angel.pertpratice.R;
 import com.arr.angel.pertpratice.databinding.TopicListItemBinding;
 import com.arr.angel.pertpratice.model.Topic;
-import com.arr.angel.pertpratice.viewmodel.TopicViewModel;
 
 import java.util.List;
 

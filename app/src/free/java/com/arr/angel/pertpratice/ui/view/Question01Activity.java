@@ -3,6 +3,7 @@ package com.arr.angel.pertpratice.ui.view;
 
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -100,7 +101,7 @@ public class Question01Activity extends SingleFragmentActivity  {
         navigationView.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {
                     @Override
-                    public boolean onNavigationItemSelected(MenuItem menuItem) {
+                    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                         // set item as selected to persist highlight
                         menuItem.setChecked(true);
 

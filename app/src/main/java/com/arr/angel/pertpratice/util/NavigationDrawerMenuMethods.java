@@ -1,11 +1,9 @@
 package com.arr.angel.pertpratice.util;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.MenuItem;
 
-import com.arr.angel.pertpratice.ui.view.MainActivity;
 import com.arr.angel.pertpratice.ui.view.MainFragment;
 import com.arr.angel.pertpratice.ui.view.OverallTopicResultsActivity;
 import com.arr.angel.pertpratice.ui.view.Question01Activity;

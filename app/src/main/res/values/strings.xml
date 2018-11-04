@@ -27,6 +27,8 @@
     <string name="intermediate">Intermediate</string>
     <string name="application">Application</string>
     <string name="advance">Advance</string>
+    <string name="home_content_description">Home Menu</string>
+    <string name="nav_questions_title">Questions</string>
     <string name="question1">Question 1</string>
     <string name="question2">Question 2</string>
     <string name="question3">Question 3</string>
@@ -122,6 +124,5 @@
     <string name="t1_example_question06_txt7">Multiply from left to right </string>
     <string name="t1_example_question06_txt8">3 &#42; 2 </string>
     <string name="t1_example_question06_txt9">6</string>
-    <string name="home_content_description">Home Menu</string>
 
 </resources>

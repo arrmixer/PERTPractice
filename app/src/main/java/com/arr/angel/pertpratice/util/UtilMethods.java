@@ -1,13 +1,6 @@
 package com.arr.angel.pertpratice.util;
 
-import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
-
 import com.arr.angel.pertpratice.model.Question;
-import com.arr.angel.pertpratice.ui.view.MainActivity;
-import com.arr.angel.pertpratice.ui.view.MainFragment;
-import com.arr.angel.pertpratice.ui.view.Question01Activity;
 
 import java.util.List;
 

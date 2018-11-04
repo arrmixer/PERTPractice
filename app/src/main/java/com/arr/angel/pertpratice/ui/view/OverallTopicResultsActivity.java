@@ -17,7 +17,6 @@ import android.view.View;
 
 import com.arr.angel.pertpratice.R;
 import com.arr.angel.pertpratice.databinding.ActivityMainBinding;
-import com.arr.angel.pertpratice.model.Question;
 import com.arr.angel.pertpratice.model.Topic;
 import com.arr.angel.pertpratice.viewmodel.TopicViewModel;
 
