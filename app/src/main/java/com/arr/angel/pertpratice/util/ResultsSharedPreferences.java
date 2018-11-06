@@ -3,6 +3,8 @@ package com.arr.angel.pertpratice.util;
 import android.content.Context;
 import android.preference.PreferenceManager;
 
+import com.arr.angel.pertpratice.R;
+
 public class ResultsSharedPreferences {
 
     private static final String PREF_TOPIC_TITLE = "com.arr.angel.pertpratice.util.topic.title";
@@ -18,7 +20,7 @@ public class ResultsSharedPreferences {
 
     public static String getPrefTopicTitle(Context context){
         return PreferenceManager.getDefaultSharedPreferences(context)
-                .getString(PREF_TOPIC_TITLE, "Practice Test");
+                .getString(PREF_TOPIC_TITLE, context.getString(R.string.default_title_shared_pref));
     }
 
     public static void setPrefTopicResultPercentage(Context context, int percentage){

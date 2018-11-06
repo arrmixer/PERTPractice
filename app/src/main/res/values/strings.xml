@@ -1,53 +1,4 @@
 <resources>
-    <string name="app_name">PERTPratice</string>
-    <string name="topic_practice">Practice</string>
-    <string name="txt_question_example">EXAMPLE</string>
-    <string name="action_settings">Settings</string>
-    <string name="nav_questions">Questions</string>
-    <string name="nav_topics">Topics</string>
-    <string name="dialog_correct">Correct!</string>
-    <string name="dialog_next">Next</string>
-    <string name="nav_title_questions">Questions</string>
-    <string name="dialog_incorrect">Incorrect!</string>
-    <string name="dialog_retry">Retry</string>
-    <string name="latin_text">Lorem ipsum dolor sit amet, ut sed tractatos torquatos intellegebat. Ne vel meis partem delicata.</string>
-    <string name="topic_results">Results</string>
-    <string name="main_page">Main Page</string>
-    <string name="retake">Retake</string>
-    <string name="not_taken">N/A</string>
-    <string name="share_success">Share Your Success!</string>
-    <string name="twitter">Twitter</string>
-    <string name="facebook">Facebook</string>
-    <string name="instagram">Instagam</string>
-    <string name="snapchat">Snapchat</string>
-    <string name="overall_results">Overall Results</string>
-    <string name="message">Message</string>
-    <string name="practice_test">Practice Test</string>
-    <string name="basic">Basic</string>
-    <string name="intermediate">Intermediate</string>
-    <string name="application">Application</string>
-    <string name="advance">Advance</string>
-    <string name="home_content_description">Home Menu</string>
-    <string name="nav_questions_title">Questions</string>
-    <string name="question1">Question 1</string>
-    <string name="question2">Question 2</string>
-    <string name="question3">Question 3</string>
-    <string name="question4">Question 4</string>
-    <string name="question5">Question 5</string>
-    <string name="question6">Question 6</string>
-    <string name="incomplete">Incomplete</string>
-    <string name="dialog_already_answer">Question Already Answered!</string>
-    <string name="tag_dialog_correct">Correct</string>
-    <string name="start">Start</string>
-    <string name="appwidget_text">EXAMPLE</string>
-    <string name="add_widget">Add widget</string>
-    <string name="nav_menu_title_questions">Questions</string>
-    <string name="google_plus">Google Plus</string>
-    <string name="share_on_twitter">Share on Twitter</string>
-    <string name="share_where_you_choose">Share where you choose</string>
-    <string name="correct_content_description">correct!</string>
-    <string name="incorrect_content_description">incorrect</string>
-
 
     //formatting strings
     <string name="percentage">%1$d%%</string>
@@ -124,5 +75,61 @@
     <string name="t1_example_question06_txt7">Multiply from left to right </string>
     <string name="t1_example_question06_txt8">3 &#42; 2 </string>
     <string name="t1_example_question06_txt9">6</string>
+
+    //general strings
+    <string name="app_name">PERTPratice</string>
+    <string name="topic_practice">Practice</string>
+    <string name="txt_question_example">EXAMPLE</string>
+    <string name="action_settings">Settings</string>
+    <string name="nav_questions">Questions</string>
+    <string name="nav_topics">Topics</string>
+    <string name="dialog_correct">Correct!</string>
+    <string name="dialog_next">Next</string>
+    <string name="nav_title_questions">Questions</string>
+    <string name="dialog_incorrect">Incorrect!</string>
+    <string name="dialog_retry">Retry</string>
+    <string name="latin_text">Lorem ipsum dolor sit amet, ut sed tractatos torquatos intellegebat. Ne vel meis partem delicata.</string>
+    <string name="topic_results">Results</string>
+    <string name="main_page">Main Page</string>
+    <string name="retake">Retake</string>
+    <string name="not_taken">N/A</string>
+    <string name="share_success">Share Your Success!</string>
+    <string name="twitter">Twitter</string>
+    <string name="facebook">Facebook</string>
+    <string name="instagram">Instagam</string>
+    <string name="snapchat">Snapchat</string>
+    <string name="overall_results">Overall Results</string>
+    <string name="message">Message</string>
+    <string name="practice_test">Practice Test</string>
+    <string name="basic">Basic</string>
+    <string name="intermediate">Intermediate</string>
+    <string name="application">Application</string>
+    <string name="advance">Advance</string>
+    <string name="home_content_description">Home Menu</string>
+    <string name="nav_questions_title">Questions</string>
+    <string name="question1">Question 1</string>
+    <string name="question2">Question 2</string>
+    <string name="question3">Question 3</string>
+    <string name="question4">Question 4</string>
+    <string name="question5">Question 5</string>
+    <string name="question6">Question 6</string>
+    <string name="incomplete">Incomplete</string>
+    <string name="dialog_already_answer">Question Already Answered!</string>
+    <string name="tag_dialog_correct">Correct</string>
+    <string name="start">Start</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
+    <string name="nav_menu_title_questions">Questions</string>
+    <string name="google_plus">Google Plus</string>
+    <string name="share_on_twitter">Share on Twitter</string>
+    <string name="share_where_you_choose">Share where you choose</string>
+    <string name="correct_content_description">correct!</string>
+    <string name="incorrect_content_description">incorrect</string>
+    <string name="work_complete">All work complete</string>
+    <string name="next_toast">Next!</string>
+    <string name="retry_dialog">Retry!</string>
+    <string name="share_tag">share</string>
+    <string name="default_title_shared_pref">Practice Test</string>
+
 
 </resources>

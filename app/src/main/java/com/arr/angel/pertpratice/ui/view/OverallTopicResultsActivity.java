@@ -82,7 +82,7 @@ public class OverallTopicResultsActivity extends SingleFragmentActivity {
             @Override
             public void onClick(View view) {
                 DialogShare dialogShare = DialogShare.newInstance(mTopic.getResultPercentage());
-                dialogShare.show(getSupportFragmentManager(), "share");
+                dialogShare.show(getSupportFragmentManager(), getString(R.string.share_tag));
             }
         });
 

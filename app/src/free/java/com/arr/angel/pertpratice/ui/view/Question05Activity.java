@@ -69,10 +69,11 @@ public class Question05Activity extends SingleFragmentActivity {
 
         Toolbar toolbar = activityMainBinding.toolbar;
         setSupportActionBar(toolbar);
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle(UtilMethods.showTopicTitle(topicId));
+
 
         if(getSupportActionBar() != null){
+            ActionBar actionBar = getSupportActionBar();
+            actionBar.setTitle(UtilMethods.showTopicTitle(topicId));
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setHomeAsUpIndicator(R.drawable.ic_menu_white_24dp);
             actionBar.setDisplayShowTitleEnabled(true);

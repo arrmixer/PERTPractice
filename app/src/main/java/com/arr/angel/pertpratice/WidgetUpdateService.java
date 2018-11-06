@@ -64,7 +64,7 @@ public class WidgetUpdateService extends JobIntentService {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        toast("All work complete");
+        toast(getString(R.string.work_complete));
     }
 
     final Handler mHandler = new Handler();

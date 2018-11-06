@@ -283,7 +283,7 @@ public class Question02Fragment extends Fragment {
         currentQuestion = Integer.parseInt(question.getId().substring(3));
         answer = question.getAnswer();
         possibleAnswers = question.getPossibleAnswers();
-        content.setText(questions.get(1).getContent());
+        content.setText(question.getContent());
 
         radio1.setText(possibleAnswers.get(0));
         radio2.setText(possibleAnswers.get(1));

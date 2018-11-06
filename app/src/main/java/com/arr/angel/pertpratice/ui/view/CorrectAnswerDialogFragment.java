@@ -9,6 +9,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.arr.angel.pertpratice.R;
 import com.arr.angel.pertpratice.util.DialogCreations;
@@ -65,7 +66,7 @@ public class CorrectAnswerDialogFragment extends DialogFragment {
                 .setPositiveButton(R.string.dialog_next, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-//                        Toast.makeText(getContext(), "Next!", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(getContext(), R.string.next_toast, Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(getActivity(), DialogCreations.check(nextQuestion));
                         intent.putExtra(EXTRA_IS_CORRECT, true);
                         intent.putExtra(EXTRA_IS_ANSWERED, true);
