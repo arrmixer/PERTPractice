@@ -107,11 +107,6 @@ public class Question04Fragment extends Fragment {
         return question04Fragment;
     }
 
-    //Interface for hosting activities
-    public interface Callbacks {
-        void onTopicSelected(Topic topic, List<Topic> topics);
-    }
-
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);

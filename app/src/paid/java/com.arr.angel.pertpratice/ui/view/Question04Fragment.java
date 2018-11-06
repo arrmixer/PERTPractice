@@ -102,11 +102,6 @@ public class Question04Fragment extends Fragment {
         return question04Fragment;
     }
 
-    //Interface for hosting activities
-    public interface Callbacks {
-        void onTopicSelected(Topic topic, List<Topic> topics);
-    }
-
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
@@ -117,11 +112,6 @@ public class Question04Fragment extends Fragment {
         outState.putInt(EXTRA_IS_NEXT_UNANSWERED_QUESTION_ID, nextUnansweredQuestionId);
         outState.putInt(EXTRA_CURRENT_QUESTION_ID, currentQuestion);
 
-    }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
     }
 
     @Nullable
@@ -241,22 +231,6 @@ public class Question04Fragment extends Fragment {
             }
         });
 
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
     }
 
     @Override

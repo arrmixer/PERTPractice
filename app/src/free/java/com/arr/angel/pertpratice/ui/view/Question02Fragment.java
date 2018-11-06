@@ -105,11 +105,6 @@ public class Question02Fragment extends Fragment {
     //DataBinding instance
     Question02Binding questionBinding;
 
-    //Interface for hosting activities
-    public interface Callbacks {
-        void onTopicSelected(Topic topic, List<Topic> topics);
-    }
-
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);

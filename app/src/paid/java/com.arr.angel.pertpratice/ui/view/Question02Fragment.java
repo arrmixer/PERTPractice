@@ -101,11 +101,6 @@ public class Question02Fragment extends Fragment {
     //DataBinding instance
     Question02Binding questionBinding;
 
-    //Interface for hosting activities
-    public interface Callbacks {
-        void onTopicSelected(Topic topic, List<Topic> topics);
-    }
-
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
@@ -117,11 +112,6 @@ public class Question02Fragment extends Fragment {
         outState.putInt(EXTRA_CURRENT_QUESTION_ID, currentQuestion);
 
 
-    }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
     }
 
     @Nullable
@@ -251,21 +241,6 @@ public class Question02Fragment extends Fragment {
 
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-    }
 
     @Override
     public void onResume() {

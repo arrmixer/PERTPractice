@@ -38,7 +38,6 @@ import static com.arr.angel.pertpratice.ui.view.MainFragment.EXTRA_IS_NEXT_UNANS
 import static com.arr.angel.pertpratice.ui.view.MainFragment.EXTRA_POSSIBLE_ANSWERS;
 
 
-
 public class Question01Fragment extends Fragment {
 
     private static final String TAG = Question01Fragment.class.getSimpleName();
@@ -101,12 +100,6 @@ public class Question01Fragment extends Fragment {
         return question01Fragment;
     }
 
-    //Interface for hosting activities
-    public interface Callbacks {
-//        void onTopicSelected(Topic topic, List<Topic> topics);
-//        void correctDialogFragment();
-    }
-
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
@@ -118,10 +111,6 @@ public class Question01Fragment extends Fragment {
 
     }
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
 
     @Nullable
     @Override
@@ -242,22 +231,6 @@ public class Question01Fragment extends Fragment {
         });
 
 
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
     }
 
     @Override
