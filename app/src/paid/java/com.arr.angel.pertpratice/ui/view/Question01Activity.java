@@ -44,6 +44,7 @@ public class Question01Activity extends SingleFragmentActivity  {
             previousIsCorrect = getIntent().getBooleanExtra(CorrectAnswerDialogFragment.EXTRA_IS_CORRECT, false);
             topicId = getIntent().getIntExtra(EXTRA_TOPIC_ID, 0);
         }
+
         return Question01Fragment.newInstance(previousQuestionId, previousIsCorrect, previousIsAnswered,topicId);
     }
 

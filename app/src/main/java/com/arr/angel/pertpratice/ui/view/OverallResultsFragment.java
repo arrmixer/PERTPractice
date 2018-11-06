@@ -44,21 +44,10 @@ public class OverallResultsFragment extends Fragment implements OverallResultsAd
     TextView overallDescription;
 
     public static OverallResultsFragment newInstance(){
-        OverallResultsFragment overallResultsFragment = new OverallResultsFragment();
 
-        return overallResultsFragment;
+        return new OverallResultsFragment();
     }
 
-    @Override
-    public void onSaveInstanceState(@NonNull Bundle outState) {
-        super.onSaveInstanceState(outState);
-    }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-    }
 
     @Nullable
     @Override

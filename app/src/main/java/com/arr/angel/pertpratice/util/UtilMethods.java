@@ -36,18 +36,13 @@ public class UtilMethods {
             }
         }
 
-//        float percentage = (float) correct / (float) totalQuestions;
-////        int roundPercentage = Math.round(percentage * 100);
-
-        int roundPercentage = calculatePercentage(correct, totalQuestions);
-        return roundPercentage;
+        return calculatePercentage(correct, totalQuestions);
     }
 
 
     public static int calculatePercentage(int correct, int totalQuestions){
         float percentage = (float) correct / (float) totalQuestions;
-        int roundPercentage = Math.round(percentage * 100);
-        return roundPercentage;
+        return Math.round(percentage * 100);
     }
 
 }

@@ -34,9 +34,6 @@ public class OverallTopicResultsActivity extends SingleFragmentActivity {
     private Topic mTopic;
 
 
-
-
-
     @Override
     protected Fragment createFragment() {
         return OverallResultsFragment.newInstance();
