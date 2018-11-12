@@ -11,9 +11,9 @@ A brief description of the PERT test is as follows:
 ## Objective
 The problem I will solve is to give my clients the extra practice they need to get a passing score on the test from their phone or tablet. A passing score is 114 for entering college students or 97 for current high school students who are trying to meet the state of Florida Department of Education’s college readiness criteria.
 
-The app’s main focus is giving the user a set of practice problems for each section including a practice test to allow the user to study for the math section of the PERT from their phone. 
+The app’s focus is giving the user a set of practice problems for each section including a practice test to allow the user to study for the math section of the PERT from their phone.
 
-This project is a massive accumulation of all the concepts I learned throughout my Udacity journey. I tried to apply all the concepts I learned and then some into this personal project.
+This project is an accumulation of all the concepts I learned throughout my Udacity journey. 
 
 ### Credits: 
 Here are some of the resources I used to create and test this project:
