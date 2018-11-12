@@ -1,5 +1,7 @@
 # PERTPratice
 
+## Description
+
 PERTPractice is an educational app that is geared toward clients who are looking to study for the math portion of the PERT test. 
 
 A brief description of the PERT test is as follows: 
