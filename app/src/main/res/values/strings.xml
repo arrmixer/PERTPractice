@@ -4,9 +4,20 @@
     <string name="percentage">%1$d%%</string>
     <string name="question">Question %1$d</string>
     <string name="share">Hey I\'m building my confidence with PERTPractice! I got a %1$d</string>
+    <string name="topic_results_description_excellent">Excellent! Awesome Job getting %1$d%% correct. It seems you have mastered this topic.</string>
+    <string name="topic_results_description_perfect">Excellent! Awesome Job getting %1$d%% correct. You should be proud of yourself.</string>\
+    <string name="topic_results_description_average">Not Bad! You got %1$d%% correct. Your on your way to mastering this topic. Try again!</string>
+    <string name="topic_results_description_below_average">Don\'t Worry! You got %1$d%% correct. Keep working and try again!</string>
+
+    //Topic results
+    <string name="topic_results_description_incomplete">Some questions are unanswered. Please tap on any unanswered question to finish.</string>
 
 
-    //strings for the first example
+    //Overall results strings
+    <string name="overall_results_description_complete">Welcome to the overall results page! Great Job on completing all the content. Tap on any topic to see a detail view of your results.</string>
+    <string name="overall_results_description_incomplete">Welcome to the overall results page! Tap on any topic to either start or resume.</string>
+
+    //strings for the first example PT
     <string name="t1_example_question01_txt1">Step 1 Distribute the 1 in front of the parenthesis:</string>
     <string name="t1_example_question01_txt2">c &#43; 4 &#45; 3c &#45; 2 &#61; 0</string>
     <string name="t1_example_question01_txt4">c &#45; 3c &#43; 4 &#45; 2 &#61; 0</string>
@@ -18,7 +29,7 @@
     <string name="t1_example_question01_txt6">Step 3 apply addition property of equality by adding 2 to both sides:</string>
     <string name="t1_example_question01_txt8">2c &#45; 2 &#43; 2 &#61; 0 &#43; 2</string>
 
-    //strings for the second example
+    //strings for the second example PT
     <string name="t1_example_question02_txt1">Step 1: Find the values of a, b, c in ax²&#43;bx&#43;c:</string>
     <string name="t1_example_question02_txt2">x²&#45;6x&#43;5&#61;0 </string>
     <string name="t1_example_question02_txt3">A&#61;1, B&#61;&#45;6, C&#61;5</string>
@@ -35,13 +46,13 @@
     <string name="t1_example_question02_txt14">x &#45; 1 &#43; 1 &#61; 0 &#43; 1 and x &#45; 5 &#43; 5 &#61; 0 &#43; 5</string>
     <string name="t1_example_question02_txt15">x &#61; 1  and x &#61; 5</string>
 
-    //strings for third example
+    //strings for third example PT
     <string name="t1_example_question03_txt1">Step 1 Multiply and apply the Product rule for exponents: </string>
     <string name="t1_example_question03_txt2">(3&#185;a&#185;b&#185;)(&#45;5&#185;a&#185;b&#185;)</string>
     <string name="t1_example_question03_txt3">3 &#42; &#45;5 &#42; a &#185;&#43;&#185; &#42; b &#185;&#43;&#185;</string>
     <string name="t1_example_question03_txt4">&#45;15a²b²</string>
 
-    //strings for forth example
+    //strings for forth example PT
     <string name="t1_example_question04_txt1">Step 1: Find the values of a, b, c in ax²&#43;bx&#43;c:</string>
     <string name="t1_example_question04_txt2">x²&#45;x&#45;6 </string>
     <string name="t1_example_question04_txt3">A&#61;1, B&#61;&#45;1, C&#61;&#45;6</string>
@@ -57,7 +68,7 @@
     <string name="t1_example_question04_txt13">&#40;x&#43;2&#41;&#40;x&#45;3&#41;</string>
 
 
-    //strings for the fifth example
+    //strings for the fifth example PT
     <string name="t1_example_question05_txt1">Step 1: Apply the order of operations. Do parenthesis first then exponents.</string>
     <string name="t1_example_question05_txt2">&#40;8 &#45; 5&#41;&#47;2³ </string>
     <string name="t1_example_question05_txt3">3&#47;2³</string>
@@ -65,7 +76,7 @@
     <string name="t1_example_question05_txt5">Step 2: Simplify if possible.</string>
     <string name="t1_example_question05_txt6">3&#47;8 is already simplify so leave expression “as is”. Done.  </string>
 
-    //strings for the six example
+    //strings for the six example PT
     <string name="t1_example_question06_txt1">Step 1: Substitute the values into the expression:</string>
     <string name="t1_example_question06_txt2">06 &#42; 1&#47;2 &#42; (&#45;1² &#42; 2) </string>
     <string name="t1_example_question06_txt3">Step 2: Apply the order of operations: </string>
@@ -76,8 +87,9 @@
     <string name="t1_example_question06_txt8">3 &#42; 2 </string>
     <string name="t1_example_question06_txt9">6</string>
 
+
     //general strings
-    <string name="app_name">PERTPratice</string>
+    <string name="app_name">PERTPractice</string>
     <string name="topic_practice">Practice</string>
     <string name="txt_question_example">EXAMPLE</string>
     <string name="action_settings">Settings</string>
@@ -95,9 +107,6 @@
     <string name="not_taken">N/A</string>
     <string name="share_success">Share Your Success!</string>
     <string name="twitter">Twitter</string>
-    <string name="facebook">Facebook</string>
-    <string name="instagram">Instagam</string>
-    <string name="snapchat">Snapchat</string>
     <string name="overall_results">Overall Results</string>
     <string name="message">Message</string>
     <string name="practice_test">Practice Test</string>

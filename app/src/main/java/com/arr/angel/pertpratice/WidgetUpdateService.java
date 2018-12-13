@@ -64,19 +64,19 @@ public class WidgetUpdateService extends JobIntentService {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        toast(getString(R.string.work_complete));
+//        toast(getString(R.string.work_complete));
     }
 
-    final Handler mHandler = new Handler();
+//    final Handler mHandler = new Handler();
 
     // Helper for showing tests
-    void toast(final CharSequence text) {
-        mHandler.post(new Runnable() {
-            @Override
-            public void run() {
-                Toast.makeText(WidgetUpdateService.this, text, Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
+//    void toast(final CharSequence text) {
+//        mHandler.post(new Runnable() {
+//            @Override
+//            public void run() {
+//                Toast.makeText(WidgetUpdateService.this, text, Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//    }
 
 }

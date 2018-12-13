@@ -23,6 +23,7 @@ import com.arr.angel.pertpratice.util.DialogCreations;
 import com.arr.angel.pertpratice.viewmodel.TopicViewModel;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 import static com.arr.angel.pertpratice.ui.view.MainFragment.EXTRA_TOPIC_ID;
 
@@ -88,10 +89,42 @@ public class OverallResultsFragment extends Fragment implements OverallResultsAd
         if (isAdded() && mTopicList != null) {
             OverallResultsAdapter overallResultsAdapter = new OverallResultsAdapter(this, getContext(), mTopicList);
             overallResultsBinding.recyclerViewOverallResults.setAdapter(overallResultsAdapter);
-            overallDescription.setText(getString(R.string.latin_text));
+
+            //logic to add description based on whether all topics completed or not
+            if(allTopicsComplete(mTopicList)){
+                overallDescription.setText(R.string.overall_results_description_complete);
+            }else{
+                overallDescription.setText(R.string.overall_results_description_incomplete);
+            }
+
             overallResultsAdapter.notifyDataSetChanged();
         }
 
+    }
+
+    // TODO: refactor this method into UTIL folder
+    //helper method used to determined if all topics are completed
+    public boolean allTopicsComplete(List<Topic> list){
+        boolean done = true;
+
+
+        for(Topic topic : list){
+
+            //check to see if any questions in the topic are unanswered
+            //if so, assign done to false and break loop
+            for(Question q : topic.getQuestions()){
+                if(!q.isAnswered()){
+                    done = false;
+                    break;
+                }
+            }
+
+            if(!done){
+                break;
+            }
+        }
+
+        return done;
     }
 
     @Override

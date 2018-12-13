@@ -181,7 +181,7 @@ public class TopicResultsFragment extends Fragment implements TopicResultsAdapte
         String resultPercentageString;
         boolean allQuestionAnswered = true;
 
-        //check to see if any of the questons are unanswered
+        //check to see if any of the questions are unanswered
         for (Question q : questions) {
             if (!q.isAnswered()) {
                 allQuestionAnswered = false;
@@ -189,7 +189,7 @@ public class TopicResultsFragment extends Fragment implements TopicResultsAdapte
             }
         }
 
-        //add logic to either display actuall percentage if all the questions are answered
+        //add logic to either display actual percentage if all the questions are answered
         //or "incomplete" otherwise
         if (allQuestionAnswered) {
             //format String percentage
@@ -207,7 +207,26 @@ public class TopicResultsFragment extends Fragment implements TopicResultsAdapte
             resultsPercentage.setText(resultPercentageString);
         }
 
-        resultsDescription.setText(R.string.latin_text);
+        //logic used to display correct description
+        if (allQuestionAnswered){
+
+            if(resultPercentage == 100){
+                String descriptionPerfect = getString(R.string.topic_results_description_perfect, resultPercentage);
+                        resultsDescription.setText(descriptionPerfect);
+            }else if(resultPercentage >= 80 && resultPercentage < 100){
+                String descriptionExcellent = getString(R.string.topic_results_description_excellent, resultPercentage);
+                resultsDescription.setText(descriptionExcellent);
+            }else if(resultPercentage >= 50 && resultPercentage < 80){
+                String descriptionAverage = getString(R.string.topic_results_description_average, resultPercentage);
+                resultsDescription.setText(descriptionAverage);
+            }else if(resultPercentage < 50){
+                String descriptionBelowAverage = getString(R.string.topic_results_description_below_average, resultPercentage);
+                resultsDescription.setText(descriptionBelowAverage);
+            }
+        }else{
+            resultsDescription.setText(R.string.topic_results_description_incomplete);
+        }
+
 
     }
 
@@ -226,6 +245,7 @@ public class TopicResultsFragment extends Fragment implements TopicResultsAdapte
     //add current topic title and results to
     // shared preferences to update widget info
     private void addTopicTitleAndResultPref() {
+
         String title = mTopic.getName();
 
         ResultsSharedPreferences.setPrefTopicId(getContext(), topicId);

@@ -106,7 +106,7 @@ public class MainFragment extends Fragment implements TopicListAdapter.ItemClick
 
     @Override
     public void onItemClickListener(int itemId, String tag) {
-        Toast.makeText(getContext(), "working: " + tag + " "+ itemId, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(getContext(), "working: " + tag + " "+ itemId, Toast.LENGTH_SHORT).show();
         if(tag.equals(getString(R.string.topic_practice))){
             Intent intent = new Intent(getContext(), Question01Activity.class);
             intent.putExtra(EXTRA_TOPIC_ID, itemId);
