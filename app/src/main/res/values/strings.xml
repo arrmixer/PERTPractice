@@ -17,6 +17,7 @@
     <string name="overall_results_description_complete">Welcome to the overall results page! Great Job on completing all the content. Tap on any topic to see a detail view of your results.</string>
     <string name="overall_results_description_incomplete">Welcome to the overall results page! Tap on any topic to either start or resume.</string>
 
+
     //strings for the first example PT
     <string name="t1_example_question01_txt1">Step 1 Distribute the 1 in front of the parenthesis:</string>
     <string name="t1_example_question01_txt2">c &#43; 4 &#45; 3c &#45; 2 &#61; 0</string>
@@ -87,6 +88,301 @@
     <string name="t1_example_question06_txt8">3 &#42; 2 </string>
     <string name="t1_example_question06_txt9">6</string>
 
+    //strings for the first example basic
+    <string name="t2_example_question01_txt1">Step 1: Apply order of operations and add 6 and 7 inside the parenthesis:</string>
+    <string name="t2_example_question01_txt2">7 ⋅ 9 – 4(13) </string>
+    <string name="t2_example_question01_txt3">Step 2: Multiply from left to right 7 times 9 and then 4 times 13: </string>
+    <string name="t2_example_question01_txt4">63 – 52 </string>
+    <string name="t2_example_question01_txt5"> Step 3: Subtract 56 and 52:</string>
+    <string name="t2_example_question01_txt6">11 </string>
+
+    //strings for the second example basic
+    <string name="t2_example_question02_txt1">Step 1: Apply order of operations and calculate 3 cubed:</string>
+    <string name="t2_example_question02_txt2">22 ÷ 11 ⋅ 9 – 9 </string>
+    <string name="t2_example_question02_txt3">Step 2: Divide and Multiply from left to right so 22 divided by 11 first:</string>
+    <string name="t2_example_question02_txt4">2 ⋅ 9 – 9 </string>
+    <string name="t2_example_question02_txt5">Step 3: Now Multiply 2 times 9:</string>
+    <string name="t2_example_question02_txt6">18 – 9</string>
+    <string name="t2_example_question02_txt7">Step 4: Subtract 18 by 9:</string>
+    <string name="t2_example_question02_txt8">9</string>
+
+    //strings for the third example basic
+    <string name="t2_example_question03_txt1">Step 1: Apply order of operations and divide 36 by 6 inside the parenthesis:</string>
+    <string name="t2_example_question03_txt2">2[5\u00B2 + (6)]</string>
+    <string name="t2_example_question03_txt3">Step 2: Calculate the five squared:</string>
+    <string name="t2_example_question03_txt4">2[25 + 6]</string>
+    <string name="t2_example_question03_txt5">Step 3: Add 25 and 6 inside the brackets:</string>
+    <string name="t2_example_question03_txt6">2[31]</string>
+    <string name="t2_example_question03_txt7">Step 4: Multiply 2 and 31:</string>
+    <string name="t2_example_question03_txt8">62</string>
+
+    //strings for forth example basic
+    <string name="t2_example_question04_txt1">Step 1: Substitute the values of a, b, and c:</string>
+    <string name="t2_example_question04_txt2">12\u00B2 + 9 – 4\u00B2</string>
+    <string name="t2_example_question04_txt3">Step 2: calculate 12 squared and -4 squared:</string>
+    <string name="t2_example_question04_txt4">144 + 9 + 16</string>
+    <string name="t2_example_question04_txt5">Step 3: Find the sum of 144, 9, and 16:</string>
+    <string name="t2_example_question04_txt6">169</string>
+
+    //strings for the fifth example basic
+    <string name="t2_example_question05_txt1">Step 1: Substitute the values of a, b, and c:</string>
+    <string name="t2_example_question05_txt2">2(4)(12 + 9)</string>
+    <string name="t2_example_question05_txt3">Step 2: Apply the order of operations and add 12 and 9 inside the parenthesis:</string>
+    <string name="t2_example_question05_txt4">2(4)(21)</string>
+    <string name="t2_example_question05_txt5">Step 3: Multiply from left to right 2 times 4 and then time 21: </string>
+    <string name="t2_example_question05_txt6">168</string>
+
+    //strings for the sixth example basic
+    <string name="t2_example_question06_txt1">Step 1: Substitute the values of a, b, and c:</string>
+    <string name="t2_example_question06_txt2">(12\u00B2 ÷ 4(9)) + 4 </string>
+    <string name="t2_example_question06_txt3">Step 2: Apply the order of operations and calculate 12 squared inside the parenthesis:</string>
+    <string name="t2_example_question06_txt4">(144 ÷ 4(9)) + 4</string>
+    <string name="t2_example_question06_txt5">Step 3: Divide 144 by 4: </string>
+    <string name="t2_example_question06_txt6">(36(9)) + 4</string>
+    <string name="t2_example_question06_txt7">Step 4: Multiply 36 by 9:</string>
+    <string name="t2_example_question06_txt8">324 + 4</string>
+    <string name="t2_example_question06_txt9">Step 5: Add 324 and 4:</string>
+    <string name="t2_example_question06_txt10">328</string>
+
+    //strings for the first example Intermediate
+    <string name="t3_example_question01_txt1">Step 1: Distribute -7 to -6x and 5:</string>
+    <string name="t3_example_question01_txt2">42x - 35 = 385</string>
+    <string name="t3_example_question01_txt3">Step 2: Apply inverse operations and add 35 to both sides:</string>
+    <string name="t3_example_question01_txt4">42x – 35 + 35 = 385 + 35</string>
+    <string name="t3_example_question01_txt5">42x = 420</string>
+    <string name="t3_example_question01_txt6">Step 3: Apply inverse operations and divide -42 to both sides:</string>
+    <string name="t3_example_question01_txt7">42x/42 = 420/42</string>
+    <string name="t3_example_question01_txt8">x = 10</string>
+
+    //strings for the second example Intermediate
+    <string name="t3_example_question02_txt1">Step 1: Combine life terms add -1x and 2x:</string>
+    <string name="t3_example_question02_txt2">16 = x + 8</string>
+    <string name="t3_example_question02_txt3">Step 2: Apply inverse operations and subtract 8 to both sides:</string>
+    <string name="t3_example_question02_txt4">16 – 8 = x + 8 – 8</string>
+    <string name="t3_example_question02_txt5">8 = x</string>
+    <string name="t3_example_question02_txt6">Step 3: Apply symmetric property of equality(optional):</string>
+    <string name="t3_example_question02_txt7">x = 8</string>
+
+    //strings for the third example Intermediate
+    <string name="t3_example_question03_txt1">Step 1: Apply inverse operations and add 2x to both sides:</string>
+    <string name="t3_example_question03_txt2">-2x + 2x + 7 = -35 + 5x + 2x</string>
+    <string name="t3_example_question03_txt3">7 = -35 + 7x</string>
+    <string name="t3_example_question03_txt4">Step 2: Apply inverse operations and add 35 to both sides:</string>
+    <string name="t3_example_question03_txt5">7 + 35 = -35 + 35 + 7x</string>
+    <string name="t3_example_question03_txt6">42 = 7x</string>
+    <string name="t3_example_question03_txt7">Step 3: Apply inverse operations and divide 7 to both sides</string>
+    <string name="t3_example_question03_txt8">42/7 = 7x/7</string>
+    <string name="t3_example_question03_txt9">6 = x</string>
+    <string name="t3_example_question03_txt10">Step 4: Apply symmetric property of equality(optional)</string>
+    <string name="t3_example_question03_txt11">x = 6</string>
+
+    //strings for the forth example Intermediate
+    <string name="t3_example_question04_txt1">Step 1: Substitute 0 for x:</string>
+    <string name="t3_example_question04_txt2">2(0) - y = 3</string>
+    <string name="t3_example_question04_txt3">Step 2: Multiply 2 and 0:</string>
+    <string name="t3_example_question04_txt4">-y = 3</string>
+    <string name="t3_example_question04_txt5">Step 3: Apply inverse operations and divide both sides by -1:</string>
+    <string name="t3_example_question04_txt6">-y/-1 = 3/-1</string>
+    <string name="t3_example_question04_txt7">y = -3</string>
+
+    //strings for the fifth example Intermediate
+    <string name="t3_example_question05_txt1">Step 1: Substitute 0 for y</string>
+    <string name="t3_example_question05_txt2">2x - 0 = 3</string>
+    <string name="t3_example_question05_txt3">Step 2: Subtract 2x and 0:</string>
+    <string name="t3_example_question05_txt4">2x = 3</string>
+    <string name="t3_example_question05_txt5">Step 3: Apply inverse operations and divide both sides by 2:</string>
+    <string name="t3_example_question05_txt6">2x/2 = 3/2</string>
+    <string name="t3_example_question05_txt7">x = 3/2</string>
+
+    //strings for the sixth example Intermediate
+    <string name="t3_example_question06_txt1">Step 1: Rewrite the expression as two different expressions:</string>
+    <string name="t3_example_question06_txt2">2a(3a + b) + b(3a + b)</string>
+    <string name="t3_example_question06_txt3">Step 2: Distribute 2a to (3a + b) and distribute b to (3a + b):</string>
+    <string name="t3_example_question06_txt4">2a(3a) + 2a(b) + b(3a) + b(b)</string>
+    <string name="t3_example_question06_txt5">6a\u00B2 + 2ab + 3ab + b\u00B2</string>
+    <string name="t3_example_question06_txt6">Step 3: Combine like terms</string>
+    <string name="t3_example_question06_txt7">6a\u00B2 + 5ab + b\u00B2</string>
+
+    //strings for the first example Advance
+    <string name="t4_example_question01_txt1">Step 1: Find the values of a, b, c in x\u00B2 – 29x + 100:</string>
+    <string name="t4_example_question01_txt2">x\u00B2 – 29x + 100</string>
+    <string name="t4_example_question01_txt3">A = 1, B = -29, C = 100</string>
+    <string name="t4_example_question01_txt4">Step 2: Since A = 1, Find the factors of C that have a sum that equals to B:</string>
+    <string name="t4_example_question01_txt5">1 + 100 = 101</string>
+    <string name="t4_example_question01_txt6">101 not equal to -29</string>
+    <string name="t4_example_question01_txt7">-1 + -100 = -101</string>
+    <string name="t4_example_question01_txt8">-101 not equal to -29</string>
+    <string name="t4_example_question01_txt9">5 + 25 = 30</string>
+    <string name="t4_example_question01_txt10">-4 + -25 = -29</string>
+    <string name="t4_example_question01_txt11">-29 is equal to -29</string>
+    <string name="t4_example_question01_txt12">So, the factors of C that have a sum of B are -4 and -25.</string>
+    <string name="t4_example_question01_txt13">Step 3: Use the factors to factor out the quadratic expression:</string>
+    <string name="t4_example_question01_txt14">(x – 4)(x – 25) = 0</string>
+    <string name="t4_example_question01_txt15">Step 4: Now make each factor equal to zero and solve for x on each:</string>
+    <string name="t4_example_question01_txt16">x – 4 = 0 and x – 25 = 0 </string>
+    <string name="t4_example_question01_txt17">x – 4 + 4 = 0 + 4 and x – 25 + 25 = 0 + 25</string>
+    <string name="t4_example_question01_txt18">x = 4 and x = 25</string>
+
+    //strings for the second example Advance
+    <string name="t4_example_question02_txt1">Step 1: Find the values of a, b, c in x\u00B2 + 7x + 12:</string>
+    <string name="t4_example_question02_txt2">x\u00B2 + 7x + 12</string>
+    <string name="t4_example_question02_txt3">A = 1, B = 7, C = 12</string>
+    <string name="t4_example_question02_txt4">Step 2: Since A = 1, Find the factors of C that have a sum that equals to B:</string>
+    <string name="t4_example_question02_txt5">1 + 12 = 13</string>
+    <string name="t4_example_question02_txt6">13 not equal to 7</string>
+    <string name="t4_example_question02_txt7">-1 + -12 = -13</string>
+    <string name="t4_example_question02_txt8">-13 not equal to 7</string>
+    <string name="t4_example_question02_txt9">4 + 3 = 7</string>
+    <string name="t4_example_question02_txt10">7 is equal to 7</string>
+    <string name="t4_example_question02_txt11">So, the factors of C that have a sum of B are 4 and 3.</string>
+    <string name="t4_example_question02_txt12">Step 3: Use the factors to factor out the quadratic expression:</string>
+    <string name="t4_example_question02_txt13">(x + 3)(x + 4) = 0</string>
+    <string name="t4_example_question02_txt14">Step 4: Now make each factor equal to zero and solve for x on each:</string>
+    <string name="t4_example_question02_txt15">x + 3 = 0 and x + 4 = 0</string>
+    <string name="t4_example_question02_txt16">x + 3 – 3 = 0 – 3 and x + 4 – 4 = 0 – 4</string>
+    <string name="t4_example_question02_txt17">x = -3 and x = -4</string>
+
+    //strings for the third example Advance
+    <string name="t4_example_question03_txt1">Step 1: Find the values of a, b, c in 4x\u00B2 + 6x + 2:</string>
+    <string name="t4_example_question03_txt2">4x\u00B2 + 6x + 2</string>
+    <string name="t4_example_question03_txt3">A = 4, B = 6, C = 2</string>
+    <string name="t4_example_question03_txt4">Step 2: Since A > 1, Multiply A and C and let’s assign that value to a new variable called D:</string>
+    <string name="t4_example_question03_txt5">4 ⋅ 2 = 8</string>
+    <string name="t4_example_question03_txt6">D = 8</string>
+    <string name="t4_example_question03_txt7">Step 3: Find the factors of D that have a sum that equals to B:</string>
+    <string name="t4_example_question03_txt8">-1 + -8 = -9</string>
+    <string name="t4_example_question03_txt9">-9 is not equal to 6</string>
+    <string name="t4_example_question03_txt10">1 + 8 = 9</string>
+    <string name="t4_example_question03_txt11">9 is not equal to 6</string>
+    <string name="t4_example_question03_txt12">-2 + -4 = -6</string>
+    <string name="t4_example_question03_txt13">-6 is not equal to 6</string>
+    <string name="t4_example_question03_txt14">2 + 4 = 6</string>
+    <string name="t4_example_question03_txt15">6 is equal to 6</string>
+    <string name="t4_example_question03_txt16">So, the factors of D that have a sum of B are 2 and 4.</string>
+    <string name="t4_example_question03_txt17">Step 4: Rewrite the original expression and factor out B with 2 and 4:</string>
+    <string name="t4_example_question03_txt18">4x\u00B2 + 6x + 2</string>
+    <string name="t4_example_question03_txt19">4x\u00B2 + 4x + 2x + 2</string>
+    <string name="t4_example_question03_txt20">Step 5: Factor out the GCF from each pair 4x from 4x\u00B2 + 4x and 2 from 2x + 2:</string>
+    <string name="t4_example_question03_txt21">4x(x + 1) + 2(x + 1)</string>
+    <string name="t4_example_question03_txt22">Step 6: Since both 4x and 2 are multiplying (x + 1) you can group them together:</string>
+    <string name="t4_example_question03_txt23">(4x +2)(x + 1)</string>
+    <string name="t4_example_question03_txt24">Step 7: Now make each factor equal to zero and solve for x on each:</string>
+    <string name="t4_example_question03_txt25">4x + 2 = 0 and x + 1 = 0</string>
+    <string name="t4_example_question03_txt26">4x + 2 – 2 = 0 – 2 and x + 1 – 1 = 0 – 1 </string>
+    <string name="t4_example_question03_txt27">4x = -2 and x = -1</string>
+    <string name="t4_example_question03_txt28">4x/4 = -2/4 and x = -1</string>
+    <string name="t4_example_question03_txt29">x = -1/2 and x = -1</string>
+
+    //strings for the forth example Advance
+    <string name="t4_example_question04_txt1">Step 1: Distribute -4 to x and 10</string>
+    <string name="t4_example_question04_txt2">15 – 4x – 10 \u003C 15</string>
+    <string name="t4_example_question04_txt3">Step 2: Combine like terms 15 and -10:</string>
+    <string name="t4_example_question04_txt4">-4x + 15 – 10 \u003C 15</string>
+    <string name="t4_example_question04_txt5">-4x + 5 \u003C 15</string>
+    <string name="t4_example_question04_txt6">Step 3: Apply inverse operations and add 5 to both sides:</string>
+    <string name="t4_example_question04_txt7">-4x + 5 – 5 \u003C 15 – 5 </string>
+    <string name="t4_example_question04_txt8">-4x \u003C 10</string>
+    <string name="t4_example_question04_txt9">Step 4: Apply inverse operations and divide -4 to both sides:</string>
+    <string name="t4_example_question04_txt10">-4x/-4 \u003C 10/-4</string>
+    <string name="t4_example_question04_txt11">(remember inequality sign switches when dividing or multiplying by a negative)</string>
+    <string name="t4_example_question04_txt12">x > -5/2 or x > -2.5 </string>
+
+    //strings for the fifth example Advance
+    <string name="t4_example_question05_txt1">Step 1: Distribute 3 to 3x and -4:</string>
+    <string name="t4_example_question05_txt2">16 + 9x – 12 ≥ 76</string>
+    <string name="t4_example_question05_txt3">Step 2: Combine like terms 16 and -12:</string>
+    <string name="t4_example_question05_txt4">9x + 16 – 12 ≥ 76</string>
+    <string name="t4_example_question05_txt5">9x + 4 ≥ 76</string>
+    <string name="t4_example_question05_txt6">Step 3: Apply inverse operations and subtract 4 to both sides:</string>
+    <string name="t4_example_question05_txt7">9x + 4 – 4 ≥ 76 – 4</string>
+    <string name="t4_example_question05_txt8">9x ≥ 72</string>
+    <string name="t4_example_question05_txt9">Step 4: Apply inverse operations and divide 9 to both sides:</string>
+    <string name="t4_example_question05_txt10">9x/9 ≥ 72/9</string>
+    <string name="t4_example_question05_txt11">x ≥ 8</string>
+
+    //strings for the sixth example Advance
+    <string name="t4_example_question06_txt1">Step 1: Find the values of a, b, c in 4x\u00B2 + 6x + 2:</string>
+    <string name="t4_example_question06_txt2">x\u00B2 – 3x + 2</string>
+    <string name="t4_example_question06_txt3">A = 1, B = -3, C = 2</string>
+    <string name="t4_example_question06_txt4">Step 2: Since A = 1, Find the factors of C that have a sum that equals to B:</string>
+    <string name="t4_example_question06_txt5">-1 + -2 = -3</string>
+    <string name="t4_example_question06_txt6">-3 is equal to -3</string>
+    <string name="t4_example_question06_txt7">So, the factors of C that have a sum of B are -1 and -2.</string>
+    <string name="t4_example_question06_txt8">Step 3: Use the factors to factor out the quadratic expression:</string>
+    <string name="t4_example_question06_txt9">(x – 1)(x – 2)</string>
+
+    //strings for the first example Application
+    <string name="t5_example_question01_txt1">Step 1: Setup a proportion to find the missing value:</string>
+    <string name="t5_example_question01_txt2">part/whole = part %/whole %</string>
+    <string name="t5_example_question01_txt3">x/50 = 25/100</string>
+    <string name="t5_example_question01_txt4">Step 2: Simplify ratios if possible:</string>
+    <string name="t5_example_question01_txt5">x/50 = 1/4</string>
+    <string name="t5_example_question01_txt6">Step 3: Cross-multiply:</string>
+    <string name="t5_example_question01_txt7">x ⋅ 4 = 50 ⋅ 1</string>
+    <string name="t5_example_question01_txt8">4x = 50</string>
+    <string name="t5_example_question01_txt9">Step 4: Apply inverse operations and divide 4 to both sides:</string>
+    <string name="t5_example_question01_txt10">4x/4 = 50/4</string>
+    <string name="t5_example_question01_txt11">x = 25/2 or x = 12.50</string>
+
+    //strings for the second example Application
+    <string name="t5_example_question02_txt1">Step 1: Setup a proportion to find the missing value:</string>
+    <string name="t5_example_question02_txt2">part/whole = part %/whole %</string>
+    <string name="t5_example_question02_txt3">x/124 = 20/100</string>
+    <string name="t5_example_question02_txt4">Step 2: Simplify ratios if possible:</string>
+    <string name="t5_example_question02_txt5">x/124 = 1/5</string>
+    <string name="t5_example_question02_txt6">Step 3: Cross-multiply:</string>
+    <string name="t5_example_question02_txt7">x ⋅ 5 = 124 ⋅ 1</string>
+    <string name="t5_example_question02_txt8">5x = 124</string>
+    <string name="t5_example_question02_txt9">Step 4: Apply inverse operations and divide 4 to both sides:</string>
+    <string name="t5_example_question02_txt10">5x/5 = 124/5</string>
+    <string name="t5_example_question02_txt11">x = 124/5 or x = 24.80</string>
+
+    //strings for the third example Application
+    <string name="t5_example_question03_txt1">Step 1: Setup a proportion to find the missing value:</string>
+    <string name="t5_example_question03_txt2">part/whole = part %/whole %</string>
+    <string name="t5_example_question03_txt3">x/112 = 15/100</string>
+    <string name="t5_example_question03_txt4">Step 2: Simplify ratios if possible:</string>
+    <string name="t5_example_question03_txt5">x/112 = 3/20</string>
+    <string name="t5_example_question03_txt6">Step 3: Cross-multiply:</string>
+    <string name="t5_example_question03_txt7">x ⋅ 20 = 112 ⋅ 3</string>
+    <string name="t5_example_question03_txt8">20x = 336</string>
+    <string name="t5_example_question03_txt9">Step 4: Apply inverse operations and divide 20 to both sides:</string>
+    <string name="t5_example_question03_txt10">20x/20 = 336/20</string>
+    <string name="t5_example_question03_txt11">x = 84/5 or x = 16.80</string>
+
+    //strings for the forth example Application
+    <string name="t5_example_question04_txt1">Step 1: To find the area of any rectangle apply the formula l ⋅ w:</string>
+    <string name="t5_example_question04_txt2">A = l ⋅ w</string>
+    <string name="t5_example_question04_txt3">A = (x – 3)(x\u00B2 + 8x + 1)</string>
+    <string name="t5_example_question04_txt4">Step 2: Rewrite the expression as two different expressions:</string>
+    <string name="t5_example_question04_txt5">x(x\u00B2 + 8x + 1) – 3(x\u00B2 + 8x + 1) </string>
+    <string name="t5_example_question04_txt6">Step 3: Distribute x to (x\u00B2 + 8x + 1) and distribute -3 to (x\u00B2 + 8x + 1)</string>
+    <string name="t5_example_question04_txt7">x\u00B3 + 8x\u00B2 + 1x – 3x\u00B2 – 24x – 3</string>
+    <string name="t5_example_question04_txt8">Step 4: Combine like terms</string>
+    <string name="t5_example_question04_txt9">x\u00B3 + 8x\u00B2 – 3x\u00B2 + 1x – 24x – 3</string>
+    <string name="t5_example_question04_txt10">x\u00B3 + 5x\u00B2 – 23x – 3</string>
+
+    //strings for the fifth example Application
+    <string name="t5_example_question05_txt1">Step 1: Since the area of a rectangle is represented by l ⋅ w, we can factor out the trinomial to get the two expressions that can represent the length and the width of the garden:</string>
+    <string name="t5_example_question05_txt2">x\u00B2 – 3x + 2</string>
+    <string name="t5_example_question05_txt3">A = 1, B = -3, C = 2</string>
+    <string name="t5_example_question05_txt4">1 + -2 = -3</string>
+    <string name="t5_example_question05_txt5">-3 is equal to -3</string>
+    <string name="t5_example_question05_txt6">So, the factors of C that have a sum of B are -1 and -2.</string>
+    <string name="t5_example_question05_txt7">(x – 1)(x – 2)</string>
+
+    //strings for the sixth example Application
+    <string name="t5_example_question06_txt1">Step 1: Represent 7% as a decimal</string>
+    <string name="t5_example_question06_txt2">7/100 = .07</string>
+    <string name="t5_example_question06_txt3">Step 2: Setup the expression to represent the taxes paid on the TV</string>
+    <string name="t5_example_question06_txt4">.07(1250)</string>
+    <string name="t5_example_question06_txt5">Step 3: Add the expression of step 2 to the cost of the TV to complete the equation</string>
+    <string name="t5_example_question06_txt6">P = 1250 + .07(1250)</string>
+
+
+
+
+
 
     //general strings
     <string name="app_name">PERTPractice</string>
@@ -139,6 +435,7 @@
     <string name="retry_dialog">Retry!</string>
     <string name="share_tag">share</string>
     <string name="default_title_shared_pref">Practice Test</string>
+    <string name="error_no_example_available">Error No Example Available</string>
 
 
 </resources>

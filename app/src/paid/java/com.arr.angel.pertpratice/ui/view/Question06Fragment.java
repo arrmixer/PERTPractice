@@ -209,6 +209,8 @@ public class Question06Fragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), Example6.class);
+                intent.putExtra(EXTRA_CURRENT_QUESTION_ID, currentQuestion);
+                intent.putExtra(MainFragment.EXTRA_TOPIC_ID, topicId);
                 startActivity(intent);
             }
         });
@@ -247,10 +249,16 @@ public class Question06Fragment extends Fragment {
 
 
         possibleAnswers = question.getPossibleAnswers();
-        String line1 = question.getContent().substring(0, 77);
-        String line2 = question.getContent().substring(77);
-        content.setText(line1);
-        content2.setText(line2);
+
+        //only use the two text views for the topic 0.. to long
+        if(mTopic.getId() == 0){
+            String line1 = question.getContent().substring(0, 77);
+            String line2 = question.getContent().substring(77);
+            content.setText(line1);
+            content2.setText(line2);
+        }
+        content.setText(question.getContent());
+        content2.setVisibility(View.INVISIBLE);
 
         radio1.setText(possibleAnswers.get(0));
         radio2.setText(possibleAnswers.get(1));

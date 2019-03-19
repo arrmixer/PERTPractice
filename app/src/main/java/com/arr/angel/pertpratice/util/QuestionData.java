@@ -73,7 +73,7 @@ public class QuestionData {
         Question question6Basic = new Question("BA06");
 
         question1Basic.setContent("Which of the following is equivalent to 7 ⋅ 9 - 4(6 + 7)?");
-        question1Basic.setPossibleAnswers(makePossibleAnswers("676", "455", "13", "4"));
+        question1Basic.setPossibleAnswers(makePossibleAnswers("676", "455", "13", "11"));
         question1Basic.setAnswer(question1Basic.getPossibleAnswers().get(3));
 
         question2Basic.setContent("Which of the following is equivalent to 22 ÷ 11 ⋅ 9 - 3\u00B3?");
@@ -86,14 +86,14 @@ public class QuestionData {
 
         question4Basic.setContent("Evaluate the expression a\u00B2 + b - c\u00B2 if a = 12, b = 9, and c = 4.");
         question4Basic.setPossibleAnswers(makePossibleAnswers("7", "137", "152", "169"));
-        question4Basic.setAnswer(question4Basic.getPossibleAnswers().get(1));
+        question4Basic.setAnswer(question4Basic.getPossibleAnswers().get(3));
 
         question5Basic.setContent("Evaluate the expression 2c(a + b) if a = 12, b = 9, and c = 4.");
         question5Basic.setPossibleAnswers(makePossibleAnswers("126", "160", "8", "168"));
         question5Basic.setAnswer(question5Basic.getPossibleAnswers().get(3));
 
         question6Basic.setContent("Evaluate the expression (a\u00B2 ÷ 4b) + c if a = 12, b = 9, and c = 4.");
-        question6Basic.setPossibleAnswers(makePossibleAnswers("4.75", "31", "8", "36"));
+        question6Basic.setPossibleAnswers(makePossibleAnswers("8", "31", "328", "36"));
         question6Basic.setAnswer(question6Basic.getPossibleAnswers().get(2));
 
         questionListBasic.add(question1Basic);
@@ -136,7 +136,7 @@ public class QuestionData {
         question5Intermediate.setAnswer(question5Intermediate.getPossibleAnswers().get(1));
 
         question6Intermediate.setContent("Which of the following is equivalent to the expression (2a + b)(3a + b)?");
-        question6Intermediate.setPossibleAnswers(makePossibleAnswers("-12a\u00B2b\u00B2", "6a\u00B2-14ab-4b\u00B2", "6a\u00B2-10ab-4b\u00B2", "(2a + b)(3a + b)"));
+        question6Intermediate.setPossibleAnswers(makePossibleAnswers("-12a\u00B2b\u00B2", "6a\u00B2-10ab-4b\u00B2", "6a\u00B2+6ab+b\u00B2", "13a\u00B3b\u00B3"));
         question6Intermediate.setAnswer(question6Intermediate.getPossibleAnswers().get(2));
 
         questionListIntermediate.add(question1Intermediate);
@@ -161,16 +161,16 @@ public class QuestionData {
 
         question1Advance.setContent("Which of the following is a solution to the equation: x\u00B2 - 29x + 100 = 0?");
         question1Advance.setPossibleAnswers(makePossibleAnswers("x = 4, x = 25", "x = -4, x = -25","x = -10, x = -10", "x = 10, x = 10"));
-        question1Advance.setAnswer(question1Advance.getPossibleAnswers().get(1));
+        question1Advance.setAnswer(question1Advance.getPossibleAnswers().get(0));
 
         question2Advance.setContent("Which of the following is a solution to the equation: x\u00B2 + 7x + 12 = 0?");
         question2Advance.setPossibleAnswers(makePossibleAnswers("x = 3, x = 4", "x = -3, x = -4","x = -6, x = -2", "x = 6, x = 2"));
-        question2Advance.setAnswer(question2Advance.getPossibleAnswers().get(0));
+        question2Advance.setAnswer(question2Advance.getPossibleAnswers().get(1));
 
 
         question3Advance.setContent("Which of the following is a solution to the equation: 4x\u00B2 + 6x + 2 = 0?");
         question3Advance.setPossibleAnswers(makePossibleAnswers("x = 2, x = 1", "x = -2, x = -1","x = -1/2, x = -1", "x = 1/2, x = -1"));
-        question3Advance.setAnswer(question3Advance.getPossibleAnswers().get(3));
+        question3Advance.setAnswer(question3Advance.getPossibleAnswers().get(2));
 
         question4Advance.setContent("Which of the following is a solution to the inequality 15 - 4(x + 10) < 15?");
         question4Advance.setPossibleAnswers(makePossibleAnswers("x < -10","x > -10","x > -2.5","x < -2.5"));
@@ -180,7 +180,7 @@ public class QuestionData {
         question5Advance.setPossibleAnswers(makePossibleAnswers("x ≤ 8","x ≥ 11 ","x ≥ 12","x ≥ 8"));
         question5Advance.setAnswer(question5Advance.getPossibleAnswers().get(3));
 
-        question6Advance.setContent("Factor completely: x\u00B2 -3x + 2");
+        question6Advance.setContent("Factor completely: x\u00B2 - 3x + 2");
         question6Advance.setPossibleAnswers(makePossibleAnswers("(x + 1)(x + 2)","(x - 2)(x - 1)","(x + 3)(x - 1)","(x - 3)(x + 1)"));
         question6Advance.setAnswer(question6Advance.getPossibleAnswers().get(1));
 

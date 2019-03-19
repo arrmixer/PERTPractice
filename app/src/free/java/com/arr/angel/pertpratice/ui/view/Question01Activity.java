@@ -18,7 +18,6 @@ import com.arr.angel.pertpratice.databinding.ActivityMainBinding;
 import com.arr.angel.pertpratice.databinding.NavheaderBinding;
 import com.arr.angel.pertpratice.util.NavigationDrawerMenuMethods;
 import com.arr.angel.pertpratice.util.UtilMethods;
-import com.google.android.gms.ads.MobileAds;
 
 import static com.arr.angel.pertpratice.ui.view.MainFragment.EXTRA_CURRENT_QUESTION_ID;
 import static com.arr.angel.pertpratice.ui.view.MainFragment.EXTRA_TOPIC_ID;
@@ -119,9 +118,6 @@ public class Question01Activity extends SingleFragmentActivity  {
                         return true;
                     }
                 });
-
-        MobileAds.initialize(this, getString(R.string.mobile_ads_application_id));
-
 
     }
 

@@ -214,6 +214,8 @@ public class Question03Fragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), Example3.class);
+                intent.putExtra(EXTRA_CURRENT_QUESTION_ID, currentQuestion);
+                intent.putExtra(MainFragment.EXTRA_TOPIC_ID, topicId);
                 startActivity(intent);
             }
         });
