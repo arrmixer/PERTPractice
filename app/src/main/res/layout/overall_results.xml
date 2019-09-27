@@ -7,12 +7,12 @@
 
     </data>
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
 
-        <android.support.v7.widget.RecyclerView
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view_overall_results"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -38,5 +38,5 @@
             app:layout_constraintTop_toBottomOf="@+id/recycler_view_overall_results" />
 
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

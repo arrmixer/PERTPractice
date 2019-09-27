@@ -1,6 +1,6 @@
 package com.arr.angel.pertpratice.db;
 
-import android.arch.persistence.room.TypeConverter;
+import androidx.room.TypeConverter;
 
 import com.arr.angel.pertpratice.model.Question;
 import com.google.gson.Gson;

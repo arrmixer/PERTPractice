@@ -1,7 +1,7 @@
 package com.arr.angel.pertpratice.db;
 
 import android.app.Application;
-import android.arch.lifecycle.LiveData;
+import androidx.lifecycle.LiveData;
 
 import com.arr.angel.pertpratice.model.Topic;
 import com.arr.angel.pertpratice.util.TopicData;

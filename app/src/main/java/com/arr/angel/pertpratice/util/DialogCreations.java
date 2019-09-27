@@ -1,6 +1,6 @@
 package com.arr.angel.pertpratice.util;
 
-import android.support.v4.app.FragmentManager;
+import androidx.fragment.app.FragmentManager;
 
 import com.arr.angel.pertpratice.ui.view.AlreadyAnsweredDialogFragment;
 import com.arr.angel.pertpratice.ui.view.CorrectAnswerDialogFragment;
