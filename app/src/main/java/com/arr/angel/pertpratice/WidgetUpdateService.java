@@ -4,10 +4,9 @@ import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Handler;
-import android.support.annotation.NonNull;
-import android.support.v4.app.JobIntentService;
-import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.core.app.JobIntentService;
 
 public class WidgetUpdateService extends JobIntentService {
 

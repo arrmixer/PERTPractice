@@ -1,19 +1,19 @@
 package com.arr.angel.pertpratice.ui.view;
 
-import android.support.test.espresso.PerformException;
-import android.support.test.espresso.UiController;
-import android.support.test.espresso.ViewAction;
-import android.support.test.espresso.action.CoordinatesProvider;
-import android.support.test.espresso.action.PrecisionDescriber;
-import android.support.test.espresso.action.Swiper;
-import android.support.test.espresso.matcher.ViewMatchers;
-import android.support.test.espresso.util.HumanReadables;
+import androidx.test.espresso.PerformException;
+import androidx.test.espresso.UiController;
+import androidx.test.espresso.ViewAction;
+import androidx.test.espresso.action.CoordinatesProvider;
+import androidx.test.espresso.action.PrecisionDescriber;
+import androidx.test.espresso.action.Swiper;
+import androidx.test.espresso.matcher.ViewMatchers;
+import androidx.test.espresso.util.HumanReadables;
 import android.view.View;
 import android.view.ViewConfiguration;
 
 import org.hamcrest.Matcher;
 
-import static android.support.test.espresso.matcher.ViewMatchers.withEffectiveVisibility;
+import static androidx.test.espresso.matcher.ViewMatchers.withEffectiveVisibility;
 
 /*helper class to mimic swiping on screen had to use because
 * recycler view actions didn't work properly in a coordinator layout

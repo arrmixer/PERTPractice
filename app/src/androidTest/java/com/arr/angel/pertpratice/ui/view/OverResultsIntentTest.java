@@ -2,11 +2,11 @@ package com.arr.angel.pertpratice.ui.view;
 
 import android.app.Activity;
 import android.app.Instrumentation;
-import android.support.annotation.StringRes;
-import android.support.test.espresso.ViewInteraction;
-import android.support.test.espresso.contrib.RecyclerViewActions;
-import android.support.test.espresso.intent.rule.IntentsTestRule;
-import android.support.test.runner.AndroidJUnit4;
+import androidx.annotation.StringRes;
+import androidx.test.espresso.ViewInteraction;
+import androidx.test.espresso.contrib.RecyclerViewActions;
+import androidx.test.espresso.intent.rule.IntentsTestRule;
+import androidx.test.runner.AndroidJUnit4;
 
 import com.arr.angel.pertpratice.R;
 
@@ -16,18 +16,18 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import static android.support.test.espresso.Espresso.onView;
-import static android.support.test.espresso.action.ViewActions.click;
-import static android.support.test.espresso.assertion.ViewAssertions.matches;
-import static android.support.test.espresso.intent.Intents.intended;
-import static android.support.test.espresso.intent.Intents.intending;
-import static android.support.test.espresso.intent.matcher.IntentMatchers.hasComponent;
-import static android.support.test.espresso.intent.matcher.IntentMatchers.hasExtra;
-import static android.support.test.espresso.intent.matcher.IntentMatchers.isInternal;
-import static android.support.test.espresso.matcher.ViewMatchers.hasDescendant;
-import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static android.support.test.espresso.matcher.ViewMatchers.withId;
-import static android.support.test.espresso.matcher.ViewMatchers.withText;
+import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.action.ViewActions.click;
+import static androidx.test.espresso.assertion.ViewAssertions.matches;
+import static androidx.test.espresso.intent.Intents.intended;
+import static androidx.test.espresso.intent.Intents.intending;
+import static androidx.test.espresso.intent.matcher.IntentMatchers.hasComponent;
+import static androidx.test.espresso.intent.matcher.IntentMatchers.hasExtra;
+import static androidx.test.espresso.intent.matcher.IntentMatchers.isInternal;
+import static androidx.test.espresso.matcher.ViewMatchers.hasDescendant;
+import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static androidx.test.espresso.matcher.ViewMatchers.withId;
+import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static com.arr.angel.pertpratice.ui.view.TopicResultsFragmentTest.withMenuIdOrText;
 import static com.arr.angel.pertpratice.ui.view.TopicResultsFragmentTest.withViewAtPosition;
 import static org.hamcrest.Matchers.allOf;
@@ -50,14 +50,14 @@ public class OverResultsIntentTest {
     public void intentOnRecyclerViewItemHasExtras1(){
         ViewInteraction recyclerView = onView(
                 withId(R.id.recycler_view_overall_results));
-//        recyclerView.check(matches(withViewAtPosition(0,
-////                hasDescendant(allOf(withText(R.string.practice_test),
-////                        isDisplayed()))))).perform(click());
-
-        questionClicked(recyclerView, R.string.practice_test, 0);
-
-
-        intended(AllOf.allOf(hasExtra(MainFragment.EXTRA_TOPIC_ID, 0)));
+        //recyclerView.check(matches(withViewAtPosition(0,
+        //        hasDescendant(allOf(withText(R.string.practice_test),
+        //                isDisplayed()))))).perform(click());
+        //
+        //questionClicked(recyclerView, R.string.practice_test, 0);
+        //
+        //
+        //intended(AllOf.allOf(hasExtra(MainFragment.EXTRA_TOPIC_ID, 0)));
 
         //        only pass if question is not already answered
 //        intended(AllOf.allOf(hasComponent("com.arr.angel.pertpratice.ui.view.Question01Activity")));

@@ -13,7 +13,11 @@ buildscript {
         jcenter()
     }
     dependencies {
+<<<<<<< HEAD
         classpath 'com.android.tools.build:gradle:3.4.0'
+=======
+        classpath 'com.android.tools.build:gradle:3.4.2'
+>>>>>>> d6d97a05a9b1def7bbb2e8fc7aca20846b5024f6
         
 
         // NOTE: Do not place your application dependencies here; they belong

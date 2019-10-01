@@ -7,13 +7,13 @@
 
     </data>
 
-    <android.support.design.card.MaterialCardView
+    <com.google.android.material.card.MaterialCardView
         android:layout_height="228dp"
         android:layout_width="match_parent"
         app:cardCornerRadius="2dp"
         android:elevation="3dp"
         app:cardUseCompatPadding="true">
-        <android.support.constraint.ConstraintLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -30,7 +30,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="Pratice Test" />
 
-            <android.support.v7.widget.AppCompatImageView
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/imageTopic"
                 android:layout_width="0dp"
                 android:layout_height="160dp"
@@ -68,7 +68,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/buttonPractice" />
 
-        </android.support.constraint.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </android.support.design.card.MaterialCardView>
+    </com.google.android.material.card.MaterialCardView>
 </layout>

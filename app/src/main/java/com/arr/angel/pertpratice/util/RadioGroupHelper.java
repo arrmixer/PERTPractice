@@ -1,6 +1,6 @@
 package com.arr.angel.pertpratice.util;
 
-import android.support.v4.app.FragmentManager;
+import androidx.fragment.app.FragmentManager;
 import android.widget.RadioGroup;
 
 import com.arr.angel.pertpratice.R;
