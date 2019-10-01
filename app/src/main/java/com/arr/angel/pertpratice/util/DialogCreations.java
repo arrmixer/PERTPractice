@@ -47,8 +47,6 @@ public class DialogCreations {
         }
     }
 
-
-
     //helper method to launch correct question activity
     public static Class check(int question){
 
@@ -69,6 +67,4 @@ public class DialogCreations {
         return TopicResultsActivity.class;
 
     }
-
-
 }
