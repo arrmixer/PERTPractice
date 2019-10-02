@@ -21,14 +21,11 @@ public class AlreadyAnsweredDialogFragment extends DialogFragment {
 
     private static String TAG = CorrectAnswerDialogFragment.class.getSimpleName();
 
-    //placeholder for int to the next question
-    //and topic id
     private int currentQuestion;
     private int nextQuestion;
     private int topicId;
     private boolean isCorrect;
 
-    //adding the int of the next question to figure out the next activity to launch
     public static AlreadyAnsweredDialogFragment newInstance(int currentQuestion, int nextQuestion, int topicId, boolean isCorrect) {
 
         AlreadyAnsweredDialogFragment alreadyAnsweredDialogFragment = new AlreadyAnsweredDialogFragment();
@@ -42,17 +39,11 @@ public class AlreadyAnsweredDialogFragment extends DialogFragment {
         return alreadyAnsweredDialogFragment;
     }
 
-
-
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
-
-
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
-
-        //make sure bundle has int value
         if (getArguments() != null) {
             currentQuestion = getArguments().getInt(DialogCreations.currentQuestionNumberArg);
             nextQuestion = getArguments().getInt(DialogCreations.nextQuestionNumberArg);
@@ -63,19 +54,14 @@ public class AlreadyAnsweredDialogFragment extends DialogFragment {
             nextQuestion = 0;
         }
 
-
         builder.setMessage(R.string.dialog_already_answer)
-                .setPositiveButton(R.string.dialog_next, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-//                        Toast.makeText(getContext(), R.string.next_toast, Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(getActivity(), DialogCreations.check(nextQuestion));
-                        intent.putExtra(EXTRA_CURRENT_QUESTION_ID, currentQuestion);
-                        intent.putExtra(MainFragment.EXTRA_TOPIC_ID, topicId);
-                        intent.putExtra(CorrectAnswerDialogFragment.EXTRA_IS_ANSWERED, true);
-                        intent.putExtra(CorrectAnswerDialogFragment.EXTRA_IS_CORRECT, isCorrect);
-                        startActivity(intent);
-                    }
+                .setPositiveButton(R.string.dialog_next, (dialogInterface, i) -> {
+                    Intent intent = new Intent(getActivity(), DialogCreations.check(nextQuestion));
+                    intent.putExtra(EXTRA_CURRENT_QUESTION_ID, currentQuestion);
+                    intent.putExtra(MainFragment.EXTRA_TOPIC_ID, topicId);
+                    intent.putExtra(CorrectAnswerDialogFragment.EXTRA_IS_ANSWERED, true);
+                    intent.putExtra(CorrectAnswerDialogFragment.EXTRA_IS_CORRECT, isCorrect);
+                    startActivity(intent);
                 });
 
         return builder.create();

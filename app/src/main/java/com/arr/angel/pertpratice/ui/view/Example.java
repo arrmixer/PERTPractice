@@ -21,9 +21,6 @@ import static com.arr.angel.pertpratice.ui.view.MainFragment.EXTRA_TOPIC_ID;
 public class Example extends AppCompatActivity {
 
     private static String TAG = Example.class.getSimpleName();
-
-    //placeholder for current question int
-    //and topicId
     private int currentQuestion;
     private int topicId;
 
@@ -47,7 +44,6 @@ public class Example extends AppCompatActivity {
             topicId = savedInstanceState.getInt(EXTRA_TOPIC_ID);
             currentQuestion = savedInstanceState.getInt(EXTRA_CURRENT_QUESTION_ID);
         }
-
 
         switch (topicId) {
             case 0:
@@ -74,8 +70,6 @@ public class Example extends AppCompatActivity {
                 setContentView(R.layout.no_example_available);
                 break;
         }
-
-
     }
 
     /*Decided to just keep example to just 6 activities that inflate the
@@ -86,12 +80,9 @@ public class Example extends AppCompatActivity {
     //TODO: move question example strings into question object inside FireBase
 
     private void practiceTestExample() {
-
         Example01Binding example01Binding =
                 DataBindingUtil.setContentView(this, R.layout.example01);
 
-
-        //populate the text views
         example01Binding.textView1.setText(R.string.t1_example_question01_txt1);
 
         example01Binding.textView2.setText(R.string.t1_example_question01_txt2);
@@ -113,7 +104,6 @@ public class Example extends AppCompatActivity {
         example01Binding.textView10.setText(R.string.t1_example_question01_txt10);
 
         example01Binding.textView11.setText(R.string.t1_example_question01_txt11);
-
     }
 
     private void basicExample() {
@@ -121,8 +111,6 @@ public class Example extends AppCompatActivity {
         BasicExample01Binding basicExample01Binding =
                 DataBindingUtil.setContentView(this, R.layout.basic_example01);
 
-
-        //populate the text views
         basicExample01Binding.textView1.setText(R.string.t2_example_question01_txt1);
 
         basicExample01Binding.textView2.setText(R.string.t2_example_question01_txt2);
@@ -134,7 +122,6 @@ public class Example extends AppCompatActivity {
         basicExample01Binding.textView5.setText(R.string.t2_example_question01_txt5);
 
         basicExample01Binding.textView6.setText(R.string.t2_example_question01_txt6);
-
     }
 
     private void intermediateExample(){
@@ -142,8 +129,6 @@ public class Example extends AppCompatActivity {
         IntermediateExample01Binding intermediateExample01Binding =
                 DataBindingUtil.setContentView(this, R.layout.intermediate_example01);
 
-
-        //populate the text views
         intermediateExample01Binding.textView1.setText(R.string.t3_example_question01_txt1);
 
         intermediateExample01Binding.textView2.setText(R.string.t3_example_question01_txt2);
@@ -159,16 +144,12 @@ public class Example extends AppCompatActivity {
         intermediateExample01Binding.textView7.setText(R.string.t3_example_question01_txt5);
 
         intermediateExample01Binding.textView8.setText(R.string.t3_example_question01_txt8);
-
     }
 
     private void advanceExample(){
-
         AdvanceExample01Binding advanceExample01Binding =
                 DataBindingUtil.setContentView(this, R.layout.advance_example01);
 
-
-        //populate the text views
         advanceExample01Binding.textView1.setText(R.string.t4_example_question01_txt1);
 
         advanceExample01Binding.textView2.setText(R.string.t4_example_question01_txt2);
@@ -204,16 +185,12 @@ public class Example extends AppCompatActivity {
         advanceExample01Binding.textView17.setText(R.string.t4_example_question01_txt17);
 
         advanceExample01Binding.textView18.setText(R.string.t4_example_question01_txt18);
-
     }
 
     private void applicationTestExample() {
-
         ApplicationExample01Binding applicationExample01Binding =
                 DataBindingUtil.setContentView(this, R.layout.application_example01);
 
-
-        //populate the text views
         applicationExample01Binding.textView1.setText(R.string.t5_example_question01_txt1);
 
         applicationExample01Binding.textView2.setText(R.string.t5_example_question01_txt2);
@@ -235,8 +212,5 @@ public class Example extends AppCompatActivity {
         applicationExample01Binding.textView10.setText(R.string.t5_example_question01_txt10);
 
         applicationExample01Binding.textView11.setText(R.string.t5_example_question01_txt11);
-
     }
-
-
 }

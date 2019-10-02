@@ -29,18 +29,13 @@ import static com.arr.angel.pertpratice.ui.view.MainFragment.EXTRA_TOPIC_ID;
 
 
 public class TopicResultsActivity extends SingleFragmentActivity {
-
-
     private static final String TAG = TopicResultsActivity.class.getSimpleName();
 
-    //placeholders for values of previous question
-    // and topicId
     private int previousQuestionId;
     private boolean isAnswered;
     private boolean isCorrect;
     private int topicId;
 
-    //viewModel instance to share with fragment
     private TopicViewModel topicViewModel;
     private Topic mTopic;
     private List<Question> questions;
@@ -68,7 +63,6 @@ public class TopicResultsActivity extends SingleFragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ActivityMainBinding activityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-//        setContentView(R.layout.activity_main);
 
         if (savedInstanceState != null) {
             topicId = savedInstanceState.getInt(EXTRA_TOPIC_ID);
@@ -96,29 +90,22 @@ public class TopicResultsActivity extends SingleFragmentActivity {
         }
 
         final FloatingActionButton floatingActionButton = activityMainBinding.floatingActionButton;
-        floatingActionButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                DialogShare dialogShare = DialogShare.newInstance(mTopic.getResultPercentage());
-                dialogShare.show(getSupportFragmentManager(), getString(R.string.share_tag));
-            }
+        floatingActionButton.setOnClickListener(view -> {
+            DialogShare dialogShare = DialogShare.newInstance(mTopic.getResultPercentage());
+            dialogShare.show(getSupportFragmentManager(), getString(R.string.share_tag));
         });
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main_menu, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        //noinspection SimplifiableIfStatement
+
         if (id == R.id.main_settings) {
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
@@ -135,8 +122,7 @@ public class TopicResultsActivity extends SingleFragmentActivity {
             startActivity(intent);
             return true;
         }
+
         return super.onOptionsItemSelected(item);
     }
-
-
 }

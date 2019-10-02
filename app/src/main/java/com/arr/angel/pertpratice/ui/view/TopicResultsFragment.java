@@ -34,46 +34,23 @@ import static com.arr.angel.pertpratice.ui.view.MainFragment.EXTRA_TOPIC_ID;
 public class TopicResultsFragment extends Fragment implements TopicResultsAdapter.ItemClickListenerTopicResults {
 
     private static final String TAG = TopicResultsFragment.class.getSimpleName();
-
-    //instance of ViewModel
     private TopicViewModel topicViewModel;
-
-    //DataBinding instance
     TopicResultsBinding topicResultsBinding;
 
-
-    //views
     private TextView resultsTitle;
     private TextView resultsPercentage;
     private TextView resultsDescription;
 
-
-    /*Placeholders for Topics, question fields,
-     * and topicId*/
     private Topic mTopic;
     private List<Question> questions;
     private Question question;
-
-    //boolean values of previous questions
     private int previousQuestionId;
     private boolean previousIsAnswered;
     private boolean previousIsCorrect;
-
-    //placeholder for topicId and results
     private int topicId;
     private int resultPercentage;
 
-
-//    @Override
-//    public void onAttach(Context context) {
-//        super.onAttach(context);
-//        //must implement interface on MainActivity
-//        //because cast is unchecked
-//        mCallbacks = (Callbacks) context;
-//    }
-
     public static TopicResultsFragment newInstance(int previousQuestionId, boolean correct, boolean answered, int topicId) {
-
         TopicResultsFragment topicResultsFragment = new TopicResultsFragment();
 
         Bundle bundle = new Bundle();
@@ -84,22 +61,18 @@ public class TopicResultsFragment extends Fragment implements TopicResultsAdapte
         topicResultsFragment.setArguments(bundle);
 
         return topicResultsFragment;
-
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-
         topicResultsBinding = DataBindingUtil.inflate(inflater, R.layout.topic_results, container, false);
         topicResultsBinding.setLifecycleOwner(this);
 
         topicResultsBinding.recyclerViewTopicResults.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-
         return topicResultsBinding.getRoot();
-
     }
 
     @Override
@@ -119,50 +92,27 @@ public class TopicResultsFragment extends Fragment implements TopicResultsAdapte
 
         topicViewModel = ViewModelProviders.of(this).get(TopicViewModel.class);
 
+        topicViewModel.getLiveTopicDataFromDB(topicId).observe(this, topic -> {
+            mTopic = topic;
+            populateView();
+            setupAdapter();
 
-        topicViewModel.getLiveTopicDataFromDB(topicId).observe(this, new Observer<Topic>() {
-            @Override
-            public void onChanged(@Nullable Topic topic) {
+            Question previousQuestion;
 
-                // only want to load topic from db once
-//                if(mTopic == null){
+            if (previousIsAnswered) {
+                previousQuestion = questions.get(previousQuestionId - 1);
+                previousQuestion.setCorrect(previousIsCorrect);
+                previousQuestion.setAnswered(previousIsAnswered);
+                mTopic.setResultPercentage(UtilMethods.calculateTotalPercentage(mTopic.getQuestions()));
+                topicViewModel.insertTopic(mTopic);
 
-                mTopic = topic;
-                populateView();
-                setupAdapter();
-
-                Question previousQuestion;
-
-                if (previousIsAnswered) {
-
-                    //questions are indexed at 1 not 0
-                    previousQuestion = questions.get(previousQuestionId - 1);
-                    previousQuestion.setCorrect(previousIsCorrect);
-                    previousQuestion.setAnswered(previousIsAnswered);
-                    mTopic.setResultPercentage(UtilMethods.calculateTotalPercentage(mTopic.getQuestions()));
-                    topicViewModel.insertTopic(mTopic);
-
-                    //reset boolean to keep onchange from updating
-                    previousIsAnswered = false;
-                }
-                addTopicTitleAndResultPref();
-//                }
-
-
+                previousIsAnswered = false;
             }
+            addTopicTitleAndResultPref();
+
         });
-
-
     }
 
-    //release the callback once the fragment is detached
-//    @Override
-//    public void onDetach() {
-//        super.onDetach();
-//        mCallbacks = null;
-//    }
-
-    //    make sure data is in before assigning to adapter
     private void setupAdapter() {
         if (isAdded() && mTopic != null) {
             TopicResultsAdapter topicResultsAdapter = new TopicResultsAdapter(this, getContext(), mTopic);
@@ -171,17 +121,13 @@ public class TopicResultsFragment extends Fragment implements TopicResultsAdapte
         }
     }
 
-
-    //helper method to populate views of topic results layout
     public void populateView() {
-        //get questions from topic and results
         questions = mTopic.getQuestions();
         resultPercentage = mTopic.getResultPercentage();
 
         String resultPercentageString;
         boolean allQuestionAnswered = true;
 
-        //check to see if any of the questions are unanswered
         for (Question q : questions) {
             if (!q.isAnswered()) {
                 allQuestionAnswered = false;
@@ -189,10 +135,7 @@ public class TopicResultsFragment extends Fragment implements TopicResultsAdapte
             }
         }
 
-        //add logic to either display actual percentage if all the questions are answered
-        //or "incomplete" otherwise
         if (allQuestionAnswered) {
-            //format String percentage
             resultPercentageString = getString(R.string.percentage, resultPercentage);
         } else {
             resultPercentageString = getString(R.string.incomplete);
@@ -202,14 +145,11 @@ public class TopicResultsFragment extends Fragment implements TopicResultsAdapte
 
         String resultsTextInTextView = resultsPercentage.getText().toString();
 
-        //only change textView if result is different
         if(!resultsTextInTextView.equals(resultPercentageString)){
             resultsPercentage.setText(resultPercentageString);
         }
 
-        //logic used to display correct description
         if (allQuestionAnswered){
-
             if(resultPercentage == 100){
                 String descriptionPerfect = getString(R.string.topic_results_description_perfect, resultPercentage);
                         resultsDescription.setText(descriptionPerfect);
@@ -223,15 +163,11 @@ public class TopicResultsFragment extends Fragment implements TopicResultsAdapte
                 String descriptionBelowAverage = getString(R.string.topic_results_description_below_average, resultPercentage);
                 resultsDescription.setText(descriptionBelowAverage);
             }
-        }else{
+        }else {
             resultsDescription.setText(R.string.topic_results_description_incomplete);
         }
-
-
     }
 
-    //onclick listener from recycler view
-    //takes user to question if not answered yet
     @Override
     public void onItemClickListener(int itemId) {
         if (!questions.get(itemId).isAnswered()) {
@@ -242,17 +178,11 @@ public class TopicResultsFragment extends Fragment implements TopicResultsAdapte
         }
     }
 
-    //add current topic title and results to
-    // shared preferences to update widget info
     private void addTopicTitleAndResultPref() {
-
         String title = mTopic.getName();
 
         ResultsSharedPreferences.setPrefTopicId(getContext(), topicId);
         ResultsSharedPreferences.setPrefTopicTitle(getContext(), title);
         ResultsSharedPreferences.setPrefTopicResultPercentage(getContext(), resultPercentage);
-
     }
-
-
 }

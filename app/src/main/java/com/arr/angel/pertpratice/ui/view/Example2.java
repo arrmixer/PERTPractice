@@ -19,10 +19,6 @@ import static com.arr.angel.pertpratice.ui.view.MainFragment.EXTRA_TOPIC_ID;
 public class Example2 extends AppCompatActivity {
 
     private static String TAG = Example2.class.getSimpleName();
-
-
-    //placeholder for current question int
-    //and topicId
     private int currentQuestion;
     private int topicId;
 
@@ -32,7 +28,6 @@ public class Example2 extends AppCompatActivity {
         outState.putInt(EXTRA_TOPIC_ID, topicId);
         outState.putInt(EXTRA_CURRENT_QUESTION_ID, currentQuestion);
     }
-
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -73,15 +68,12 @@ public class Example2 extends AppCompatActivity {
                 setContentView(R.layout.no_example_available);
                 break;
         }
-
-
     }
 
     private void practiceTestExample() {
         Example02Binding example02Binding =
                 DataBindingUtil.setContentView(this, R.layout.example02);
 
-        //populate the text views
         example02Binding.textView1.setText(R.string.t1_example_question02_txt1);
 
         example02Binding.textView2.setText(R.string.t1_example_question02_txt2);
@@ -111,14 +103,12 @@ public class Example2 extends AppCompatActivity {
         example02Binding.textView14.setText(R.string.t1_example_question02_txt14);
 
         example02Binding.textView15.setText(R.string.t1_example_question02_txt15);
-
     }
 
     private void basicExample() {
         BasicExample02Binding basicExample02Binding =
                 DataBindingUtil.setContentView(this, R.layout.basic_example02);
 
-        //populate the text views
         basicExample02Binding.textView1.setText(R.string.t2_example_question02_txt1);
 
         basicExample02Binding.textView2.setText(R.string.t2_example_question02_txt2);
@@ -141,7 +131,6 @@ public class Example2 extends AppCompatActivity {
         IntermediateExample02Binding intermediateExample02Binding =
                 DataBindingUtil.setContentView(this, R.layout.intermediate_example02);
 
-        //populate the text views
         intermediateExample02Binding.textView1.setText(R.string.t3_example_question02_txt1);
 
         intermediateExample02Binding.textView2.setText(R.string.t3_example_question02_txt2);
@@ -159,11 +148,9 @@ public class Example2 extends AppCompatActivity {
     }
 
     private void advanceExample() {
-
         AdvanceExample02Binding advanceExample02Binding =
                 DataBindingUtil.setContentView(this, R.layout.advance_example02);
 
-        //populate the text views
         advanceExample02Binding.textView1.setText(R.string.t4_example_question02_txt1);
 
         advanceExample02Binding.textView2.setText(R.string.t4_example_question02_txt2);
@@ -197,16 +184,12 @@ public class Example2 extends AppCompatActivity {
         advanceExample02Binding.textView16.setText(R.string.t4_example_question02_txt16);
 
         advanceExample02Binding.textView17.setText(R.string.t4_example_question02_txt17);
-
-
-
     }
 
     private void applicationExample() {
         ApplicationExample02Binding applicationExample02Binding =
                 DataBindingUtil.setContentView(this, R.layout.application_example02);
 
-        //populate the text views
         applicationExample02Binding.textView1.setText(R.string.t5_example_question02_txt1);
 
         applicationExample02Binding.textView2.setText(R.string.t5_example_question02_txt2);
@@ -228,6 +211,5 @@ public class Example2 extends AppCompatActivity {
         applicationExample02Binding.textView10.setText(R.string.t5_example_question02_txt10);
 
         applicationExample02Binding.textView11.setText(R.string.t5_example_question02_txt11);
-
     }
 }

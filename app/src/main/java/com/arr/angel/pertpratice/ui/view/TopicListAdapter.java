@@ -18,13 +18,9 @@ import java.util.List;
 
 public class TopicListAdapter extends RecyclerView.Adapter<TopicListAdapter.TopicHolder> {
 
-    //     Member variable to handle item clicks
     private final ItemClickListener mItemClickListener;
-
-    //    Class variables for the List that holds RecipeViewModel and the Context
     private final Context mContext;
     private final List<Topic> topics;
-
 
     public TopicListAdapter(ItemClickListener mItemClickListener, Context mContext, List<Topic> topics) {
         this.mItemClickListener = mItemClickListener;
@@ -35,34 +31,27 @@ public class TopicListAdapter extends RecyclerView.Adapter<TopicListAdapter.Topi
     @NonNull
     @Override
     public TopicHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
-        //get inflater from container Activity
         LayoutInflater inflater = LayoutInflater.from(mContext);
 
         TopicListItemBinding binding = DataBindingUtil.inflate(
                 inflater, R.layout.topic_list_item, parent, false);
-
 
         return new TopicHolder(binding);
     }
 
     @Override
     public void onBindViewHolder(@NonNull TopicHolder topicHolder, int position) {
-
         Topic topic = topics.get(position);
         topicHolder.bindTopic(topic);
-
     }
 
     @Override
     public int getItemCount() {
-
         if (!topics.isEmpty()) {
             return topics.size();
         } else {
             return 0;
         }
-
     }
 
     public interface ItemClickListener {
@@ -70,7 +59,6 @@ public class TopicListAdapter extends RecyclerView.Adapter<TopicListAdapter.Topi
     }
 
     class TopicHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-
         private final TopicListItemBinding mTopicListItemBinding;
 
         private Button practice;
@@ -79,15 +67,11 @@ public class TopicListAdapter extends RecyclerView.Adapter<TopicListAdapter.Topi
         private TopicHolder(TopicListItemBinding binding) {
             super(binding.getRoot());
 
-            //assign instance of RecipeListItemBinding to parameter
             mTopicListItemBinding = binding;
 
             practice = binding.buttonPractice;
             results = binding.buttonResults;
 
-
-            //set click event to each itemView
-//            itemView.setOnClickListener(this);
             results.setOnClickListener(this);
             results.setTag(mContext.getResources().getString(R.string.topic_results));
             practice.setOnClickListener(this);
@@ -110,6 +94,5 @@ public class TopicListAdapter extends RecyclerView.Adapter<TopicListAdapter.Topi
             int elementId = getAdapterPosition();
             mItemClickListener.onItemClickListener(elementId, view.getTag().toString());
         }
-
     }
 }

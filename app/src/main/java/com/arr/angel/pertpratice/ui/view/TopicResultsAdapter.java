@@ -21,11 +21,7 @@ import com.arr.angel.pertpratice.model.Topic;
 public class TopicResultsAdapter extends RecyclerView.Adapter<TopicResultsAdapter.QuestionHolder> {
 
     private static String TAG = TopicResultsAdapter.class.getSimpleName();
-
-    //     Member variable to handle item clicks
     private final ItemClickListenerTopicResults itemClickListenerTopicResults;
-
-    //    Class variables for the List that holds RecipeViewModel and the Context
     private final Context mContext;
     private final Topic mTopic;
 
@@ -38,7 +34,6 @@ public class TopicResultsAdapter extends RecyclerView.Adapter<TopicResultsAdapte
     @NonNull
     @Override
     public QuestionHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
-
         LayoutInflater inflater = LayoutInflater.from(mContext);
 
         TopicResultListItemBinding binding = DataBindingUtil.inflate(
@@ -50,7 +45,6 @@ public class TopicResultsAdapter extends RecyclerView.Adapter<TopicResultsAdapte
 
     @Override
     public void onBindViewHolder(@NonNull QuestionHolder questionHolder, int i) {
-
         Question question = mTopic.getQuestions().get(i);
         questionHolder.bindQuestion(question, i);
     }
@@ -65,18 +59,14 @@ public class TopicResultsAdapter extends RecyclerView.Adapter<TopicResultsAdapte
     }
 
     class QuestionHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-
         private final TopicResultListItemBinding mTopicResultListItemBinding;
 
         TextView questionNumber;
         ImageView questionResult;
         TextView  questionUnavailable;
 
-
         private QuestionHolder(TopicResultListItemBinding binding) {
             super(binding.getRoot());
-
-            //assign instance of RecipeListItemBinding to parameter
             mTopicResultListItemBinding = binding;
 
             itemView.setOnClickListener(this);
@@ -84,11 +74,9 @@ public class TopicResultsAdapter extends RecyclerView.Adapter<TopicResultsAdapte
             questionNumber = binding.textViewTopicResultQuestionTitle;
             questionResult = binding.imageViewTopicResultQuestion;
             questionUnavailable = binding.textViewTopicResultUnavailable;
-
         }
 
         private void bindQuestion(Question question, int item) {
-
             int questionNumberInt = item + 1;
             String questionTitle = mContext.getString(R.string.question, questionNumberInt);
             questionNumber.setText(questionTitle);
@@ -112,6 +100,5 @@ public class TopicResultsAdapter extends RecyclerView.Adapter<TopicResultsAdapte
             int elementId = getAdapterPosition();
             itemClickListenerTopicResults.onItemClickListener(elementId);
         }
-
     }
 }

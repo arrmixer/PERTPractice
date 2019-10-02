@@ -35,30 +35,10 @@ public class MainFragment extends Fragment implements TopicListAdapter.ItemClick
     public static final String ARG_IS_CORRECT = "com.arr.angel.pertpratice.ui.view.is.correct.arg";
     public static final String ARG_IS_ANSWERED = "com.arr.angel.pertpratice.ui.view.is.answered.arg";
 
-    /*Placeholders for Topics*/
     private List<Topic> mTopicList;
-
-    //instance of ViewModel
     private TopicViewModel topicViewModel;
+    private MainFragmentBinding mainFragmentBinding;
 
-    //DataBinding instance
-    MainFragmentBinding mainFragmentBinding;
-
-    //instance of Callback
-    private Callbacks mCallbacks;
-
-    //Interface for hosting activities
-    public interface Callbacks {
-        void onTopicSelected(Topic topic, List<Topic> topics);
-    }
-
-//    @Override
-//    public void onAttach(Context context) {
-//        super.onAttach(context);
-//        //must implement interface on MainActivity
-//        //because cast is unchecked
-//        mCallbacks = (Callbacks) context;
-//    }
 
     @Nullable
     @Override
@@ -68,7 +48,6 @@ public class MainFragment extends Fragment implements TopicListAdapter.ItemClick
         mainFragmentBinding.setLifecycleOwner(this);
 
         mainFragmentBinding.recyclerViewTopics.setLayoutManager(new LinearLayoutManager(getActivity()));
-
 
         return mainFragmentBinding.getRoot();
     }
@@ -94,16 +73,8 @@ public class MainFragment extends Fragment implements TopicListAdapter.ItemClick
         });
     }
 
-    //release the callback once the fragment is detached
-//    @Override
-//    public void onDetach() {
-//        super.onDetach();
-//        mCallbacks = null;
-//    }
-
     @Override
     public void onItemClickListener(int itemId, String tag) {
-//        Toast.makeText(getContext(), "working: " + tag + " "+ itemId, Toast.LENGTH_SHORT).show();
         if(tag.equals(getString(R.string.topic_practice))){
             Intent intent = new Intent(getContext(), Question01Activity.class);
             intent.putExtra(EXTRA_TOPIC_ID, itemId);
@@ -115,8 +86,6 @@ public class MainFragment extends Fragment implements TopicListAdapter.ItemClick
         }
     }
 
-
-    //make sure data is in before assigning to adapter
     private void setupAdapter(){
         if(isAdded() && mTopicList != null){
             TopicListAdapter topicListAdapter = new TopicListAdapter(this, getContext(), mTopicList);

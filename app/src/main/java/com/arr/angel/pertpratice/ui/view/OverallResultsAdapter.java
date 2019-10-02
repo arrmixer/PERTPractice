@@ -17,14 +17,9 @@ import com.arr.angel.pertpratice.model.Topic;
 import java.util.List;
 
 public class OverallResultsAdapter extends RecyclerView.Adapter<OverallResultsAdapter.TopicHolder> {
-
-    //     Member variable to handle item clicks
     private final ItemClickListenerOverallResults itemClickListenerOverallResults;
-
-    //    Class variables for the List that holds RecipeViewModel and the Context
     private final Context mContext;
     private final List<Topic> topics;
-
 
     public OverallResultsAdapter(ItemClickListenerOverallResults itemClickListenerOverallResults, Context mContext, List<Topic> topics) {
         this.itemClickListenerOverallResults = itemClickListenerOverallResults;
@@ -35,46 +30,36 @@ public class OverallResultsAdapter extends RecyclerView.Adapter<OverallResultsAd
     @NonNull
     @Override
     public TopicHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
-        //get inflater from container Activity
         LayoutInflater inflater = LayoutInflater.from(mContext);
 
         OverallResultListItemBinding binding = DataBindingUtil.inflate(
                 inflater, R.layout.overall_result_list_item, parent, false);
-
 
         return new TopicHolder(binding);
     }
 
     @Override
     public void onBindViewHolder(@NonNull TopicHolder topicHolder, int position) {
-
         Topic topic = topics.get(position);
         topicHolder.bindTopic(topic);
-
     }
 
     @Override
     public int getItemCount() {
-
         if (!topics.isEmpty()) {
             return topics.size();
         } else {
             return 0;
         }
-
     }
 
     public interface ItemClickListenerOverallResults {
         void onItemClickListener(int itemId);
     }
 
-
     class TopicHolder extends RecyclerView.ViewHolder implements
             View.OnClickListener{
-
         private final OverallResultListItemBinding overallResultListItemBinding;
-
 
         private TopicHolder(OverallResultListItemBinding binding) {
             super(binding.getRoot());
@@ -83,8 +68,6 @@ public class OverallResultsAdapter extends RecyclerView.Adapter<OverallResultsAd
             overallResultListItemBinding = binding;
 
             itemView.setOnClickListener(this);
-
-
         }
 
         private void bindTopic(Topic topic) {
@@ -113,11 +96,7 @@ public class OverallResultsAdapter extends RecyclerView.Adapter<OverallResultsAd
             }else{
                 overallResultListItemBinding.textViewTopicResult.setText(R.string.start);
             }
-
-
-
         }
-
 
         @Override
         public void onClick(View v) {

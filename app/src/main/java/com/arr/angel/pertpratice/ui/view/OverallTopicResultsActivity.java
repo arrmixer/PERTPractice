@@ -1,11 +1,9 @@
 package com.arr.angel.pertpratice.ui.view;
 
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import androidx.databinding.DataBindingUtil;
 import android.os.Bundle;
-import androidx.annotation.Nullable;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import androidx.fragment.app.Fragment;
 import androidx.appcompat.app.ActionBar;
@@ -13,7 +11,6 @@ import androidx.appcompat.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.arr.angel.pertpratice.R;
 import com.arr.angel.pertpratice.databinding.ActivityMainBinding;
@@ -25,14 +22,9 @@ import static com.arr.angel.pertpratice.ui.view.MainFragment.EXTRA_TOPIC_ID;
 public class OverallTopicResultsActivity extends SingleFragmentActivity {
 
     private static final String TAG = OverallTopicResultsActivity.class.getSimpleName();
-
     private int topicId;
-
-
-    //viewModel instance to share with fragment
     private TopicViewModel topicViewModel;
     private Topic mTopic;
-
 
     @Override
     protected Fragment createFragment() {
@@ -56,12 +48,9 @@ public class OverallTopicResultsActivity extends SingleFragmentActivity {
         }
 
         topicViewModel = ViewModelProviders.of(this).get(TopicViewModel.class);
-        topicViewModel.getLiveTopicDataFromDB(topicId).observe(this, new Observer<Topic>() {
-            @Override
-            public void onChanged(@Nullable Topic topic) {
-                mTopic = topic;
-                Log.d(TAG, "Is mTopic null? inside observe...." + (mTopic == null));
-            }
+        topicViewModel.getLiveTopicDataFromDB(topicId).observe(this, topic -> {
+            mTopic = topic;
+            Log.d(TAG, "Is mTopic null? inside observe...." + (mTopic == null));
         });
 
         Toolbar toolbar = activityMainBinding.toolbar;
@@ -75,12 +64,9 @@ public class OverallTopicResultsActivity extends SingleFragmentActivity {
         }
 
         final FloatingActionButton floatingActionButton = activityMainBinding.floatingActionButton;
-        floatingActionButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                DialogShare dialogShare = DialogShare.newInstance(mTopic.getResultPercentage());
-                dialogShare.show(getSupportFragmentManager(), getString(R.string.share_tag));
-            }
+        floatingActionButton.setOnClickListener(view -> {
+            DialogShare dialogShare = DialogShare.newInstance(mTopic.getResultPercentage());
+            dialogShare.show(getSupportFragmentManager(), getString(R.string.share_tag));
         });
 
 
@@ -88,7 +74,6 @@ public class OverallTopicResultsActivity extends SingleFragmentActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main_menu, menu);
         menu.getItem(1).setVisible(false);
         return true;
@@ -96,11 +81,7 @@ public class OverallTopicResultsActivity extends SingleFragmentActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        //noinspection SimplifiableIfStatement
         if (id == R.id.main_settings) {
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
@@ -108,5 +89,4 @@ public class OverallTopicResultsActivity extends SingleFragmentActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
 }

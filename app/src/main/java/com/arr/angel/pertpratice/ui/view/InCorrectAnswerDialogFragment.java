@@ -22,8 +22,6 @@ public class InCorrectAnswerDialogFragment extends DialogFragment {
 
     private static String TAG = InCorrectAnswerDialogFragment.class.getSimpleName();
 
-    //placeholder for int to the next question
-    //, current question, and topic id
     private int currentQuestion;
     private int nextQuestion;
     private int topicId;
@@ -47,7 +45,6 @@ public class InCorrectAnswerDialogFragment extends DialogFragment {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
-        //make sure bundle has int value
         if (getArguments() != null) {
             currentQuestion = getArguments().getInt(DialogCreations.currentQuestionNumberArg);
             nextQuestion = getArguments().getInt(DialogCreations.nextQuestionNumberArg);
@@ -58,24 +55,16 @@ public class InCorrectAnswerDialogFragment extends DialogFragment {
         }
 
         builder.setMessage(R.string.dialog_incorrect)
-                .setPositiveButton(R.string.dialog_next, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-//                        Toast.makeText(getContext(), R.string.next_toast, Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(getActivity(), DialogCreations.check(nextQuestion));
-                        intent.putExtra(EXTRA_IS_CORRECT, false);
-                        intent.putExtra(EXTRA_IS_ANSWERED, true);
-                        intent.putExtra(EXTRA_CURRENT_QUESTION_ID, currentQuestion);
-                        intent.putExtra(MainFragment.EXTRA_TOPIC_ID, topicId);
-                        startActivity(intent);
-                    }
+                .setPositiveButton(R.string.dialog_next, (dialogInterface, i) -> {
+                    Intent intent = new Intent(getActivity(), DialogCreations.check(nextQuestion));
+                    intent.putExtra(EXTRA_IS_CORRECT, false);
+                    intent.putExtra(EXTRA_IS_ANSWERED, true);
+                    intent.putExtra(EXTRA_CURRENT_QUESTION_ID, currentQuestion);
+                    intent.putExtra(MainFragment.EXTRA_TOPIC_ID, topicId);
+                    startActivity(intent);
                 })
-                .setNegativeButton(R.string.dialog_retry, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
+                .setNegativeButton(R.string.dialog_retry, (dialogInterface, i) -> {
 //                        Toast.makeText(getContext(), R.string.retry_dialog, Toast.LENGTH_SHORT).show();
-
-                    }
                 });
 
         return builder.create();

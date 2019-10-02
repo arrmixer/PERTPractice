@@ -29,12 +29,8 @@ import static com.arr.angel.pertpratice.ui.view.MainFragment.EXTRA_TOPIC_ID;
 public class OverallResultsFragment extends Fragment implements OverallResultsAdapter.ItemClickListenerOverallResults{
 
     private static final String TAG = OverallResultsFragment.class.getSimpleName();
-
-    //instance of ViewModel
     private TopicViewModel topicViewModel;
-
-    //DataBinding instance
-    OverallResultsBinding overallResultsBinding;
+    private OverallResultsBinding overallResultsBinding;
 
     /*Placeholders for Topics*/
     private List<Topic> mTopicList;

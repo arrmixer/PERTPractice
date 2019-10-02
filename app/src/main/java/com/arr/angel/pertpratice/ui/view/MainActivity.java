@@ -24,7 +24,6 @@ import com.arr.angel.pertpratice.util.NavigationDrawerMenuMethods;
 
 public class MainActivity extends SingleFragmentActivity {
 
-    // The Idling Resource which will be null in production.
     @Nullable
     private SimpleIdlingResource mIdlingResource;
 
@@ -52,9 +51,6 @@ public class MainActivity extends SingleFragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ActivityMainBinding activityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-//        setContentView(R.layout.activity_main);
-
-        //make favButton appear only for results pages
         FloatingActionButton floatingActionButton = activityMainBinding.floatingActionButton;
         floatingActionButton.hide();
 
@@ -70,36 +66,19 @@ public class MainActivity extends SingleFragmentActivity {
             actionBar.setHomeActionContentDescription(R.string.home_content_description);
         }
 
-        //use this to change the text
-
         NavheaderBinding navheaderBinding = NavheaderBinding.bind(activityMainBinding.navView.inflateHeaderView(R.layout.navheader));
         navheaderBinding.textView.setText(getString(R.string.nav_topics));
-//        activityMainBinding.navView.getMenu().getItem(5).setVisible.setTitle("Overall Results");
-//        activityMainBinding.navView.getMenu().getItem(2).setVisible(false);
-//        activityMainBinding.navView.getMenu().removeGroup(0);
-
 
         mDrawerLayout = activityMainBinding.drawerLayout;
         NavigationView navigationView = activityMainBinding.navView;
         navigationView.setNavigationItemSelectedListener(
-                new NavigationView.OnNavigationItemSelectedListener() {
-                    @Override
-                    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                        // set item as selected to persist highlight
-                        menuItem.setChecked(true);
+                menuItem -> {
+                    menuItem.setChecked(true);
 
-                        //helper method that contains switch statement
-                        // to navigate to topic questions directly
-                        NavigationDrawerMenuMethods.mainDrawerMenuNavigation(MainActivity.this, menuItem);
+                    NavigationDrawerMenuMethods.mainDrawerMenuNavigation(MainActivity.this, menuItem);
+                    mDrawerLayout.closeDrawers();
 
-                        // close drawer when item is tapped
-                        mDrawerLayout.closeDrawers();
-
-                        // Add code here to update the UI based on the item selected
-                        // For example, swap UI fragments here
-
-                        return true;
-                    }
+                    return true;
                 });
 
 
@@ -114,6 +93,4 @@ public class MainActivity extends SingleFragmentActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
-
 }

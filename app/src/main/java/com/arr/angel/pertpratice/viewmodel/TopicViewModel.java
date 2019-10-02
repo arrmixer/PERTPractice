@@ -30,7 +30,6 @@ public class TopicViewModel extends AndroidViewModel {
     }
 
     public LiveData<List<Topic>> getLiveTopicListDataFromDB() {
-
         return topicRepository.getTopicsList();
     }
 
