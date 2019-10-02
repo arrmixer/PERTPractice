@@ -92,8 +92,6 @@ public class MainFragment extends Fragment implements TopicListAdapter.ItemClick
                 setupAdapter();
             }
         });
-
-
     }
 
     //release the callback once the fragment is detached

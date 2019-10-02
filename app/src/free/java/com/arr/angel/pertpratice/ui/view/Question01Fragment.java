@@ -195,11 +195,7 @@ public class Question01Fragment extends Fragment {
                             }
 
                         }
-
-
                     }
-
-
                 }
 
         });
@@ -215,18 +211,15 @@ public class Question01Fragment extends Fragment {
         });
 
 
-        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int checkId) {
 
-                if (!isAnswered) {
-                    RadioGroupHelper.radioButtonLogic(radioGroup, getFragmentManager(),
-                            checkId, answer, possibleAnswers, currentQuestion, nextQuestion, topicId);
-                } else {
-                    DialogCreations.showAlreadyAnsweredDialog(getFragmentManager(), currentQuestion, nextUnansweredQuestionId, topicId, isCorrect);
-                }
-
+        radioGroup.setOnCheckedChangeListener((radioGroup, checkId) -> {
+            if (!isAnswered) {
+                RadioGroupHelper.radioButtonLogic(radioGroup,getFragmentManager(),
+                         checkId, answer, possibleAnswers, currentQuestion, nextQuestion, topicId);
+            } else {
+                DialogCreations.showAlreadyAnsweredDialog(getFragmentManager(), currentQuestion, nextUnansweredQuestionId, topicId, isCorrect);
             }
+
         });
     }
 
