@@ -7,7 +7,7 @@ import androidx.annotation.StringRes;
 import androidx.test.espresso.ViewInteraction;
 import androidx.test.espresso.contrib.RecyclerViewActions;
 import androidx.test.espresso.intent.rule.IntentsTestRule;
-import androidx.test.runner.AndroidJUnit4;
+import androidx.test.ext.junit.runners.AndroidJUnit4;
 
 import com.arr.angel.pertpratice.R;
 import com.arr.angel.pertpratice.util.ResultsSharedPreferences;

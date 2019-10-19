@@ -3,7 +3,7 @@ package com.arr.angel.pertpratice.ui.view;
 
 import androidx.test.espresso.contrib.DrawerActions;
 import androidx.test.rule.ActivityTestRule;
-import androidx.test.runner.AndroidJUnit4;
+import androidx.test.ext.junit.runners.AndroidJUnit4;
 import android.view.Gravity;
 
 import com.arr.angel.pertpratice.R;

@@ -3,7 +3,7 @@ package com.arr.angel.pertpratice.ui.view;
 import android.app.Activity;
 import android.app.Instrumentation;
 import androidx.test.espresso.intent.rule.IntentsTestRule;
-import androidx.test.runner.AndroidJUnit4;
+import androidx.test.ext.junit.runners.AndroidJUnit4;
 
 import org.junit.Before;
 import org.junit.Rule;

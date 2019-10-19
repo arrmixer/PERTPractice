@@ -150,55 +150,49 @@ public class Question01Fragment extends Fragment {
         radioGroup = questionBinding.radioGroup;
 
         topicViewModel = ViewModelProviders.of(this).get(TopicViewModel.class);
-        topicViewModel.getLiveTopicDataFromDB(topicId).observe(this, new Observer<Topic>() {
-            @Override
-            public void onChanged(@Nullable Topic topic) {
+        topicViewModel.getLiveTopicDataFromDB(topicId).observe(this, topic -> {
+                mTopic = topic;
+                populateView();
 
+                if (previousIsAnswered) {
 
-                    mTopic = topic;
-                    populateView();
+                    //questions are indexed at 1 not 0
+                    Question previousQuestion = questions.get(previousQuestionId - 1);
+                    previousQuestion.setCorrect(previousIsCorrect);
+                    previousQuestion.setAnswered(previousIsAnswered);
+                    topicViewModel.insertTopic(mTopic);
 
-                    if (previousIsAnswered) {
-
-                        //questions are indexed at 1 not 0
-                        Question previousQuestion = questions.get(previousQuestionId - 1);
-                        previousQuestion.setCorrect(previousIsCorrect);
-                        previousQuestion.setAnswered(previousIsAnswered);
-                        topicViewModel.insertTopic(mTopic);
-
-                        //reset boolean to keep onchange from updating
-                        previousIsAnswered = false;
-                    }
-
-
-                    //check to see if question is already answered
-                    isAnswered = question.isAnswered();
-//                    Log.d(TAG, "isAnswered is " + isAnswered);
-
-                    if (isAnswered) {
-                        //placeholder for next unanswered question if any
-                        nextUnansweredQuestionId = 0;
-
-                        //check to see if question was answered correctly
-                        isCorrect = question.isCorrect();
-
-                        for (Question q : questions) {
-
-                            //check to see if question is already answered
-                            //and redirect user to next available question if any
-                            if (!q.isAnswered()) {
-                                //get question number from question id
-                                //example string PT01 question number is 1
-                                String number = q.getId().substring(3);
-                                nextUnansweredQuestionId = Integer.parseInt(number);
-                                break;
-                            }
-
-                        }
-                    }
+                    //reset boolean to keep onchange from updating
+                    previousIsAnswered = false;
                 }
 
-        });
+
+                //check to see if question is already answered
+                isAnswered = question.isAnswered();
+//                    Log.d(TAG, "isAnswered is " + isAnswered);
+
+                if (isAnswered) {
+                    //placeholder for next unanswered question if any
+                    nextUnansweredQuestionId = 0;
+
+                    //check to see if question was answered correctly
+                    isCorrect = question.isCorrect();
+
+                    for (Question q : questions) {
+
+                        //check to see if question is already answered
+                        //and redirect user to next available question if any
+                        if (!q.isAnswered()) {
+                            //get question number from question id
+                            //example string PT01 question number is 1
+                            String number = q.getId().substring(3);
+                            nextUnansweredQuestionId = Integer.parseInt(number);
+                            break;
+                        }
+
+                    }
+                }
+            });
 
         exampleButton.setOnClickListener(new View.OnClickListener() {
             @Override

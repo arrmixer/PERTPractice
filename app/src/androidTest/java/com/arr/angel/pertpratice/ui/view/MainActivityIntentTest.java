@@ -5,7 +5,8 @@ import android.app.Instrumentation;
 import androidx.test.espresso.contrib.DrawerActions;
 import androidx.test.espresso.contrib.NavigationViewActions;
 import androidx.test.espresso.intent.rule.IntentsTestRule;
-import androidx.test.runner.AndroidJUnit4;
+import androidx.test.ext.junit.runners.AndroidJUnit4;
+
 import android.view.Gravity;
 
 import com.arr.angel.pertpratice.R;
